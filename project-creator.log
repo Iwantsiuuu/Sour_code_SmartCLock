@@ -1,0 +1,272 @@
+Loading the ModusToolbox Technology Packs and Early Access Packs
+Finished loading the ModusToolbox Technology Packs and Early Access Packs (6 ms)
+Loading the tools information
+Finished loading the tools information (71 ms)
+Loading the manifest data
+Loading super manfiest files from all sources
+Processing manifest pack file 'C:/Users/bahariridwan/ModusToolbox/packs/ModusToolbox-Machine-Learning-Pack/manifest.xml'
+Downloading super manifest file 'file:///C:/Users/bahariridwan/ModusToolbox/packs/ModusToolbox-Machine-Learning-Pack/manifest.xml'
+Getting manifests from remote and/or local sources
+Processing system manifest 'https://modustoolbox.infineon.com/manifests/mtb-super-manifest/v2.X/mtb-super-manifest-fv2.xml'
+Downloading super manifest file 'https://modustoolbox.infineon.com/manifests/mtb-super-manifest/v2.X/mtb-super-manifest-fv2.xml'
+Finished loading super manifest files from all sources
+Finished download of file 'file:///C:/Users/bahariridwan/ModusToolbox/packs/ModusToolbox-Machine-Learning-Pack/manifest.xml'
+Starting to parse super manifest with URL 'file:///C:/Users/bahariridwan/ModusToolbox/packs/ModusToolbox-Machine-Learning-Pack/manifest.xml'
+Finished parsing super manifest with URL 'file:///C:/Users/bahariridwan/ModusToolbox/packs/ModusToolbox-Machine-Learning-Pack/manifest.xml'
+Downloading manifest file 'file:///C:/Users/bahariridwan/ModusToolbox/packs/ModusToolbox-Machine-Learning-Pack/manifests/mtb-ml-ce-manifest.xml'
+Finished download of file 'https://modustoolbox.infineon.com/manifests/mtb-super-manifest/v2.X/mtb-super-manifest-fv2.xml'
+Starting to parse super manifest with URL 'https://modustoolbox.infineon.com/manifests/mtb-super-manifest/v2.X/mtb-super-manifest-fv2.xml'
+Finished parsing super manifest with URL 'https://modustoolbox.infineon.com/manifests/mtb-super-manifest/v2.X/mtb-super-manifest-fv2.xml'
+Downloading manifest file 'https://github.com/Infineon/mtb-ce-manifest/raw/v2.X/mtb-ce-manifest.xml'
+Downloading manifest file 'https://github.com/Infineon/mtb-ce-manifest/raw/v2.X/mtb-ce-manifest-fv2.xml'
+Downloading manifest file 'https://github.com/Infineon/mtb-bt-app-manifest/raw/v2.X/mtb-bt-app-manifest.xml'
+Downloading manifest file 'https://github.com/Infineon/mtb-bt-app-manifest/raw/v2.X/mtb-bt-app-manifest-fv2.xml'
+Downloading manifest file 'https://github.com/Infineon/cce-app-manifest/raw/v2.X/cce-app-manifest-fv2.xml'
+Downloading manifest file 'https://github.com/Altia-Marketing/altia-ce-manifest/raw/main/altia-ce-manifest-fv2.xml'
+Downloading manifest file 'https://github.com/avnet-iotconnect/avnet-iotc-mtb-ce-manifest/raw/main/avnet-iotc-mtb-ce-manifest-fv2.xml'
+Downloading manifest file 'https://github.com/CyberonEBU/cyberon-mtb-ce-manifest/raw/main/cyberon-mtb-ce-manifest-fv2.xml'
+Downloading manifest file 'https://github.com/edgeimpulse/edgeimpulse-ce-manifest/raw/main/edgeimpulse-ce-manifest-fv2.xml'
+Downloading manifest file 'https://github.com/golioth/mtb-golioth-ce-manifest/raw/main/mtb-golioth-ce-manifest-fv2.xml'
+Downloading manifest file 'https://github.com/memfault/mtb-memfault-ce-manifest/raw/main/mtb-memfault-ce-manifest-fv2.xml'
+Downloading manifest file 'https://github.com/RutronikSystemSolutions/rutronik-ce-manifest/raw/main/rutronik-ce-manifest-fv2.xml'
+Downloading manifest file 'https://github.com/sensiml/sensiml-ce-manifest/raw/main/sensiml-ce-manifest-fv2.xml'
+Downloading manifest file 'https://github.com/Infineon/mtb-bsp-manifest/raw/v2.X/mtb-bsp-manifest.xml'
+Downloading manifest file 'https://github.com/Infineon/mtb-bsp-manifest/raw/v2.X/mtb-bsp-capabilities-manifest.json'
+Downloading manifest file 'https://github.com/Infineon/mtb-bsp-manifest/raw/v2.X/mtb-bsp-manifest-fv2.xml'
+Downloading manifest file 'https://github.com/Infineon/mtb-bsp-manifest/raw/v2.X/mtb-bsp-dependencies-manifest.xml'
+Downloading manifest file 'https://github.com/Infineon/mtb-bt-bsp-manifest/raw/v2.X/mtb-bt-bsp-manifest.xml'
+Downloading manifest file 'https://github.com/Infineon/mtb-bt-bsp-manifest/raw/v2.X/mtb-bt-bsp-manifest-fv2.xml'
+Downloading manifest file 'https://github.com/Infineon/mtb-bt-bsp-manifest/raw/v2.X/mtb-bt-bsp-dependencies-manifest.xml'
+Downloading manifest file 'https://github.com/Inventek/inventek-bsp-manifest/raw/main/inventek-bsp-manifest-fv2.xml'
+Downloading manifest file 'https://github.com/Inventek/inventek-bsp-manifest/raw/main/inventek-bsp-dependencies-manifest.xml'
+Downloading manifest file 'https://github.com/RutronikSystemSolutions/rutronik-bsp-manifest/raw/main/rutronik-bsp-manifest-fv2.xml'
+Downloading manifest file 'https://github.com/RutronikSystemSolutions/rutronik-bsp-manifest/raw/main/rutronik-bsp-dependencies-manifest.xml'
+Downloading manifest file 'https://github.com/Infineon/mtb-mw-manifest/raw/v2.X/mtb-mw-manifest.xml'
+Downloading manifest file 'https://github.com/Infineon/mtb-mw-manifest/raw/v2.X/mtb-mw-manifest-fv2.xml'
+Downloading manifest file 'https://github.com/Infineon/mtb-mw-manifest/raw/v2.X/mtb-mw-dependencies-manifest.xml'
+Downloading manifest file 'https://github.com/Infineon/mtb-bt-mw-manifest/raw/v2.X/mtb-bt-mw-manifest.xml'
+Downloading manifest file 'https://github.com/Infineon/mtb-bt-mw-manifest/raw/v2.X/mtb-bt-mw-manifest-fv2.xml'
+Downloading manifest file 'https://github.com/Infineon/mtb-bt-mw-manifest/raw/v2.X/mtb-bt-mw-dependencies-manifest.xml'
+Downloading manifest file 'https://github.com/Infineon/mtb-wifi-mw-manifest/raw/v2.X/mtb-wifi-mw-manifest.xml'
+Downloading manifest file 'https://github.com/Infineon/mtb-wifi-mw-manifest/raw/v2.X/mtb-wifi-mw-manifest-fv2.xml'
+Downloading manifest file 'https://github.com/Infineon/mtb-wifi-mw-manifest/raw/v2.X/mtb-wifi-mw-dependencies-manifest.xml'
+Downloading manifest file 'https://github.com/avnet-iotconnect/avnet-iotc-mtb-mw-manifest/raw/main/avnet-iotc-mtb-mw-manifest-fv2.xml'
+Downloading manifest file 'https://github.com/CyberonEBU/cyberon-mtb-mw-manifest/raw/main/cyberon-mtb-mw-manifest-fv2.xml'
+Downloading manifest file 'https://github.com/golioth/mtb-golioth-mw-manifest/raw/main/mtb-golioth-mw-manifest-fv2.xml'
+Downloading manifest file 'https://github.com/memfault/mtb-memfault-mw-manifest/raw/main/mtb-memfault-mw-manifest-fv2.xml'
+Downloading manifest file 'https://github.com/sensiml/sensiml-mw-manifest/raw/main/sensiml-mw-manifest-fv2.xml'
+Finished download of file 'file:///C:/Users/bahariridwan/ModusToolbox/packs/ModusToolbox-Machine-Learning-Pack/manifests/mtb-ml-ce-manifest.xml'
+Finished download of file 'https://github.com/Infineon/mtb-ce-manifest/raw/v2.X/mtb-ce-manifest.xml'
+Finished download of file 'https://github.com/Infineon/mtb-ce-manifest/raw/v2.X/mtb-ce-manifest-fv2.xml'
+Finished download of file 'https://github.com/Infineon/mtb-bt-app-manifest/raw/v2.X/mtb-bt-app-manifest.xml'
+Finished download of file 'https://github.com/Infineon/mtb-bt-app-manifest/raw/v2.X/mtb-bt-app-manifest-fv2.xml'
+Finished download of file 'https://github.com/Infineon/cce-app-manifest/raw/v2.X/cce-app-manifest-fv2.xml'
+Finished download of file 'https://github.com/Altia-Marketing/altia-ce-manifest/raw/main/altia-ce-manifest-fv2.xml'
+Finished download of file 'https://github.com/avnet-iotconnect/avnet-iotc-mtb-ce-manifest/raw/main/avnet-iotc-mtb-ce-manifest-fv2.xml'
+Finished download of file 'https://github.com/CyberonEBU/cyberon-mtb-ce-manifest/raw/main/cyberon-mtb-ce-manifest-fv2.xml'
+Finished download of file 'https://github.com/edgeimpulse/edgeimpulse-ce-manifest/raw/main/edgeimpulse-ce-manifest-fv2.xml'
+Finished download of file 'https://github.com/golioth/mtb-golioth-ce-manifest/raw/main/mtb-golioth-ce-manifest-fv2.xml'
+Finished download of file 'https://github.com/memfault/mtb-memfault-ce-manifest/raw/main/mtb-memfault-ce-manifest-fv2.xml'
+Finished download of file 'https://github.com/RutronikSystemSolutions/rutronik-ce-manifest/raw/main/rutronik-ce-manifest-fv2.xml'
+Finished download of file 'https://github.com/sensiml/sensiml-ce-manifest/raw/main/sensiml-ce-manifest-fv2.xml'
+Finished download of file 'https://github.com/Infineon/mtb-bsp-manifest/raw/v2.X/mtb-bsp-manifest.xml'
+Finished download of file 'https://github.com/Infineon/mtb-bsp-manifest/raw/v2.X/mtb-bsp-capabilities-manifest.json'
+Finished download of file 'https://github.com/Infineon/mtb-bsp-manifest/raw/v2.X/mtb-bsp-manifest-fv2.xml'
+Finished download of file 'https://github.com/Infineon/mtb-bsp-manifest/raw/v2.X/mtb-bsp-dependencies-manifest.xml'
+Finished download of file 'https://github.com/Infineon/mtb-bt-bsp-manifest/raw/v2.X/mtb-bt-bsp-manifest.xml'
+Finished download of file 'https://github.com/Infineon/mtb-bt-bsp-manifest/raw/v2.X/mtb-bt-bsp-manifest-fv2.xml'
+Finished download of file 'https://github.com/Infineon/mtb-bt-bsp-manifest/raw/v2.X/mtb-bt-bsp-dependencies-manifest.xml'
+Finished download of file 'https://github.com/Inventek/inventek-bsp-manifest/raw/main/inventek-bsp-manifest-fv2.xml'
+Finished download of file 'https://github.com/Inventek/inventek-bsp-manifest/raw/main/inventek-bsp-dependencies-manifest.xml'
+Finished download of file 'https://github.com/RutronikSystemSolutions/rutronik-bsp-manifest/raw/main/rutronik-bsp-manifest-fv2.xml'
+Finished download of file 'https://github.com/RutronikSystemSolutions/rutronik-bsp-manifest/raw/main/rutronik-bsp-dependencies-manifest.xml'
+Finished download of file 'https://github.com/Infineon/mtb-mw-manifest/raw/v2.X/mtb-mw-manifest.xml'
+Finished download of file 'https://github.com/Infineon/mtb-mw-manifest/raw/v2.X/mtb-mw-manifest-fv2.xml'
+Finished download of file 'https://github.com/Infineon/mtb-mw-manifest/raw/v2.X/mtb-mw-dependencies-manifest.xml'
+Finished download of file 'https://github.com/Infineon/mtb-bt-mw-manifest/raw/v2.X/mtb-bt-mw-manifest.xml'
+Finished download of file 'https://github.com/Infineon/mtb-bt-mw-manifest/raw/v2.X/mtb-bt-mw-manifest-fv2.xml'
+Finished download of file 'https://github.com/Infineon/mtb-bt-mw-manifest/raw/v2.X/mtb-bt-mw-dependencies-manifest.xml'
+Finished download of file 'https://github.com/Infineon/mtb-wifi-mw-manifest/raw/v2.X/mtb-wifi-mw-manifest.xml'
+Finished download of file 'https://github.com/Infineon/mtb-wifi-mw-manifest/raw/v2.X/mtb-wifi-mw-manifest-fv2.xml'
+Finished download of file 'https://github.com/Infineon/mtb-wifi-mw-manifest/raw/v2.X/mtb-wifi-mw-dependencies-manifest.xml'
+Finished download of file 'https://github.com/avnet-iotconnect/avnet-iotc-mtb-mw-manifest/raw/main/avnet-iotc-mtb-mw-manifest-fv2.xml'
+Finished download of file 'https://github.com/CyberonEBU/cyberon-mtb-mw-manifest/raw/main/cyberon-mtb-mw-manifest-fv2.xml'
+Finished download of file 'https://github.com/golioth/mtb-golioth-mw-manifest/raw/main/mtb-golioth-mw-manifest-fv2.xml'
+Finished download of file 'https://github.com/memfault/mtb-memfault-mw-manifest/raw/main/mtb-memfault-mw-manifest-fv2.xml'
+Finished download of file 'https://github.com/sensiml/sensiml-mw-manifest/raw/main/sensiml-mw-manifest-fv2.xml'
+Finished loading the manifest data (3782 ms)
+0 error(s), 0 warning(s)
+
+Summary: 
+
+BSP: CY8CPROTO-063-BLE
+Template Application(s): Smart_Clock_BLE
+Application(s) Root Path: C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock
+
+Press "Create" to create the selected application(s).
+
+Collecting application data...
+
+Info: The following entered on the command line will create the exact same project as that created with the GUI tool:
+C:/Users/bahariridwan/ModusToolbox/tools_3.2/project-creator/project-creator-cli.exe --board-id CY8CPROTO-063-BLE --board-uri https://github.com/cypresssemiconductorco/TARGET_CY8CPROTO-063-BLE --board-commit latest-v4.X --app-path C:/Users/bahariridwan/Smart_CLock_FINAL/Source_Code/Smart_Clock_BLE --target-dir C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock --user-app-name Smart_Clock_BLE --use-modus-shell
+
+Starting application creation for 'C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/Smart_Clock_BLE'.
+Acquiring the application source 'C:/Users/bahariridwan/Smart_CLock_FINAL/Source_Code/Smart_Clock_BLE'.
+Copying C:/Users/bahariridwan/Smart_CLock_FINAL/Source_Code/Smart_Clock_BLE to C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/Smart_Clock_BLE.
+Copied C:/Users/bahariridwan/Smart_CLock_FINAL/Source_Code/Smart_Clock_BLE to C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/Smart_Clock_BLE.
+Acquired application source successfully.
+Loading the application.
+Loaded the application successfully.
+Processing project 'Smart_Clock_BLE'.
+Starting to commit changes to the filesystem and project 'cyberon-voice-trigger-and-command-demo-psoc6-cm4'.
+Writing mtb file for asset 'CY8CPROTO-063-BLE' to the folder 'C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/Smart_Clock_BLE/deps'.
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/btstack-integration clone --origin cypress --no-checkout --filter=blob:none https://github.com/Infineon/btstack-integration release-v5.0.1
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/btstack clone --origin cypress --no-checkout --filter=blob:none https://github.com/cypresssemiconductorco/btstack release-v3.9.2
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/cat1cm0p clone --origin cypress --no-checkout --filter=blob:none https://github.com/Infineon/cat1cm0p release-v1.5.0
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/clib-support clone --origin cypress --no-checkout --filter=blob:none https://github.com/cypresssemiconductorco/clib-support release-v1.5.0
+Cloning into 'release-v5.0.1'...
+Cloning into 'release-v1.5.0'...
+Cloning into 'release-v3.9.2'...
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/btstack-integration clone --origin cypress --no-checkout --filter=blob:none https://github.com/Infineon/btstack-integration release-v5.0.1
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/core-lib clone --origin cypress --no-checkout --filter=blob:none https://github.com/cypresssemiconductorco/core-lib release-v1.4.2
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/cat1cm0p clone --origin cypress --no-checkout --filter=blob:none https://github.com/Infineon/cat1cm0p release-v1.5.0
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/cyberon-dspotter-lib-psoc6-cm4 clone --origin cypress --no-checkout --filter=blob:none https://github.com/CyberonEBU/cyberon-dspotter-lib-psoc6-cm4 release-v2.0
+Cloning into 'release-v1.4.2
+'...
+Cloning into 'release-v1.5.0'...
+Cloning into 'release-v2.0'...
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/btstack clone --origin cypress --no-checkout --filter=blob:none https://github.com/cypresssemiconductorco/btstack release-v3.9.2
+Starting: git -C C:/Users/bahariridwan/.modustoolbox/global/device-db/release-v4.17.0 -c advice.detachedHead=false checkout release-v4.17.0 --force
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/core-lib clone --origin cypress --no-checkout --filter=blob:none https://github.com/cypresssemiconductorco/core-lib release-v1.4.2
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/display-oled-ssd1306 clone --origin cypress --no-checkout --filter=blob:none https://github.com/cypresssemiconductorco/display-oled-ssd1306 release-v1.0.2
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/clib-support clone --origin cypress --no-checkout --filter=blob:none https://github.com/cypresssemiconductorco/clib-support release-v1.5.0
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/freertos clone --origin cypress --no-checkout --filter=blob:none https://github.com/cypresssemiconductorco/freertos release-v10.5.002
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/cyberon-dspotter-lib-psoc6-cm4 clone --origin cypress --no-checkout --filter=blob:none https://github.com/CyberonEBU/cyberon-dspotter-lib-psoc6-cm4 release-v2.0
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/mtb-hal-cat1 clone --origin cypress --no-checkout --filter=blob:none https://github.com/cypresssemiconductorco/mtb-hal-cat1 release-v2.6.1
+Cloning into 'release-v1.0.2'...
+Cloning into 'release-v10.5.002'...
+Cloning into 'release-v2.6.1'...
+HEAD is now at e956f2bb Upload device-db 4.17.0.6514 [2618]
+Success: git -C C:/Users/bahariridwan/.modustoolbox/global/device-db/release-v4.17.0 -c advice.detachedHead=false checkout release-v4.17.0 --force
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/mtb-pdl-cat1 clone --origin cypress --no-checkout --filter=blob:none https://github.com/cypresssemiconductorco/mtb-pdl-cat1 release-v3.11.0
+Cloning into 'release-v3.11.0'...
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/display-oled-ssd1306 clone --origin cypress --no-checkout --filter=blob:none https://github.com/cypresssemiconductorco/display-oled-ssd1306 release-v1.0.2
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/recipe-make-cat1a clone --origin cypress --no-checkout --filter=blob:none https://github.com/cypresssemiconductorco/recipe-make-cat1a release-v2.2.1
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/freertos clone --origin cypress --no-checkout --filter=blob:none https://github.com/cypresssemiconductorco/freertos release-v10.5.002
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/retarget-io clone --origin cypress --no-checkout --filter=blob:none https://github.com/cypresssemiconductorco/retarget-io release-v1.5.0
+Cloning into 'release-v2.2.1'...
+Cloning into 'release-v1.5.0'...
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/mtb-hal-cat1 clone --origin cypress --no-checkout --filter=blob:none https://github.com/cypresssemiconductorco/mtb-hal-cat1 release-v2.6.1
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/sensor-xensiv-dps3xx clone --origin cypress --no-checkout --filter=blob:none https://github.com/Infineon/sensor-xensiv-dps3xx release-v1.0.0
+Cloning into 'release-v1.0.0'...
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/mtb-pdl-cat1 clone --origin cypress --no-checkout --filter=blob:none https://github.com/cypresssemiconductorco/mtb-pdl-cat1 release-v3.11.0
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/Smart_Clock_BLE/libs clone --origin cypress --no-checkout --filter=blob:none https://github.com/cypresssemiconductorco/TARGET_CY8CPROTO-063-BLE TARGET_CY8CPROTO-063-BLE
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/recipe-make-cat1a clone --origin cypress --no-checkout --filter=blob:none https://github.com/cypresssemiconductorco/recipe-make-cat1a release-v2.2.1
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/abstraction-rtos clone --origin cypress --no-checkout --filter=blob:none https://github.com/cypresssemiconductorco/abstraction-rtos release-v1.8.2
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/retarget-io clone --origin cypress --no-checkout --filter=blob:none https://github.com/cypresssemiconductorco/retarget-io release-v1.5.0
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/cmsis clone --origin cypress --no-checkout --filter=blob:none https://github.com/Infineon/cmsis release-v5.8.0
+Cloning into 'TARGET_CY8CPROTO-063-BLE'...
+Cloning into 'release-v1.8.2'...
+Cloning into 'release-v5.8.0'...
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/sensor-xensiv-dps3xx clone --origin cypress --no-checkout --filter=blob:none https://github.com/Infineon/sensor-xensiv-dps3xx release-v1.0.0
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/core-make clone --origin cypress --no-checkout --filter=blob:none https://github.com/cypresssemiconductorco/core-make release-v3.3.1
+Cloning into 'release-v3.3.1'...
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/Smart_Clock_BLE/libs clone --origin cypress --no-checkout --filter=blob:none https://github.com/cypresssemiconductorco/TARGET_CY8CPROTO-063-BLE TARGET_CY8CPROTO-063-BLE
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/btstack-integration/release-v5.0.1 -c advice.detachedHead=false checkout release-v5.0.1 --force
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/abstraction-rtos clone --origin cypress --no-checkout --filter=blob:none https://github.com/cypresssemiconductorco/abstraction-rtos release-v1.8.2
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/cat1cm0p/release-v1.5.0 -c advice.detachedHead=false checkout release-v1.5.0 --force
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/cmsis clone --origin cypress --no-checkout --filter=blob:none https://github.com/Infineon/cmsis release-v5.8.0
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/btstack/release-v3.9.2 -c advice.detachedHead=false checkout release-v3.9.2 --force
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/core-make clone --origin cypress --no-checkout --filter=blob:none https://github.com/cypresssemiconductorco/core-make release-v3.3.1
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/core-lib/release-v1.4.2 -c advice.detachedHead=false checkout release-v1.4.2 --force
+HEAD is now at e28913a Upload core-lib [2455]
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/core-lib/release-v1.4.2 -c advice.detachedHead=false checkout release-v1.4.2 --force
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/clib-support/release-v1.5.0 -c advice.detachedHead=false checkout release-v1.5.0 --force
+HEAD is now at 08904a2 Upload cat1cm0p 1.5.0.403 [2307]
+HEAD is now at 5beb0b4 Upload btstack-integration 5.0.1.2815 [2644]
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/cat1cm0p/release-v1.5.0 -c advice.detachedHead=false checkout release-v1.5.0 --force
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/cyberon-dspotter-lib-psoc6-cm4/release-v2.0 -c advice.detachedHead=false checkout release-v2.0 --force
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/btstack-integration/release-v5.0.1 -c advice.detachedHead=false checkout release-v5.0.1 --force
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/display-oled-ssd1306/release-v1.0.2 -c advice.detachedHead=false checkout release-v1.0.2 --force
+HEAD is now at b6e9002 Update header file and lib
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/cyberon-dspotter-lib-psoc6-cm4/release-v2.0 -c advice.detachedHead=false checkout release-v2.0 --force
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/freertos/release-v10.5.002 -c advice.detachedHead=false checkout release-v10.5.002 --force
+HEAD is now at 654db3a Upload clib-support [2455]
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/clib-support/release-v1.5.0 -c advice.detachedHead=false checkout release-v1.5.0 --force
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/mtb-hal-cat1/release-v2.6.1 -c advice.detachedHead=false checkout release-v2.6.1 --force
+HEAD is now at d604a6f Upload display-oled-ssd1306 [347]
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/display-oled-ssd1306/release-v1.0.2 -c advice.detachedHead=false checkout release-v1.0.2 --force
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/mtb-pdl-cat1/release-v3.11.0 -c advice.detachedHead=false checkout release-v3.11.0 --force
+HEAD is now at e175e03 Upload freertos 10.5.002.657 [2307]
+
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/freertos/release-v10.5.002 -c advice.detachedHead=false checkout release-v10.5.002 --force
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/recipe-make-cat1a/release-v2.2.1 -c advice.detachedHead=false checkout release-v2.2.1 --force
+HEAD is now at 3f18eed Upload recipe-make-cat1a 2.2.1.5190 [2313]
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/recipe-make-cat1a/release-v2.2.1 -c advice.detachedHead=false checkout release-v2.2.1 --force
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/retarget-io/release-v1.5.0 -c advice.detachedHead=false checkout release-v1.5.0 --force
+HEAD is now at 7f50ca8 Upload btstack 3.9.2.20273 [2644]
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/btstack/release-v3.9.2 -c advice.detachedHead=false checkout release-v3.9.2 --force
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/sensor-xensiv-dps3xx/release-v1.0.0 -c advice.detachedHead=false checkout release-v1.0.0 --force
+HEAD is now at db7f962 Upload retarget-io [1515]
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/retarget-io/release-v1.5.0 -c advice.detachedHead=false checkout release-v1.5.0 --force
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/Smart_Clock_BLE/libs/TARGET_CY8CPROTO-063-BLE -c advice.detachedHead=false checkout release-v4.2.0 --force
+HEAD is now at 56ee340 Upload mtb-hal-cat1 [2593]
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/mtb-hal-cat1/release-v2.6.1 -c advice.detachedHead=false checkout release-v2.6.1 --force
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/abstraction-rtos/release-v1.8.2 -c advice.detachedHead=false checkout release-v1.8.2 --force
+HEAD is now at bdf5a3c Upload sensor-xensiv-dps3xx 1.0.0.23328
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/sensor-xensiv-dps3xx/release-v1.0.0 -c advice.detachedHead=false checkout release-v1.0.0 --force
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/cmsis/release-v5.8.0 -c advice.detachedHead=false checkout release-v5.8.0 --force
+HEAD is now at e70e872 Upload TARGET_CY8CPROTO-063-BLE [1515]
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/Smart_Clock_BLE/libs/TARGET_CY8CPROTO-063-BLE -c advice.detachedHead=false checkout release-v4.2.0 --force
+Starting: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/core-make/release-v3.3.1 -c advice.detachedHead=false checkout release-v3.3.1 --force
+HEAD is now at 8498cc2 Upload abstraction-rtos [2654]
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/abstraction-rtos/release-v1.8.2 -c advice.detachedHead=false checkout release-v1.8.2 --force
+HEAD is now at 58bf444 Upload core-make 3.3.1.5153 [2252]
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/core-make/release-v3.3.1 -c advice.detachedHead=false checkout release-v3.3.1 --force
+HEAD is now at ce02f64 Upload cmsis 5.8.0.50
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/cmsis/release-v5.8.0 -c advice.detachedHead=false checkout release-v5.8.0 --force
+HEAD is now at 4eb815b Upload mtb-pdl-cat1 3.11.0.34443 [2542]
+Success: git -C C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/mtb_shared/mtb-pdl-cat1/release-v3.11.0 -c advice.detachedHead=false checkout release-v3.11.0 --force
+Requested to change the active target to 'APP_CY8CPROTO-063-BLE'.
+Removed the file 'C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/Smart_Clock_BLE/deps/TARGET_CY8CPROTO-063-BLE.mtb'.
+Writing the file 'C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/Smart_Clock_BLE/libs/app.mk'.
+Successfully committed changes to the project 'cyberon-voice-trigger-and-command-demo-psoc6-cm4'.
+Project "Smart_Clock_BLE" created successfully.
+Successfully created "Smart_Clock_BLE" application.
+==============================================================================
+= Export "Smart_Clock_BLE" application to Eclipse IDE for ModusToolbox™ =
+==============================================================================
+make eclipse CY_IDE_PRJNAME=Smart_Clock_BLE CY_MAKE_IDE=eclipse CY_MAKE_IDE_VERSION=3.2 CY_TOOLS_PATHS=C:/Users/bahariridwan/ModusToolbox/tools_3.2 MTB_MAKE_ECLIPSE_FORCE_REGENERATE_PROJECT=1
+Tools Directory: C:/Users/bahariridwan/ModusToolbox/tools_3.2
+Searching installed tools in progress...
+Searching installed tools complete
+Initializing build: cyberon-voice-trigger-and-command-demo-psoc6-cm4 Debug APP_CY8CPROTO-063-BLE GCC_ARM
+Prebuild operations complete
+Auto-discovery in progress...
+Auto-discovery complete
+Commencing build operations...
+Tools Directory: C:/Users/bahariridwan/ModusToolbox/tools_3.2
+Constructing build rules...
+Build rules construction complete
+==============================================================================
+= Building application =
+==============================================================================
+Generating compilation database file...
+-> ./build/compile_commands.json
+Compilation database file generation complete
+Generated C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/Smart_Clock_BLE/.cproject
+Generated C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/Smart_Clock_BLE/.project
+Generated C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/Smart_Clock_BLE/.mtbLaunchConfigs/Smart_Clock_BLE Attach (KitProg3_MiniProg4).launch
+Generated C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/Smart_Clock_BLE/.mtbLaunchConfigs/Smart_Clock_BLE Debug (KitProg3_MiniProg4).launch
+Generated C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/Smart_Clock_BLE/.mtbLaunchConfigs/Smart_Clock_BLE Erase (KitProg3_MiniProg4).launch
+Generated C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/Smart_Clock_BLE/.mtbLaunchConfigs/Smart_Clock_BLE Program (KitProg3_MiniProg4).launch
+Instructions:
+1. Open Eclipse IDE for ModusToolbox
+2. Select 'Import Existing Application In-Place' from the QuickPanel
+3. Browse to the application root directory
+The application "Smart_Clock_BLE" was successfully exported to Eclipse IDE for ModusToolbox™.
+0 error(s), 0 warning(s)
+
+Summary:
+
+Successfully created and exported "Smart_Clock_BLE" application.
