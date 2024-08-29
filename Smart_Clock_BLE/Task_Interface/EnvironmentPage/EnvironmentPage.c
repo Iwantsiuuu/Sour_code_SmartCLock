@@ -15,6 +15,14 @@
 
 #define ENVI_PAGE 1
 
+#define TIMEOUT  (1)
+static void time_out();
+
+static bool timeout_flag = false;
+
+static uint8_t minute_timeout = 0;
+static uint8_t second_timeout = 0;
+
 /* Prototype function */
 static void prev_Cb();
 static void environment_draw();
@@ -23,20 +31,20 @@ static void start_advertisement();
 
 /* Global Variable */
 static char data_buf_pressure[20], data_buf_temperatur[20], data_buf_humidity[20];
-
 static uint8_t THIS_PAGE = 0;
 static uint8_t idx_back = ENVI_PAGE + 1;
+static uint8_t return_to_main_page = ENVI_PAGE + 2;
 
 void init_environment_disp()
 {
 	button.attachPressed(&btn_obj[BUTTON_BACK],prev_Cb);
-	button.attachHeld(&btn_obj[BUTTON_UP], start_advertisement);
+	button.attachDoublePressed(&btn_obj[BUTTON_ENTER],start_advertisement);
 
 	u8g2_ClearDisplay(&u8g2_obj);
 	u8g2_ClearBuffer(&u8g2_obj);
 
 	THIS_PAGE = ENVI_PAGE;
-	p_command_id = 0;
+	timeout_flag = true;
 
 	vTaskResume(voiceHandle);
 }
@@ -44,7 +52,7 @@ void init_environment_disp()
 void deinit_environment_disp()
 {
 	button.dettachPressed(&btn_obj[BUTTON_BACK]);//BACK
-	button.dettachHeld(&btn_obj[BUTTON_UP]);
+	button.dettachDoublePressed(&btn_obj[BUTTON_ENTER]);
 	u8g2_ClearDisplay(&u8g2_obj);
 	u8g2_ClearBuffer(&u8g2_obj);
 }
@@ -109,6 +117,10 @@ void environment_disp()
 
 	while (1)
 	{
+		time_out();
+#ifdef UNUSE_I2S
+		printf("RTC_M: %d, RTC_S: %d\r\nMENIT: %d, DETIK: %d\r\n", RTC_TIME.tm_min, RTC_TIME.tm_sec, minute_timeout, second_timeout);
+#endif
 		if(p_command_id == BACK_CMD)
 		{
 			deinit_environment_disp();
@@ -119,10 +131,16 @@ void environment_disp()
 		{
 			environment_draw();
 		}
-		else
+		else if(THIS_PAGE == idx_back)
 		{
 			deinit_environment_disp();
 			menu_disp_oled();
+		}
+		else
+		{
+			deinit_environment_disp();
+			main_page();
+			break;
 		}
 		vTaskDelay(20);
 	}
@@ -138,4 +156,25 @@ static void start_advertisement()
 {
 	if(connection_id == 0 && advertisement_mode != BTM_BLE_ADVERT_UNDIRECTED_HIGH)
 		wiced_bt_start_advertisements( BTM_BLE_ADVERT_UNDIRECTED_HIGH, 0, NULL );
+}
+static void time_out()
+{
+	cyhal_rtc_read(&rtc_obj, &RTC_TIME);
+	if(timeout_flag)
+	{
+		timeout_flag = false;
+		minute_timeout = RTC_TIME.tm_min;
+		second_timeout = RTC_TIME.tm_sec;
+	}
+
+	if(RTC_TIME.tm_min < minute_timeout)
+		minute_timeout = 0;
+
+	if(RTC_TIME.tm_sec < second_timeout)
+		second_timeout = 0;
+
+	if ((RTC_TIME.tm_min - minute_timeout > (TIMEOUT+1)) && (RTC_TIME.tm_sec - second_timeout == (TIMEOUT-1)))
+	{
+		THIS_PAGE = return_to_main_page;
+	}
 }

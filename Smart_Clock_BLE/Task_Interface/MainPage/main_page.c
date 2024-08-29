@@ -33,7 +33,6 @@
 static void enter_menu_cb();
 static void start_advertisement();
 static void speech_main_cmd(uint32_t cmd);
-//static void time_out();
 
 struct tm RTC_TIME;
 
@@ -41,9 +40,6 @@ char buf_temp [20];
 
 static uint8_t THIS_PAGE = 0;
 static uint8_t MODE_DISPLAY = 0;
-//static bool timeout_flag = false;
-//static uint32_t minute_timeout = 0;
-//static uint32_t second_timeout = 0;
 
 uint8_t koordinatX_oled = 0, koordinatY_oled = 0;
 
@@ -113,13 +109,12 @@ static void init_main_page()
 {
 	/* Initialization button with callback function */
 	button.attachPressed(&btn_obj[BUTTON_ENTER], enter_menu_cb);
-	button.attachHeld(&btn_obj[BUTTON_ENTER], start_advertisement);
-
-	wiced_bt_start_advertisements( BTM_BLE_ADVERT_UNDIRECTED_HIGH, 0, NULL );
+	button.attachDoublePressed(&btn_obj[BUTTON_ENTER],start_advertisement);
 
 	THIS_PAGE = MAIN_PAGE_ID;
 	MODE_DISPLAY = 0;
-	p_command_id = 0;
+
+	cyhal_rtc_read(&rtc_obj, &RTC_TIME);
 	//	timeout_flag = true;
 }
 
@@ -128,8 +123,8 @@ static void deinit_main_page()
 	// deAttach button
 	for (uint8_t i = 0; i < NUM_OF_BTN; i++)
 	{
-		button.dettachHeld(&btn_obj[i]);
 		button.dettachPressed(&btn_obj[i]);
+		button.dettachDoublePressed(&btn_obj[i]);
 	}
 }
 

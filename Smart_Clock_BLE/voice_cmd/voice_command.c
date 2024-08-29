@@ -154,9 +154,6 @@ void voice_command_task(void)
 
 	while(true)
 	{
-//#ifdef UNUSE_I2S
-//		printf("Data Map Id: %d\r\n", *p_command_id);
-//#endif
 		if(pdm_pcm_flag)
 		{
 			pdm_pcm_flag = 0;
@@ -200,19 +197,12 @@ static void asr_callback(const char *function, char *message, char *parameter)
 		int p_cmd_id = 0;
 		p_cmd_id = atoi(parameter);
 		p_command_id = (uint32_t)p_cmd_id;
-
-		/* Turn OFF LED when device received Trigger Command */
-		//cyhal_gpio_write(CYBSP_USER_LED, CYBSP_LED_STATE_OFF);
 	}
 	else
 	{
 		param = strstr(message, (const char*)"Timeout");
 		if( param != NULL )
-		{
 			p_command_id = 0;
-			/* Turn ON LED for indicated device needed for trigger Command again */
-			//			cyhal_gpio_write(CYBSP_USER_LED, CYBSP_LED_STATE_ON);
-		}
 	}
 }
 

@@ -1,5 +1,6 @@
 #include "setting_alarm.h"
 #include "main_ble.h"
+#include "main_page.h"
 
 #define ALARM_PAGE 1
 
@@ -9,6 +10,15 @@
 #define NUM_HOUR					(23)
 #define NUM_MINUTE					(59)
 #define NUM_SECON					(59)
+
+#define TIMEOUT  (1)
+
+static void time_out();
+
+static bool timeout_flag = false;
+
+static uint8_t minute_timeout = 0;
+static uint8_t second_timeout = 0;
 
 /* Prototype function */
 static void init_alarm_disp();
@@ -26,14 +36,17 @@ static void set_monthly();
 static void start_advertisement();
 
 /* Global Variable */
-static uint8_t THIS_PAGE = 0;
-static uint8_t idx_back = ALARM_PAGE+1;
-static uint8_t current_var = 0;
 static uint8_t num_var = 6;
+static uint8_t THIS_PAGE = 0;
+static uint8_t current_var = 0;
 
-static bool confirm_alarm_flag = false;
+static uint8_t idx_back = ALARM_PAGE+1;
+static uint8_t return_to_main_page = ALARM_PAGE + 2;
+
 bool daily = false;
 bool monthly = false;
+
+static bool confirm_alarm_flag = false;
 
 enum var_alarm{
 	Hour,
@@ -55,10 +68,13 @@ void init_alarm_disp()
 	button.attachHeld(&btn_obj[BUTTON_ENTER],confirm_cb);
 	button.attachHeld(&btn_obj[BUTTON_BACK],set_daily);
 	button.attachHeld(&btn_obj[BUTTON_DOWN],set_monthly);
-	button.attachHeld(&btn_obj[BUTTON_UP], start_advertisement);
+
+	button.attachDoublePressed(&btn_obj[BUTTON_ENTER],start_advertisement);
 
 	u8g2_ClearDisplay(&u8g2_obj);
 	u8g2_ClearBuffer(&u8g2_obj);
+
+	timeout_flag = true;
 
 	THIS_PAGE = ALARM_PAGE;
 }
@@ -70,6 +86,7 @@ static void deinit_alarm_disp()
 	{
 		button.dettachHeld(&btn_obj[i]);
 		button.dettachPressed(&btn_obj[i]);
+		button.dettachDoublePressed(&btn_obj[i]);
 	}
 }
 
@@ -145,14 +162,24 @@ void alarm_disp()
 
 	while (1)
 	{
+		time_out();
+#ifdef UNUSE_I2S
+		printf("RTC_M: %d, RTC_S: %d\r\nMENIT: %d, DETIK: %d\r\n", RTC_TIME.tm_min, RTC_TIME.tm_sec, minute_timeout, second_timeout);
+#endif
 		if (THIS_PAGE == ALARM_PAGE)
 		{
 			alarm_draw();
 		}
-		else
+		else if(THIS_PAGE == idx_back)
 		{
 			deinit_alarm_disp();
 			menu_disp_oled();
+		}
+		else
+		{
+			deinit_alarm_disp();
+			main_page();
+			break;
 		}
 		vTaskDelay(20);
 	}
@@ -161,6 +188,7 @@ void alarm_disp()
 
 static void increment_var_cb()
 {
+	timeout_flag = true;
 	switch (current_var)
 	{
 	case Hour :
@@ -252,6 +280,7 @@ static void increment_var_cb()
 }
 static void decrement_var_cb()
 {
+	timeout_flag = true;
 	switch (current_var)
 	{
 	case Hour :
@@ -344,12 +373,14 @@ static void decrement_var_cb()
 
 static void set_daily()
 {
+	timeout_flag = true;
 	monthly = false;
 	daily = true;
 }
 
 static void set_monthly()
 {
+	timeout_flag = true;
 	daily = false;
 	monthly = true;
 }
@@ -362,12 +393,14 @@ static void start_advertisement()
 
 static void switch_var_cb()
 {
+	timeout_flag = true;
 	current_var++;
 	if (current_var > num_var)
 		current_var = 0;
 }
 static void confirm_cb()
 {
+	timeout_flag = true;
 	confirm_alarm_flag = true;
 }
 static void back_alarm_cb()
@@ -375,4 +408,26 @@ static void back_alarm_cb()
 	THIS_PAGE = idx_back; //index_back
 	daily = false;
 	monthly = false;
+}
+
+static void time_out()
+{
+	cyhal_rtc_read(&rtc_obj, &RTC_TIME);
+	if(timeout_flag)
+	{
+		timeout_flag = false;
+		minute_timeout = RTC_TIME.tm_min;
+		second_timeout = RTC_TIME.tm_sec;
+	}
+
+	if(RTC_TIME.tm_min < minute_timeout)
+		minute_timeout = 0;
+
+	if(RTC_TIME.tm_sec < second_timeout)
+		second_timeout = 0;
+
+	if ((RTC_TIME.tm_min - minute_timeout > (TIMEOUT+1)) && (RTC_TIME.tm_sec - second_timeout == (TIMEOUT-1)))
+	{
+		THIS_PAGE = return_to_main_page;
+	}
 }

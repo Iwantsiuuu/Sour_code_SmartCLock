@@ -10,9 +10,10 @@
 
 #include "main.h"
 #include "rtc_sc.h"
-#include "task_interface.h"
-#include "voice_command.h"
 #include "main_ble.h"
+#include "main_page.h"
+#include "voice_command.h"
+#include "task_interface.h"
 
 /* Macros */
 #define RTC_PAGE 1
@@ -36,14 +37,21 @@ static void switch_var_cb();
 static void increment_var_cb();
 static void decrement_var_cb();
 static void start_advertisement();
-//static void ble_command(uint8_t ble_cmd);
-static void speech_time_date_cmd(uint32_t cmd);
+
+#define TIMEOUT  (1)
+static void time_out();
+
+static bool timeout_flag = false;
+
+static uint8_t minute_timeout = 0;
+static uint8_t second_timeout = 0;
 
 /* Gelobal Variable */
 static uint8_t num_var = 6;
 static uint8_t THIS_PAGE = 0;
 static uint8_t current_var = 0;
 static uint8_t idx_back = RTC_PAGE + 1;
+static uint8_t return_to_main = RTC_PAGE + 2;
 
 bool confirm_flag_rtc = false;
 static bool RTC_ENABLE = false;
@@ -80,15 +88,17 @@ void init_rtc_disp()
 	button.attachPressed(&btn_obj[BUTTON_ENTER],switch_var_cb);
 	button.attachPressed(&btn_obj[BUTTON_BACK],back_rtc_cb);
 
+	button.attachHeld(&btn_obj[BUTTON_UP],confirm_cb);
+	button.attachHeld(&btn_obj[BUTTON_DOWN],confirm_cb);
 	button.attachHeld(&btn_obj[BUTTON_ENTER],confirm_cb);
-	button.attachHeld(&btn_obj[BUTTON_UP], start_advertisement);
+	button.attachDoublePressed(&btn_obj[BUTTON_ENTER],start_advertisement);
 
 	u8g2_ClearDisplay(&u8g2_obj);
 	u8g2_ClearBuffer(&u8g2_obj);
 
+	timeout_flag = true;
+
 	THIS_PAGE = RTC_PAGE;
-	p_command_id = 0;
-//	BLE_COMMAND = 0;
 
 	vTaskResume(voiceHandle);
 }
@@ -113,6 +123,7 @@ static void deinit_rtc_disp()
 	{
 		button.dettachPressed(&btn_obj[i]);
 		button.dettachHeld(&btn_obj[i]);
+		button.dettachDoublePressed(&btn_obj[i]);
 	}
 	/* Delete callback function for long presse on button enter */
 }
@@ -180,13 +191,24 @@ void rtc_disp()
 	init_rtc_disp();
 	while (1)
 	{
+		time_out();
+#ifdef UNUSE_I2S
+		printf("RTC_M: %d, RTC_S: %d\r\nMENIT: %d, DETIK: %d\r\n", RTC_TIME.tm_min, RTC_TIME.tm_sec, minute_timeout, second_timeout);
+#endif
 		if (THIS_PAGE == RTC_PAGE)
 			rtc_draw();
 
-		else
+		else if(THIS_PAGE == idx_back)
 		{
 			deinit_rtc_disp();
 			menu_disp_oled();
+			break;
+		}
+		else
+		{
+			deinit_rtc_disp();
+			main_page();
+			break;
 		}
 		vTaskDelay(20);
 	}
@@ -211,7 +233,6 @@ void rtc_set_first()
 	init_rtc_disp();
 	while(1)
 	{
-
 		if ((RTC_ENABLE = cyhal_rtc_is_enabled(&rtc_obj)) == ENABLE)
 			THIS_PAGE = idx_back; //index_back
 
@@ -242,36 +263,37 @@ void rtc_set_first()
 *******************************************************************************/
 static void increment_var_cb()
 {
+	timeout_flag = true;
 	switch (current_var)
 	{
 	case Hour :
-		RTC_Setup.hour++;
 		if (RTC_Setup.hour > NUM_HOUR)
 			RTC_Setup.hour = DEAFULT_VARIABLE_VALUE;
+		RTC_Setup.hour++;
 		break;
 
 	case Minute :
-		RTC_Setup.min++;
 		if (RTC_Setup.min > NUM_MINUTE)
 			RTC_Setup.min = DEAFULT_VARIABLE_VALUE;
+		RTC_Setup.min++;
 		break;
 
 	case Secon :
-		RTC_Setup.sec++;
 		if (RTC_Setup.sec > NUM_SECON)
 			RTC_Setup.sec = DEAFULT_VARIABLE_VALUE;
+		RTC_Setup.sec++;
 		break;
 
 	case Day :
-		RTC_Setup.mday++;
 		if (RTC_Setup.mday > NUM_DAY)
 			RTC_Setup.mday = DEAFULT_VARIABLE_VALUE;
+		RTC_Setup.mday++;
 		break;
 
 	case Month :
-		RTC_Setup.month++;
 		if (RTC_Setup.month > NUM_MONTH)
 			RTC_Setup.month = DEAFULT_VARIABLE_VALUE;
+		RTC_Setup.month++;
 		break;
 
 	case Year :
@@ -282,6 +304,7 @@ static void increment_var_cb()
 
 static void decrement_var_cb()
 {
+	timeout_flag = true;
 	switch (current_var)
 	{
 	case Hour :
@@ -322,6 +345,7 @@ static void decrement_var_cb()
 
 static void switch_var_cb()
 {
+	timeout_flag = true;
 	current_var++;
 	if (current_var > num_var)
 		current_var = 0;
@@ -330,6 +354,7 @@ static void switch_var_cb()
 static void confirm_cb()
 {
 	confirm_flag_rtc = true;
+	timeout_flag = true;
 }
 
 static void back_rtc_cb()
@@ -341,4 +366,27 @@ static void start_advertisement()
 {
 	if(connection_id == 0 && advertisement_mode != BTM_BLE_ADVERT_UNDIRECTED_HIGH)
 		wiced_bt_start_advertisements( BTM_BLE_ADVERT_UNDIRECTED_HIGH, 0, NULL );
+}
+
+static void time_out()
+{
+	cyhal_rtc_read(&rtc_obj, &RTC_TIME);
+
+	if(timeout_flag)
+	{
+		timeout_flag = false;
+		minute_timeout = RTC_Setup.min;
+		second_timeout = RTC_Setup.sec;
+	}
+
+	if(RTC_Setup.min < minute_timeout)
+		minute_timeout = 0;
+
+	if(RTC_Setup.sec < second_timeout)
+		second_timeout = 0;
+
+	if ((RTC_Setup.min - minute_timeout > (TIMEOUT+1)) && (RTC_Setup.sec - second_timeout == (TIMEOUT-1)))
+	{
+		THIS_PAGE = return_to_main;
+	}
 }

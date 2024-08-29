@@ -1,9 +1,19 @@
 #include "stopWatchPage.h"
+
 #include "menuDisp.h"
 #include "main_ble.h"
+#include "main_page.h"
 #include "voice_command.h"
 
 #define SW_PAGE 1
+#define TIMEOUT  (1)
+
+static void time_out();
+
+static bool timeout_flag = false;
+
+static uint8_t minute_timeout = 0;
+static uint8_t second_timeout = 0;
 
 /*--------------< Prototype function >---------------*/
 static void BackSW_Cb();
@@ -21,13 +31,17 @@ static void speech_stopwatch_cmd(uint32_t cmd);
 /*--------------< Global function >----------------*/
 static bool countSW = false;
 static char buf_stopWatch[100];
+
 static uint8_t THIS_PAGE = 0;
 static uint8_t idx_back = SW_PAGE+1;
+static uint8_t return_to_main_page = SW_PAGE + 2;
+
 static uint16_t hour = 0;
 static uint16_t minute = 0;
 static uint16_t second = 0;
 static uint16_t mili_second = 0;
 static uint16_t over;
+
 static uint32_t firstT, time_now, dtStopWatch;
 
 void init_stopWatch_disp()
@@ -37,14 +51,15 @@ void init_stopWatch_disp()
 	button.attachPressed(&btn_obj[BUTTON_UP],resetSW_Cb);
 	button.attachPressed(&btn_obj[BUTTON_BACK],BackSW_Cb);
 
-	button.attachHeld(&btn_obj[BUTTON_UP], start_advertisement);
+	button.attachDoublePressed(&btn_obj[BUTTON_ENTER],start_advertisement);
 
 	u8g2_ClearDisplay(&u8g2_obj);
 	u8g2_ClearBuffer(&u8g2_obj);
 
+	timeout_flag = true;
+
 	THIS_PAGE = SW_PAGE;
-	p_command_id = 0;
-//	BLE_COMMAND = IDLE_BLE;
+
 }
 
 void deinit_stopWatch_disp()
@@ -53,7 +68,7 @@ void deinit_stopWatch_disp()
 	//	Melakukan deattach button
 	for (uint8_t i = 0; i < 4; i++)
 		button.dettachPressed(&btn_obj[i]);
-	button.dettachHeld(&btn_obj[BUTTON_UP]);
+	button.dettachDoublePressed(&btn_obj[BUTTON_ENTER]);
 }
 
 void stopwatch()
@@ -91,17 +106,26 @@ void stopWatch_disp()
 
 	while (1)
 	{
-//		ble_command(BLE_COMMAND);
+		time_out();
+#ifdef UNUSE_I2S
+		printf("RTC_M: %d, RTC_S: %d\r\nMENIT: %d, DETIK: %d\r\n", RTC_TIME.tm_min, RTC_TIME.tm_sec, minute_timeout, second_timeout);
+#endif
 		speech_stopwatch_cmd(p_command_id);
 
 		if (THIS_PAGE == SW_PAGE)
 		{
 			stopWatch_draw();
 		}
-		else
+		else if(THIS_PAGE == idx_back)
 		{
 			deinit_stopWatch_disp();
 			menu_disp_oled();
+		}
+		else
+		{
+			deinit_stopWatch_disp();
+			main_page();
+			break;
 		}
 		vTaskDelay(20);
 	}
@@ -110,23 +134,27 @@ void stopWatch_disp()
 
 static void start_advertisement()
 {
+	timeout_flag = true;
 	if(connection_id == 0 && advertisement_mode != BTM_BLE_ADVERT_UNDIRECTED_HIGH)
 		wiced_bt_start_advertisements( BTM_BLE_ADVERT_UNDIRECTED_HIGH, 0, NULL );
 }
 
 static void startSW_Cb()
 {
+	timeout_flag = true;
 	firstT = xTaskGetTickCount() - dtStopWatch;
 	countSW = true;
 }
 
 static void pauseSW_Cb()
 {
+	timeout_flag = true;
 	countSW = false;
 }
 
 static void resetSW_Cb()
 {
+	timeout_flag = true;
 	countSW = false;
 	dtStopWatch = 0;
 }
@@ -162,25 +190,22 @@ static void speech_stopwatch_cmd(uint32_t cmd)
 	}
 }
 
-//static void ble_command(uint8_t ble_cmd)
-//{
-//	switch(ble_cmd)
-//	{
-//	case START_BLE:
-//		firstT = xTaskGetTickCount() - dtStopWatch;
-//		countSW = true;
-//		break;
-//	case STOP_BLE:
-//		countSW = false;
-//		break;
-//	case RESET_BLE:
-//		countSW = false;
-//		dtStopWatch = 0;
-//		break;
-//	case BACK_BLE:
-//		THIS_PAGE = idx_back; //index_back
-//		break;
-//	default:
-//		break;
-//	}
-//}
+static void time_out()
+{
+	cyhal_rtc_read(&rtc_obj, &RTC_TIME);
+	if(timeout_flag)
+	{
+		timeout_flag = false;
+		minute_timeout = RTC_TIME.tm_min;
+		second_timeout = RTC_TIME.tm_sec;
+	}
+
+	if(RTC_TIME.tm_min < minute_timeout)
+		minute_timeout = 0;
+
+	if(RTC_TIME.tm_sec < second_timeout)
+		second_timeout = 0;
+
+	if ((RTC_TIME.tm_min - minute_timeout > (TIMEOUT+1)) && (RTC_TIME.tm_sec - second_timeout == (TIMEOUT-1)))
+		THIS_PAGE = return_to_main_page;
+}
