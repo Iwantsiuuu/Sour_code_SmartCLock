@@ -22,6 +22,9 @@ static int get_week_of_month(int day, int month, int year);
 /******************************************************************************
  * Gelobal variable
  ******************************************************************************/
+alarm_t daily_alarm_show;
+alarm_t monthly_alarm_show;
+
 cyhal_rtc_t rtc_obj;
 
 RTC_Data_Setup_t RTC_Setup;
@@ -34,8 +37,8 @@ cyhal_alarm_active_t alarm_active_montly =
 		.en_min   = 1,
 		.en_hour  = 1,
 		.en_day   = 0,
-		.en_date  = 0,
-		.en_month = 1,
+		.en_date  = 1,
+		.en_month = 0,
 };
 
 cyhal_alarm_active_t alarm_active_daily =
@@ -113,75 +116,81 @@ void set_new_time()
 void set_alarm()
 {
 	cy_rslt_t rslt;
-	char buff_notify[15];
 
 	struct tm alarm_set_daily = {0};
-	struct tm alarm_set_montly = {0};
+	struct tm alarm_set_monthly = {0};
+
+	struct tm time_set;
 
 	if(daily)
 	{
-		if (validate_date_time(daily_alarm.hour, daily_alarm.min, daily_alarm.hour, daily_alarm.mday, daily_alarm.month, daily_alarm.Year))
+		cyhal_rtc_read(&rtc_obj, &time_set);
+
+		alarm_set_daily.tm_sec = 0;
+		alarm_set_daily.tm_min = daily_alarm.min;
+		alarm_set_daily.tm_hour = daily_alarm.hour;
+		alarm_set_daily.tm_mday = time_set.tm_mday;
+		alarm_set_daily.tm_mon = time_set.tm_mon - 1;
+		alarm_set_daily.tm_year = time_set.tm_year - TM_YEAR_BASE;
+		alarm_set_daily.tm_wday = get_day_of_week(time_set.tm_mday, time_set.tm_mon, time_set.tm_year);
+
+		/* Format set alarm daily using AIROC Connect
+		 *
+		 * "Daily Hour Minute#"
+		 * example: Daily 12 30#
+		 *
+		 */
+
+		rslt = cyhal_rtc_set_alarm(&rtc_obj, &alarm_set_daily, alarm_active_montly);
+		if (CY_RSLT_SUCCESS == rslt)
 		{
-			alarm_set_daily.tm_sec = daily_alarm.sec;
-			alarm_set_daily.tm_min = daily_alarm.min;
-			alarm_set_daily.tm_hour = daily_alarm.hour;
-			alarm_set_daily.tm_mday = daily_alarm.mday;
-			alarm_set_daily.tm_mon = daily_alarm.month - 1;
-			alarm_set_daily.tm_year = daily_alarm.Year - TM_YEAR_BASE;
-			alarm_set_daily.tm_wday = get_day_of_week(daily_alarm.mday, daily_alarm.month, daily_alarm.Year);
+			daily_alarm_show.hour = alarm_set_daily.tm_hour;
+			daily_alarm_show.minute = alarm_set_daily.tm_min;
 
-			/* Format set alarm daily using AIROC Connect
-			 *
-			 * "Daily Hour Minute Second Date Month Year#"
-			 * example: Daily 12 30 0 20 8 2024#
-			 *
-			 */
-
-			rslt = cyhal_rtc_set_alarm(&rtc_obj, &alarm_set_montly, alarm_active_montly);
-			if (CY_RSLT_SUCCESS == rslt)
-			{
-				daily = false;
+			daily = false;
 #ifdef UNUSE_I2S
-				printf("\rAlarm daily set\r\n\n");
+			printf("\rAlarm daily set\r\n\n");
 #endif
-			}
-			else
-			{
-				handle_error();
-			}
+		}
+		else
+		{
+			handle_error();
 		}
 	}
 	if(monthly)
 	{
-		if (validate_date_time(montly_alarm.hour, montly_alarm.min, montly_alarm.hour, montly_alarm.mday, montly_alarm.month, montly_alarm.Year))
+		cyhal_rtc_read(&rtc_obj, &time_set);
+
+		alarm_set_monthly.tm_sec = 0;
+		alarm_set_monthly.tm_min = montly_alarm.min;
+		alarm_set_monthly.tm_hour = montly_alarm.hour;
+		alarm_set_monthly.tm_mday = time_set.tm_mday;
+		alarm_set_monthly.tm_mon = time_set.tm_mon - 1;
+		alarm_set_monthly.tm_year = time_set.tm_year - TM_YEAR_BASE;
+		alarm_set_monthly.tm_wday = get_day_of_week(time_set.tm_mday, time_set.tm_mon, time_set.tm_year);
+
+		/* Format set alarm monthly using AIROC Connect
+		 *
+		 * "Monthly Hour Minute Second Date Month Year#"
+		 * example: Monthly 12 30 0 20 8 2024#
+		 *
+		 */
+
+		rslt = cyhal_rtc_set_alarm(&rtc_obj, &alarm_set_monthly, alarm_active_montly);
+		if (CY_RSLT_SUCCESS == rslt)
 		{
-			alarm_set_montly.tm_sec = montly_alarm.sec;
-			alarm_set_montly.tm_min = montly_alarm.min;
-			alarm_set_montly.tm_hour = montly_alarm.hour;
-			alarm_set_montly.tm_mday = montly_alarm.mday;
-			alarm_set_montly.tm_mon = montly_alarm.month - 1;
-			alarm_set_montly.tm_year = montly_alarm.Year - TM_YEAR_BASE;
-			alarm_set_montly.tm_wday = get_day_of_week(montly_alarm.mday, montly_alarm.month, montly_alarm.Year);
+			monthly_alarm_show.date = alarm_set_monthly.tm_mday;
+			monthly_alarm_show.hour = alarm_set_monthly.tm_hour;
+			monthly_alarm_show.minute = alarm_set_monthly.tm_min;
 
-			/* Format set alarm monthly using AIROC Connect
-			 *
-			 * "Monthly Hour Minute Second Date Month Year#"
-			 * example: Monthly 12 30 0 20 8 2024#
-			 *
-			 */
-
-			rslt = cyhal_rtc_set_alarm(&rtc_obj, &alarm_set_montly, alarm_active_daily);
-			if (CY_RSLT_SUCCESS == rslt)
-			{
-				monthly = false;
-	#ifdef UNUSE_I2S
-				printf("\rAlarm daily set\r\n\n");
-	#endif
-			}
-			else
-			{
-				handle_error();
-			}
+			monthly = false;
+#ifdef UNUSE_I2S
+			printf("\rAlarm Monthly set\r\n\n");
+#endif
+		}
+		else
+		{
+			handle_error();
 		}
 	}
 }
@@ -253,20 +262,20 @@ static int get_day_of_week(int day, int month, int year)
  *  Returns a week of the month (0 to 5)
  *
  *******************************************************************************/
-static int get_week_of_month(int day, int month, int year)
-{
-	int count = 0, day_of_week = 0, weekend_day = 0;
-
-	day_of_week = get_day_of_week(1, month, year);
-	weekend_day = 7 - day_of_week;
-	while (day > weekend_day)
-	{
-		count++;
-		weekend_day += 7;
-	}
-
-	return count;
-}
+//static int get_week_of_month(int day, int month, int year)
+//{
+//	int count = 0, day_of_week = 0, weekend_day = 0;
+//
+//	day_of_week = get_day_of_week(1, month, year);
+//	weekend_day = 7 - day_of_week;
+//	while (day > weekend_day)
+//	{
+//		count++;
+//		weekend_day += 7;
+//	}
+//
+//	return count;
+//}
 
 /*******************************************************************************
  * Function Name: validate_date_time

@@ -18,6 +18,9 @@
 #include "setting_alarm.h"
 #include "voice_command.h"
 #include "task_interface.h"
+
+#include "stopWatchPage.h"
+#include "setting_alarm.h"
 #include "airQualityPage.h"
 #include "EnvironmentPage.h"
 
@@ -27,6 +30,7 @@
 #define AIRQUALITY_PAGE		(4)
 #define ALARM_DAILY_PAGE	(5)
 #define ALARM_MONTHLY_PAGE	(6)
+#define STOPWATCH_PAGE		(7)
 
 #define TIMEOUT				(1ul)
 
@@ -64,6 +68,30 @@ void main_page()
 		{
 			deinit_main_page();
 			environment_disp();
+			init_main_page();
+		}
+		else if(THIS_PAGE == AIRQUALITY_PAGE)
+		{
+			deinit_main_page();
+			airQuality_disp();
+			init_main_page();
+		}
+		else if(THIS_PAGE == ALARM_DAILY_PAGE)
+		{
+			deinit_main_page();
+			alarm_disp();
+			init_main_page();
+		}
+		else if(THIS_PAGE == ALARM_MONTHLY_PAGE)
+		{
+			deinit_main_page();
+			alarm_disp();
+			init_main_page();
+		}
+		else
+		{
+			deinit_main_page();
+			stopWatch_disp();
 			init_main_page();
 		}
 		vTaskDelay(50);
@@ -109,7 +137,7 @@ static void init_main_page()
 {
 	/* Initialization button with callback function */
 	button.attachPressed(&btn_obj[BUTTON_ENTER], enter_menu_cb);
-	button.attachDoublePressed(&btn_obj[BUTTON_ENTER],start_advertisement);
+	button.attachHeld(&btn_obj[BUTTON_BACK],start_advertisement);
 
 	THIS_PAGE = MAIN_PAGE_ID;
 	MODE_DISPLAY = 0;
@@ -124,7 +152,7 @@ static void deinit_main_page()
 	for (uint8_t i = 0; i < NUM_OF_BTN; i++)
 	{
 		button.dettachPressed(&btn_obj[i]);
-		button.dettachDoublePressed(&btn_obj[i]);
+		button.dettachHeld(&btn_obj[i]);
 	}
 }
 
@@ -144,15 +172,21 @@ static void speech_main_cmd(uint32_t cmd)
 {
 	switch(cmd)
 	{
-	case ENVIRONMENT_CMD:
+	case LINGKUNGAN_CMD:
 		//		timeout_flag = true;
 		THIS_PAGE = ENVIRONMENT_PAGE;
 		break;
-	case AIR_QUALITY_CMD:
+	case UDARA_CMD:
 		THIS_PAGE = AIRQUALITY_PAGE;
 		break;
-	case ALARM_SETTING_CMD:
+	case HARIAN_CMD:
 		THIS_PAGE = ALARM_DAILY_PAGE;
+		break;
+	case BULANAN_CMD:
+		THIS_PAGE = ALARM_MONTHLY_PAGE;
+		break;
+	case STOPWATCH_CMD:
+		THIS_PAGE = STOPWATCH_PAGE;
 		break;
 	default:
 		break;

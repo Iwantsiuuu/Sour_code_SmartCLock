@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="&#x09;if(timeout_flag)"/>
+		<item key="selection" value="alarm_set_monthly"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="alarm_set_montly"/>
+			<item value="daily"/>
 			<item value="&#x09;if(timeout_flag)"/>
 			<item value="ENVI_PAGE"/>
 			<item value="tm_sec"/>
@@ -16,6 +18,7 @@
 			<item value="menTest"/>
 		</list>
 		<list key="replacehistory">
+			<item value="alarm_set_monthly"/>
 			<item value="AQ_PAGE"/>
 			<item value="sec"/>
 			<item value="min"/>

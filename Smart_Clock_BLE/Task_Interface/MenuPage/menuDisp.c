@@ -74,7 +74,7 @@ static void init_menu_disp()
 	button.attachPressed(&btn_obj[BUTTON_ENTER],ok_Cb);
 	button.attachPressed(&btn_obj[BUTTON_BACK],back_Cb);
 
-	button.attachDoublePressed(&btn_obj[BUTTON_ENTER],start_advertisement);
+	button.attachHeld(&btn_obj[BUTTON_BACK],start_advertisement);
 
 	interface_construct(&menuObj, &u8g2);
 	interface_begin(&menuObj);
@@ -93,7 +93,7 @@ static void deinit_menu_disp()
 	//	Melakukan deattach button
 	for (uint8_t i = 0; i < NUM_OF_BTN; i++)
 	{
-		button.dettachDoublePressed(&btn_obj[i]);
+		button.dettachHeld(&btn_obj[i]);
 		button.dettachPressed(&btn_obj[i]);
 	}
 	interface_clearAll(&menuObj);

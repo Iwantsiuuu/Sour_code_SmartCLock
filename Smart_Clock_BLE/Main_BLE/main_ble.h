@@ -47,6 +47,9 @@ typedef void (*pfn_free_buffer_t)(uint8_t *);
 wiced_bt_dev_status_t app_bt_management_callback(wiced_bt_management_evt_t event, wiced_bt_management_evt_data_t *p_event_data);
 
 /*Global Variable*/
+extern bool daily_notify_BLE;
+extern bool monthly_notify_BLE;
+
 extern bool environment_notify;
 extern bool air_quality_notify;
 

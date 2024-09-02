@@ -101,9 +101,19 @@ typedef struct{
 	uint16_t Year;
 }RTC_Data_Setup_t;
 
+typedef struct data_alarm
+{
+	uint8_t hour;
+	uint8_t minute;
+	uint8_t date;
+}alarm_t;
+
 extern cyhal_rtc_t rtc_obj;
 extern RTC_Data_Setup_t RTC_Setup;
 extern RTC_Data_Setup_t daily_alarm;
 extern RTC_Data_Setup_t montly_alarm;
+
+extern alarm_t daily_alarm_show;
+extern alarm_t monthly_alarm_show;
 
 #endif

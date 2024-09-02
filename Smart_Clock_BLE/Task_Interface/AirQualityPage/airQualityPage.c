@@ -64,10 +64,9 @@ void airQuality_disp()
 #ifdef UNUSE_I2S
 		printf("RTC_M: %d, RTC_S: %d\r\nMENIT: %d, DETIK: %d\r\n", RTC_TIME.tm_min, RTC_TIME.tm_sec, minute_timeout, second_timeout);
 #endif
-		if(p_command_id == BACK_CMD)
+		if(p_command_id == KEMBALI_CMD)
 		{
-			deinit_airQuality_disp();
-			main_page();
+			THIS_PAGE = return_to_main_page;
 		}
 
 		if (THIS_PAGE == AQ_PAGE)
@@ -78,6 +77,7 @@ void airQuality_disp()
 		{
 			deinit_airQuality_disp();
 			menu_disp_oled();
+			break;
 		}
 		else
 		{
@@ -93,7 +93,7 @@ void airQuality_disp()
 static void init_airQuality_disp()
 {
 	button.attachPressed(&btn_obj[BUTTON_BACK],prev_Cb);
-	button.attachDoublePressed(&btn_obj[BUTTON_ENTER],start_advertisement);
+	button.attachHeld(&btn_obj[BUTTON_BACK],start_advertisement);
 
 	u8g2_ClearDisplay(&u8g2_obj);
 	u8g2_ClearBuffer(&u8g2_obj);
@@ -110,7 +110,7 @@ static void deinit_airQuality_disp()
 
 	//	Melakukan deattach button
 	button.dettachPressed(&btn_obj[BUTTON_BACK]);//BACK
-	button.dettachDoublePressed(&btn_obj[BUTTON_ENTER]);
+	button.dettachHeld(&btn_obj[BUTTON_BACK]);
 	u8g2_ClearDisplay(&u8g2_obj);
 	u8g2_ClearBuffer(&u8g2_obj);
 }

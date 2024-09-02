@@ -51,7 +51,7 @@ void init_stopWatch_disp()
 	button.attachPressed(&btn_obj[BUTTON_UP],resetSW_Cb);
 	button.attachPressed(&btn_obj[BUTTON_BACK],BackSW_Cb);
 
-	button.attachDoublePressed(&btn_obj[BUTTON_ENTER],start_advertisement);
+	button.attachHeld(&btn_obj[BUTTON_BACK],start_advertisement);
 
 	u8g2_ClearDisplay(&u8g2_obj);
 	u8g2_ClearBuffer(&u8g2_obj);
@@ -67,8 +67,10 @@ void deinit_stopWatch_disp()
 
 	//	Melakukan deattach button
 	for (uint8_t i = 0; i < 4; i++)
+	{
 		button.dettachPressed(&btn_obj[i]);
-	button.dettachDoublePressed(&btn_obj[BUTTON_ENTER]);
+		button.dettachHeld(&btn_obj[i]);
+	}
 }
 
 void stopwatch()
@@ -168,22 +170,22 @@ static void speech_stopwatch_cmd(uint32_t cmd)
 {
 	switch(cmd)
 	{
-	case START_CMD:
+	case MULAI_CMD:
 		firstT = xTaskGetTickCount() - dtStopWatch;
 		countSW = true;
 		break;
 
-	case STOP_CMD:
+	case BERHENTI_CMD:
 		countSW = false;
 		break;
 
-	case RESET_CMD:
+	case ULANG_CMD:
 		countSW = false;
 		dtStopWatch = 0;
 		break;
 
-	case BACK_CMD:
-		THIS_PAGE = idx_back; //index_back
+	case KEMBALI_CMD:
+		THIS_PAGE = return_to_main_page; //index_back
 		break;
 	default:
 		break;

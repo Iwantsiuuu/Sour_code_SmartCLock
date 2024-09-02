@@ -46,18 +46,15 @@
  * 				 Reset			[Map Id = 210]
  * */
 
-#define MANUAL_MODE_CMD				(199)
-#define	BLUETOOTH_MODE_CMD 			(200)
-#define	SHOW_MENU_CMD 				(201)
-#define	CLOCK_SETTING_CMD 			(202)
-#define	ENVIRONMENT_CMD 			(203)
-#define	AIR_QUALITY_CMD 			(204)
-#define	STOPWATCH_CMD 				(205)
-#define	ALARM_SETTING_CMD 			(206)
-#define	BACK_CMD 					(207)
-#define START_CMD					(208)
-#define	STOP_CMD					(209)
-#define RESET_CMD					(210)
+#define	LINGKUNGAN_CMD 	(200)
+#define	UDARA_CMD 		(201)
+#define	STOPWATCH_CMD 	(202)
+#define	HARIAN_CMD 		(203)
+#define BULANAN_CMD		(204)
+#define MULAI_CMD		(205)
+#define	BERHENTI_CMD	(206)
+#define ULANG_CMD		(207)
+#define	KEMBALI_CMD 	(208)
 
 void init_i2s(void);
 void clock_init(void);

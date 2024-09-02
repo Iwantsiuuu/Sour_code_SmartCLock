@@ -60,6 +60,8 @@ TimerHandle_t timer_led_blink;
 bool set_rtc = false;
 bool set_new_alarm = false;
 
+bool daily_notify_BLE = false;
+bool monthly_notify_BLE = false;
 bool environment_notify = false;
 bool air_quality_notify = false;
 
@@ -209,7 +211,6 @@ wiced_result_t app_bt_management_callback( wiced_bt_management_evt_t event, wice
 #ifdef UNUSE_I2S
 			printf("Connection ID disconnect %d\n", connection_id);
 #endif
-
 		}
 		else
 		{
@@ -724,22 +725,38 @@ static void app_bt_free_buffer(uint8_t *p_data)
 //Flag untuk menampilkan data air quality menggunakan BLE Notify
 static void airquality_pages_cb (char *str_)
 {
-	environment_notify = false;
+#ifdef UNUSE_I2S
+	printf("= is command\r\n");
+#endif
 	air_quality_notify = true;
+
+	daily_notify_BLE = false;
+	monthly_notify_BLE = false;
+	environment_notify = false;
 }
 
 //Flag untuk menampilkan data environment menggunakan BLE Notify
 static void environment_pages_cb (char *str_)
 {
-	air_quality_notify = false;
+#ifdef UNUSE_I2S
+	printf("= is command\r\n");
+#endif
 	environment_notify = true;
+
+	daily_notify_BLE = false;
+	monthly_notify_BLE = false;
+	air_quality_notify = false;
 }
 
 //Digunakan untuk mengisi buffer dengan waktu alarm akan aktif di setiap hari
 static void show_daily_alarm(char *str_)
 {
-	memset(buffer_notify, '\0', sizeof(buffer_notify));
-	sprintf(buffer_notify,"Daily alarm at %d:%d",set_daily_alarm_data[0], set_daily_alarm_data[1]);
+#ifdef UNUSE_I2S
+	printf("= is command\r\n");
+#endif
+	daily_notify_BLE = true;
+
+	monthly_notify_BLE = false;
 	air_quality_notify = false;
 	environment_notify = false;
 }
@@ -747,8 +764,12 @@ static void show_daily_alarm(char *str_)
 //Digunakan untuk mengisi buffer dengan tanggal dan waktu alarm akan aktif di setiap bualan
 static void show_monthly_alarm(char *str_)
 {
-	memset(buffer_notify, '\0', sizeof(buffer_notify));
-	sprintf(buffer_notify,"Monthly alarm on the %dth at %d:%d",set_daily_alarm_data[3], set_daily_alarm_data[0], set_daily_alarm_data[1]);
+#ifdef UNUSE_I2S
+	printf("= is command\r\n");
+#endif
+	monthly_notify_BLE = true;
+
+	daily_notify_BLE = false;
 	air_quality_notify = false;
 	environment_notify = false;
 }
@@ -757,17 +778,28 @@ static void show_monthly_alarm(char *str_)
 static void daily_set(char *str)
 {
 	daily = true;
+	monthly = false;
+#ifdef UNUSE_I2S
+	printf("= is command\r\n");
+#endif
 }
 
 //Digunakan untuk mengconfigur alarm bulanan
 static void monthly_set(char *str_)
 {
 	monthly = true;
+	daily = false;
+#ifdef UNUSE_I2S
+	printf("= is command\r\n");
+#endif
 }
 
 //Digunakan untuk mengsetting waktu baru pada RTC
 static void set_rtc_val_cb(char *str_)
 {
+#ifdef UNUSE_I2S
+	printf("= is command\r\n");
+#endif
 	int set_rtc_data[6];
 	char* token_rtc = strtok(str_, "RTC_SET ");
 
@@ -798,11 +830,14 @@ static void set_rtc_val_cb(char *str_)
 //Digunakan untuk mengsetting nilai alarm harian
 static void set_val_alarm_daily_cb(char *str_)
 {
+#ifdef UNUSE_I2S
+	printf("= is command\r\n");
+#endif
 	char* token_daily_alarm = strtok(str_, "Daily ");
 
 	while (token_daily_alarm != NULL)
 	{
-		for(uint8_t i = 0; i < 6; i++)
+		for(uint8_t i = 0; i < 2; i++)
 		{
 			set_daily_alarm_data[i] = atoi(token_daily_alarm);
 			token_daily_alarm = strtok(NULL, "Daily ");
@@ -812,14 +847,14 @@ static void set_val_alarm_daily_cb(char *str_)
 	if(token_daily_alarm == NULL)
 	{
 #ifdef UNUSE_I2S
-		printf("Data set RTC = %d, %d, %d, %d, %d, %d\r\n",set_daily_alarm_data[0], set_daily_alarm_data[1], set_daily_alarm_data[2], set_daily_alarm_data[3], set_daily_alarm_data[4], set_daily_alarm_data[5]);
+		printf("Data set daily = %d : %d\r\n",set_daily_alarm_data[0], set_daily_alarm_data[1]);
 #endif
 		daily_alarm.hour 	= (uint8_t)set_daily_alarm_data[0];
 		daily_alarm.min 	= (uint8_t)set_daily_alarm_data[1];
-		daily_alarm.sec 	= (uint8_t)set_daily_alarm_data[2];
-		daily_alarm.mday 	= (uint8_t)set_daily_alarm_data[3];
-		daily_alarm.month	= (uint8_t)set_daily_alarm_data[4];
-		daily_alarm.Year 	= (uint16_t)set_daily_alarm_data[5];
+
+		daily_alarm_show.hour 	= (uint8_t)set_daily_alarm_data[0];
+		daily_alarm_show.minute = (uint8_t)set_daily_alarm_data[1];
+
 		set_alarm();
 	}
 }
@@ -827,11 +862,14 @@ static void set_val_alarm_daily_cb(char *str_)
 //Digunakan untuk mengsetting nilai alarm bulanan
 static void set_val_alarm_monthly_cb(char *str_)
 {
+#ifdef UNUSE_I2S
+	printf("= is command\r\n");
+#endif
 	char* token_monthly_alarm = strtok(str_, "Monthly ");
 
 	while (token_monthly_alarm != NULL)
 	{
-		for(uint8_t i = 0; i < 6; i++)
+		for(uint8_t i = 0; i < 3; i++)
 		{
 			set_monthly_alarm_data[i] = atoi(token_monthly_alarm);
 			token_monthly_alarm = strtok(NULL, "Monthly ");
@@ -841,14 +879,15 @@ static void set_val_alarm_monthly_cb(char *str_)
 	if(token_monthly_alarm == NULL)
 	{
 #ifdef UNUSE_I2S
-		printf("Data set RTC = %d, %d, %d, %d, %d, %d\r\n",set_monthly_alarm_data[0], set_monthly_alarm_data[1], set_monthly_alarm_data[2], set_monthly_alarm_data[3], set_monthly_alarm_data[4], set_monthly_alarm_data[5]);
+		printf("Data set monthly = %d : %d, %d\r\n",set_monthly_alarm_data[0], set_monthly_alarm_data[1], set_monthly_alarm_data[2]);
 #endif
 		montly_alarm.hour 	= (uint8_t)set_monthly_alarm_data[0];
 		montly_alarm.min 	= (uint8_t)set_monthly_alarm_data[1];
-		montly_alarm.sec 	= (uint8_t)set_monthly_alarm_data[2];
-		montly_alarm.mday 	= (uint8_t)set_monthly_alarm_data[3];
-		montly_alarm.month	= (uint8_t)set_monthly_alarm_data[4];
-		montly_alarm.Year 	= (uint16_t)set_monthly_alarm_data[5];
+
+		monthly_alarm_show.hour 	= (uint8_t)set_monthly_alarm_data[0];
+		monthly_alarm_show.minute 	= (uint8_t)set_monthly_alarm_data[1];
+		monthly_alarm_show.date		= (uint8_t)set_monthly_alarm_data[2];
+
 		set_alarm();
 	}
 }
@@ -866,14 +905,15 @@ static void command_exec (char *txt)
 	/* Check token is not Null */
 	while (token != NULL)
 	{
+		for (uint16_t i = 0; i < len_bank; i++)
+		{
 #ifdef UNUSE_I2S
 		printf (" %s\t", token);
 #endif
-		for (uint16_t i = 0; i < len_bank; i++)
-		{
 			/* Checking token is equal with command bank */
 			if (strstr (token, cmd_bank[i].cmd) != NULL)
 			{
+
 				/* When token is equal with command bank, store the token value to bank callback function */
 				cmd_bank[i].cb (token);
 				break;

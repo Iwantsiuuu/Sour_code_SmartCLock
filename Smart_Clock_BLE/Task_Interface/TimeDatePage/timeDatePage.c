@@ -91,7 +91,7 @@ void init_rtc_disp()
 	button.attachHeld(&btn_obj[BUTTON_UP],confirm_cb);
 	button.attachHeld(&btn_obj[BUTTON_DOWN],confirm_cb);
 	button.attachHeld(&btn_obj[BUTTON_ENTER],confirm_cb);
-	button.attachDoublePressed(&btn_obj[BUTTON_ENTER],start_advertisement);
+	button.attachHeld(&btn_obj[BUTTON_BACK],start_advertisement);
 
 	u8g2_ClearDisplay(&u8g2_obj);
 	u8g2_ClearBuffer(&u8g2_obj);
@@ -123,7 +123,6 @@ static void deinit_rtc_disp()
 	{
 		button.dettachPressed(&btn_obj[i]);
 		button.dettachHeld(&btn_obj[i]);
-		button.dettachDoublePressed(&btn_obj[i]);
 	}
 	/* Delete callback function for long presse on button enter */
 }
