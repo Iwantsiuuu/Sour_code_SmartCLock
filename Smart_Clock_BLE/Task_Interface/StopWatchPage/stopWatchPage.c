@@ -64,13 +64,9 @@ void init_stopWatch_disp()
 
 void deinit_stopWatch_disp()
 {
-
 	//	Melakukan deattach button
 	for (uint8_t i = 0; i < 4; i++)
-	{
-		button.dettachPressed(&btn_obj[i]);
-		button.dettachHeld(&btn_obj[i]);
-	}
+		button.clearAllISR(&btn_obj[i]);
 }
 
 void stopwatch()

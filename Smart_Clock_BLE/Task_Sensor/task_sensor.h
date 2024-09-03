@@ -24,7 +24,7 @@ extern sensor_data dps_sensor;
 extern sensor_data bmp_sensor;
 extern sensor_data bme680_sensor;
 
-void sensor_App();
+void sensor_Reading();
 cy_rslt_t sensorInit();
 
 BME68X_INTF_RET_TYPE bme68x_i2c_read(uint8_t reg_addr, uint8_t *reg_data, uint32_t length, void *intf_ptr);

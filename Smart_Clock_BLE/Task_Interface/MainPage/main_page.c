@@ -43,7 +43,6 @@ struct tm RTC_TIME;
 char buf_temp [20];
 
 static uint8_t THIS_PAGE = 0;
-static uint8_t MODE_DISPLAY = 0;
 
 uint8_t koordinatX_oled = 0, koordinatY_oled = 0;
 
@@ -140,9 +139,7 @@ static void init_main_page()
 	button.attachHeld(&btn_obj[BUTTON_BACK],start_advertisement);
 
 	THIS_PAGE = MAIN_PAGE_ID;
-	MODE_DISPLAY = 0;
 
-	cyhal_rtc_read(&rtc_obj, &RTC_TIME);
 	//	timeout_flag = true;
 }
 
@@ -150,10 +147,7 @@ static void deinit_main_page()
 {
 	// deAttach button
 	for (uint8_t i = 0; i < NUM_OF_BTN; i++)
-	{
-		button.dettachPressed(&btn_obj[i]);
-		button.dettachHeld(&btn_obj[i]);
-	}
+		button.clearAllISR(&btn_obj[i]);
 }
 
 static void enter_menu_cb()

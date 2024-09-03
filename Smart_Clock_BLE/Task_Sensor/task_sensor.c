@@ -24,7 +24,7 @@ uint32_t bme_period;
 
 xensiv_dps3xx_t pressure_sensor;
 
-void sensor_App(void *arg)
+void sensor_Reading(void *arg)
 {
 
 	while(!systemReady)
@@ -59,9 +59,10 @@ void sensor_App(void *arg)
 #ifdef USE_SENSOR
 		if( xTaskGetTickCount() - time_update >= 1000)
 		{
-			if (semphr_i2c_dev != NULL){
-				if(xSemaphoreTake(semphr_i2c_dev, ( TickType_t ) 100)){
-
+			if (semphr_i2c_dev != NULL)
+			{
+				if(xSemaphoreTake(semphr_i2c_dev, ( TickType_t ) 100))
+				{
 #ifdef USE_DPS310
 					xensiv_dps3xx_read(&pressure_sensor, &dps_sensor.pressure, &dps_sensor.temperature);
 					//					printf("press: %0.2f \t tempt: %0.0f C\r\n",dps_sensor.pressure, dps_sensor.temperature);

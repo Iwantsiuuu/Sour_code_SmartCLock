@@ -120,11 +120,7 @@ static void deinit_rtc_disp()
 {
 	/* Delete calback function for quick press on all button */
 	for (uint8_t i = 0; i < NUM_OF_BTN; i++)
-	{
-		button.dettachPressed(&btn_obj[i]);
-		button.dettachHeld(&btn_obj[i]);
-	}
-	/* Delete callback function for long presse on button enter */
+		button.clearAllISR(&btn_obj[i]);
 }
 
 /*******************************************************************************

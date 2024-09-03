@@ -104,20 +104,16 @@ u8g2_t u8g2_obj;
 
 void displayOled()
 {
-#ifdef UNUSE_I2S
-	printf("Task Display\r\n");
-#endif
+	while (!systemReady)
+	{
+		vTaskDelay(5);
+	}
 
 	u8g2_SetBitmapMode(&u8g2_obj, 0);
 	u8g2_DrawXBM(&u8g2_obj, 0, 0, infineon_logo_width, infineon_logo_height, infineon_logo_bits);
 	u8g2_SendBuffer(&u8g2_obj);
 	u8g2_ClearBuffer(&u8g2_obj);
 	vTaskDelay(2000);
-
-	while (!systemReady)
-	{
-		vTaskDelay(5);
-	}
 
 #ifdef UNUSE_I2S
 	printf("Ready\r\n");

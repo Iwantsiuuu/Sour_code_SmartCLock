@@ -83,10 +83,7 @@ static void deinit_alarm_disp()
 {
 	//	Delete callback function when button is pressed or holded
 	for (uint8_t i = 0; i < NUM_OF_BTN; i++)
-	{
-		button.dettachHeld(&btn_obj[i]);
-		button.dettachPressed(&btn_obj[i]);
-	}
+		button.clearAllISR(&btn_obj[i]);
 }
 
 static void alarm_draw()

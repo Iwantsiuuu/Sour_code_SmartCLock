@@ -32,6 +32,7 @@ int main(void)
 
 	/*----> Set year from 2000th <----*/
 	RTC_Setup.Year = 2000;
+	uint8_t call_oled;
 
 #if defined (CY_DEVICE_SECURE)
 	cyhal_wdt_t wdt_obj;
@@ -97,8 +98,25 @@ int main(void)
 #endif
 
 	/*----> Initialization CYBSP_USER_LED1 as PWM for BlueTooth advertisement indicator <----*/
-	result = cyhal_pwm_init(&PWM_obj, CYBSP_USER_LED1, NULL);
+	result = cyhal_pwm_init(&PWM_obj, CYBSP_USER_LED, NULL);
 	cyhal_pwm_start(&PWM_obj);
+
+	/* Call oled address for trigger oled before init LCD */
+	result = cyhal_i2c_master_write(&i2c, OLED_ADDRESS, &call_oled, 0,100,true);
+	if(result == CY_RSLT_SUCCESS)
+	{
+		/*----> Initialization library u8g2 for LCD Oled 128 x 64 <------*/
+		init_u8g2();
+	}
+	else
+	{
+		CY_ASSERT(0);
+	}
+
+	/*----> Using semaphore for manage transaction on I2C <----*/
+	semphr_i2c_dev = xSemaphoreCreateMutex();
+	if (semphr_i2c_dev != NULL)
+		xSemaphoreGive(semphr_i2c_dev);
 
 	/* Configure platform specific settings for the BT device */
 	cybt_platform_config_init(&cybsp_bt_platform_cfg);
@@ -111,24 +129,16 @@ int main(void)
 	if(sensorInit() == CY_RSLT_SUCCESS)
 		/* After all initialization success, set systemReady to true for run all system*/
 		systemReady = true;
+	else
+		systemReady = false;
 #endif
 
 #ifdef USE_DUMMY_DATA
 	if(wicedRslt == CY_RSLT_SUCCESS)
 		systemReady = true;
+	else
+		systemReady = false;
 #endif
-
-	/* Call oled address for trigger oled before init LCD */
-	uint8_t call_oled = 0;
-	cyhal_i2c_master_write(&i2c, OLED_ADDRESS, &call_oled, 0,100,true);
-
-	/*----> Initialization library u8g2 for LCD Oled 128 x 64 <------*/
-	init_u8g2();
-
-	/*----> Using semaphore for manage transaction on I2C <----*/
-	semphr_i2c_dev = xSemaphoreCreateMutex();
-	if (semphr_i2c_dev != NULL)
-		xSemaphoreGive(semphr_i2c_dev);
 
 	/*----> Create Task for Button <----*/
 	xTaskCreate (
@@ -152,7 +162,7 @@ int main(void)
 
 	/*----> Create Task for all sensor used <----*/
 	xTaskCreate (
-			sensor_App,
+			sensor_Reading,
 			"Task Sensor",
 			(TASK_STACK_SIZE),
 			NULL,

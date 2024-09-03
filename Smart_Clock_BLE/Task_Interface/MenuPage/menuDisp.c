@@ -92,10 +92,8 @@ static void deinit_menu_disp()
 {
 	//	Melakukan deattach button
 	for (uint8_t i = 0; i < NUM_OF_BTN; i++)
-	{
-		button.dettachHeld(&btn_obj[i]);
-		button.dettachPressed(&btn_obj[i]);
-	}
+		button.clearAllISR(&btn_obj[i]);
+
 	interface_clearAll(&menuObj);
 }
 
