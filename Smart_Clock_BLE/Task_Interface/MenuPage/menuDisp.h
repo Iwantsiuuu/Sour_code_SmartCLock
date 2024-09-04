@@ -3,6 +3,6 @@
 
 #include "task_interface.h"
 
-void menu_disp_oled();
+void menu_page();
 
 #endif

@@ -103,15 +103,9 @@ int main(void)
 
 	/* Call oled address for trigger oled before init LCD */
 	result = cyhal_i2c_master_write(&i2c, OLED_ADDRESS, &call_oled, 0,100,true);
-	if(result == CY_RSLT_SUCCESS)
-	{
+
 		/*----> Initialization library u8g2 for LCD Oled 128 x 64 <------*/
 		init_u8g2();
-	}
-	else
-	{
-		CY_ASSERT(0);
-	}
 
 	/*----> Using semaphore for manage transaction on I2C <----*/
 	semphr_i2c_dev = xSemaphoreCreateMutex();

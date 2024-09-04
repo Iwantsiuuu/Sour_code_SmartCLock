@@ -76,7 +76,7 @@ void airQuality_disp()
 		else if(THIS_PAGE == idx_back)
 		{
 			deinit_airQuality_disp();
-			menu_disp_oled();
+			menu_page();
 			break;
 		}
 		else

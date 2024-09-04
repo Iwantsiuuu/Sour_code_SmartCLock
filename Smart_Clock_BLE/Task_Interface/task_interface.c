@@ -124,7 +124,8 @@ void displayOled()
 #ifdef UNUSE_I2S
 		printf("Set RTC First\r\n");
 #endif
-		wiced_bt_start_advertisements( BTM_BLE_ADVERT_UNDIRECTED_HIGH, 0, NULL );
+		if(connection_id == 0 && advertisement_mode != BTM_BLE_ADVERT_UNDIRECTED_HIGH)
+			wiced_bt_start_advertisements( BTM_BLE_ADVERT_UNDIRECTED_HIGH, 0, NULL );
 		rtc_set_first();
 	}
 
@@ -132,7 +133,8 @@ void displayOled()
 	printf("Stop advtsm\r\n");
 #endif
 
-	wiced_bt_start_advertisements( BTM_BLE_ADVERT_OFF, 0, NULL );
+	if(connection_id == 0 && advertisement_mode != BTM_BLE_ADVERT_UNDIRECTED_HIGH)
+		wiced_bt_start_advertisements( BTM_BLE_ADVERT_UNDIRECTED_HIGH, 0, NULL );
 
 	while(1)
 	{

@@ -115,7 +115,7 @@ static void menu_enter(uint8_t *disp)
 		break;
 	case STOPWATCH :
 		//		Function StopWatch
-		stopWatch_disp();
+		stopwatch_page();
 		break;
 	case ALARM:
 		alarm_disp();
@@ -130,17 +130,22 @@ static void draw_menu()
 	send_buffer_u8g2();
 }
 
-void menu_disp_oled()
+void menu_page()
 {
 	init_menu_disp();
 	while (1)
 	{
 		time_out();
+#ifdef UNUSE_I2S
+		printf("\tRTC_M: %d, RTC_S: %d\r\n\tMENIT: %d, DETIK: %d\r\n", RTC_TIME.tm_min, RTC_TIME.tm_sec, minute_timeout, second_timeout);
+#endif
 		if (menu_cursor != 255)
 		{
 			if (menu_cursor == index_back)
 			{
 				u8g2_ClearBuffer(&u8g2);
+				deinit_menu_disp();
+				vTaskResume(voiceHandle);
 				main_page();
 				break;
 			}

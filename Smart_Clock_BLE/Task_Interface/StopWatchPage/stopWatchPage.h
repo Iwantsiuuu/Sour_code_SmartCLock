@@ -4,6 +4,6 @@
 #include "task_button.h"
 #include "task_interface.h"
 
-void stopWatch_disp();
+void stopwatch_page();
 
 #endif

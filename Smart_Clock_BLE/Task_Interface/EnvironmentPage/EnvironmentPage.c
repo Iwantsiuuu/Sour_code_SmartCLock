@@ -133,7 +133,8 @@ void environment_disp()
 		else if(THIS_PAGE == idx_back)
 		{
 			deinit_environment_disp();
-			menu_disp_oled();
+			menu_page();
+			break;
 		}
 		else
 		{

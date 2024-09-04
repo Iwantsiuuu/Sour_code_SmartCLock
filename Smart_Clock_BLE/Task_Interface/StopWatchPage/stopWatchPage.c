@@ -1,4 +1,4 @@
-#include "stopWatchPage.h"
+#include "stopwatchPage.h"
 
 #include "menuDisp.h"
 #include "main_ble.h"
@@ -21,20 +21,31 @@ static void stopwatch();
 static void startSW_Cb();
 static void pauseSW_Cb();
 static void resetSW_Cb();
-static void stopWatch_draw();
+static void stopwatch_draw();
 static void start_advertisement();
-static void init_stopWatch_disp();
-static void deinit_stopWatch_disp();
-//static void ble_command(uint8_t ble_cmd);
+static void init_stopwatch_disp();
+static void deinit_stopwatch_disp();
 static void speech_stopwatch_cmd(uint32_t cmd);
+
+static void start_cb();
+static void stop_cb();
+static void reset_cb();
+static void back_cb();
 
 /*--------------< Global function >----------------*/
 static bool countSW = false;
-static char buf_stopWatch[100];
+static char buf_stopwatch[100];
+
+static voice_cmd_t voice_bank[4] =
+{
+		{(uint8_t)MULAI_CMD, start_cb},
+		{(uint8_t)BERHENTI_CMD, stop_cb},
+		{(uint8_t)ULANG_CMD, reset_cb},
+		{(uint8_t)KEMBALI_CMD, back_cb},
+};
 
 static uint8_t THIS_PAGE = 0;
 static uint8_t idx_back = SW_PAGE+1;
-static uint8_t return_to_main_page = SW_PAGE + 2;
 
 static uint16_t hour = 0;
 static uint16_t minute = 0;
@@ -42,9 +53,9 @@ static uint16_t second = 0;
 static uint16_t mili_second = 0;
 static uint16_t over;
 
-static uint32_t firstT, time_now, dtStopWatch;
+static uint32_t firstT, time_now, dtstopwatch;
 
-void init_stopWatch_disp()
+void init_stopwatch_disp()
 {
 	button.attachPressed(&btn_obj[BUTTON_ENTER],startSW_Cb);
 	button.attachPressed(&btn_obj[BUTTON_DOWN],pauseSW_Cb);
@@ -62,7 +73,7 @@ void init_stopWatch_disp()
 
 }
 
-void deinit_stopWatch_disp()
+void deinit_stopwatch_disp()
 {
 	//	Melakukan deattach button
 	for (uint8_t i = 0; i < 4; i++)
@@ -74,33 +85,33 @@ void stopwatch()
 	if (countSW)
 	{
 		time_now = xTaskGetTickCount();
-		dtStopWatch = time_now - firstT;
+		dtstopwatch = time_now - firstT;
 
-		hour 		= dtStopWatch / 3600000;
-		over 		= dtStopWatch % 3600000;
+		hour 		= dtstopwatch / 3600000;
+		over 		= dtstopwatch % 3600000;
 		minute 		= over / 60000;
 		over 		= over % 60000;
 		second 		= over / 1000;
 		mili_second = over % 1000;
 	}
-	else if (countSW == false && dtStopWatch == 0)
+	else if (countSW == false && dtstopwatch == 0)
 	{
 		hour = 0, minute = 0, second = 0, mili_second = 0;
 	}
-	sprintf(buf_stopWatch,"%d:%d:%d:%d\r\n",hour,minute,second,mili_second);
+	sprintf(buf_stopwatch,"%d:%d:%d:%d\r\n",hour,minute,second,mili_second);
 }
 
-void stopWatch_draw()
+void stopwatch_draw()
 {
 	stopwatch();
-	u8g2_DrawStr(&u8g2_obj, 0, 15, "StopWatch");
-	u8g2_DrawStr(&u8g2_obj, 0, 25, buf_stopWatch);
+	u8g2_DrawStr(&u8g2_obj, 0, 15, "stopwatch");
+	u8g2_DrawStr(&u8g2_obj, 0, 25, buf_stopwatch);
 	send_buffer_u8g2();
 }
 
-void stopWatch_disp()
+void stopwatch_page()
 {
-	init_stopWatch_disp();
+	init_stopwatch_disp();
 
 	while (1)
 	{
@@ -112,22 +123,16 @@ void stopWatch_disp()
 
 		if (THIS_PAGE == SW_PAGE)
 		{
-			stopWatch_draw();
+			stopwatch_draw();
 		}
 		else if(THIS_PAGE == idx_back)
 		{
-			deinit_stopWatch_disp();
-			menu_disp_oled();
-		}
-		else
-		{
-			deinit_stopWatch_disp();
-			main_page();
-			break;
+			deinit_stopwatch_disp();
+			menu_page();
 		}
 		vTaskDelay(20);
 	}
-	deinit_stopWatch_disp();
+	deinit_stopwatch_disp();
 }
 
 static void start_advertisement()
@@ -137,10 +142,11 @@ static void start_advertisement()
 		wiced_bt_start_advertisements( BTM_BLE_ADVERT_UNDIRECTED_HIGH, 0, NULL );
 }
 
+//callback function button mode
 static void startSW_Cb()
 {
 	timeout_flag = true;
-	firstT = xTaskGetTickCount() - dtStopWatch;
+	firstT = xTaskGetTickCount() - dtstopwatch;
 	countSW = true;
 }
 
@@ -154,7 +160,7 @@ static void resetSW_Cb()
 {
 	timeout_flag = true;
 	countSW = false;
-	dtStopWatch = 0;
+	dtstopwatch = 0;
 }
 
 static void BackSW_Cb()
@@ -162,29 +168,44 @@ static void BackSW_Cb()
 	THIS_PAGE = idx_back; //index_back
 }
 
+//callback function voice command
+static void start_cb()
+{
+	timeout_flag = true;
+	firstT = xTaskGetTickCount() - dtstopwatch;
+	countSW = true;
+}
+
+static void stop_cb()
+{
+	timeout_flag = true;
+	countSW = false;
+}
+
+static void reset_cb()
+{
+	timeout_flag = true;
+	countSW = false;
+	dtstopwatch = 0;
+}
+
+static void back_cb()
+{
+	deinit_stopwatch_disp();
+	main_page();
+}
+
 static void speech_stopwatch_cmd(uint32_t cmd)
 {
-	switch(cmd)
+
+	uint8_t cmd_len = getSize(voice_bank);
+	for(uint8_t i = 0; i < cmd_len; i++)
 	{
-	case MULAI_CMD:
-		firstT = xTaskGetTickCount() - dtStopWatch;
-		countSW = true;
-		break;
-
-	case BERHENTI_CMD:
-		countSW = false;
-		break;
-
-	case ULANG_CMD:
-		countSW = false;
-		dtStopWatch = 0;
-		break;
-
-	case KEMBALI_CMD:
-		THIS_PAGE = return_to_main_page; //index_back
-		break;
-	default:
-		break;
+		if(voice_bank[i].cmd_id == ((uint8_t)cmd))
+		{
+			voice_bank[i].cb();
+			break;
+		}
 	}
 }
 
@@ -205,5 +226,8 @@ static void time_out()
 		second_timeout = 0;
 
 	if ((RTC_TIME.tm_min - minute_timeout > (TIMEOUT+1)) && (RTC_TIME.tm_sec - second_timeout == (TIMEOUT-1)))
-		THIS_PAGE = return_to_main_page;
+	{
+		deinit_stopwatch_disp();
+		main_page();
+	}
 }

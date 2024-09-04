@@ -88,19 +88,19 @@ static void deinit_alarm_disp()
 
 static void alarm_draw()
 {
+	char buff_show_alarm_active[10];
+
 	char buff_HH[10];
 	char buff_MM[10];
-	char buff_SS[10];
-	char buff_dd[10];
-	char buff_mm[10];
-	char buff_yy[10];
 
 	if(daily == false && monthly == false)
 	{
+		sprintf(buff_show_alarm_active, "D: %d:%d | M: %d, %d:%d", daily_alarm_show.hour, daily_alarm_show.minute, monthly_alarm_show.date, monthly_alarm_show.hour, monthly_alarm_show.minute);
 		u8g2_DrawStr(&u8g2_obj, 0, 10, "ALARM SETUP");
-		u8g2_DrawStr(&u8g2_obj, 2, 30, "Hold button set");
-		u8g2_DrawStr(&u8g2_obj, 2, 40, "1. Back for daily");
-		u8g2_DrawStr(&u8g2_obj, 2, 50, "2. Down for monthly");
+		u8g2_DrawStr(&u8g2_obj, 0, 25, buff_show_alarm_active);
+		u8g2_DrawStr(&u8g2_obj, 2, 40, "Hold button set");
+		u8g2_DrawStr(&u8g2_obj, 2, 50, "1. Back for daily");
+		u8g2_DrawStr(&u8g2_obj, 2, 60, "2. Down for monthly");
 		send_buffer_u8g2();
 	}
 
@@ -110,19 +110,9 @@ static void alarm_draw()
 		u8g2_DrawStr(&u8g2_obj, 0, 10, "ALARM SETUP DAILY");
 		sprintf(buff_HH,"HH: %d",daily_alarm.hour);
 		sprintf(buff_MM,"MM: %d", daily_alarm.min);
-//		sprintf(buff_SS,"SS: %d", daily_alarm.sec);
-//		sprintf(buff_dd,"dd: %d", daily_alarm.mday);
-//		sprintf(buff_mm,"mm: %d", daily_alarm.month);
-//		sprintf(buff_yy,"yy: %d", daily_alarm.Year);
 
 		u8g2_DrawStr(&u8g2_obj, 2, 30, buff_HH);
-//		u8g2_DrawStr(&u8g2_obj, 60, 30, buff_dd);
-
-		u8g2_DrawStr(&u8g2_obj, 2, 40, buff_MM);
-//		u8g2_DrawStr(&u8g2_obj, 60, 40, buff_mm);
-//
-//		u8g2_DrawStr(&u8g2_obj, 2, 50, buff_SS);
-//		u8g2_DrawStr(&u8g2_obj, 60, 50, buff_yy);
+		u8g2_DrawStr(&u8g2_obj, 60, 30, buff_MM);
 		send_buffer_u8g2();
 	}
 
@@ -132,19 +122,9 @@ static void alarm_draw()
 		u8g2_DrawStr(&u8g2_obj, 0, 10, "ALARM SETUP MONTHLY");
 		sprintf(buff_HH,"HH: %d",montly_alarm.hour);
 		sprintf(buff_MM,"MM: %d", montly_alarm.min);
-//		sprintf(buff_SS,"SS: %d", montly_alarm.sec);
-//		sprintf(buff_dd,"dd: %d", montly_alarm.mday);
-//		sprintf(buff_mm,"mm: %d", montly_alarm.month);
-//		sprintf(buff_yy,"yy: %d", montly_alarm.Year);
 
 		u8g2_DrawStr(&u8g2_obj, 2, 30, buff_HH);
-//		u8g2_DrawStr(&u8g2_obj, 60, 30, buff_dd);
-
-		u8g2_DrawStr(&u8g2_obj, 2, 40, buff_MM);
-//		u8g2_DrawStr(&u8g2_obj, 60, 40, buff_mm);
-//
-//		u8g2_DrawStr(&u8g2_obj, 2, 50, buff_SS);
-//		u8g2_DrawStr(&u8g2_obj, 60, 50, buff_yy);
+		u8g2_DrawStr(&u8g2_obj, 60, 30, buff_MM);
 		send_buffer_u8g2();
 	}
 
@@ -159,9 +139,9 @@ void alarm_disp()
 	while (1)
 	{
 		time_out();
-//#ifdef UNUSE_I2S
-//		printf("RTC_M: %d, RTC_S: %d\r\nMENIT: %d, DETIK: %d\r\n", RTC_TIME.tm_min, RTC_TIME.tm_sec, minute_timeout, second_timeout);
-//#endif
+#ifdef UNUSE_I2S
+		printf("\tRTC_M: %d, RTC_S: %d\r\n\tMENIT: %d, DETIK: %d\r\n", RTC_TIME.tm_min, RTC_TIME.tm_sec, minute_timeout, second_timeout);
+#endif
 		if(p_command_id == KEMBALI_CMD)
 			THIS_PAGE = return_to_main_page;
 
@@ -172,7 +152,7 @@ void alarm_disp()
 		else if(THIS_PAGE == idx_back)
 		{
 			deinit_alarm_disp();
-			menu_disp_oled();
+			menu_page();
 			break;
 		}
 		else
@@ -221,61 +201,8 @@ static void increment_var_cb()
 		}
 		break;
 
-//	case Secon :
-//		if(daily)
-//		{
-//			daily_alarm.sec++;
-//			if (daily_alarm.sec > NUM_SECON)
-//				daily_alarm.sec = DEAFULT_VARIABLE_VALUE;
-//		}
-//		if(monthly)
-//		{
-//			montly_alarm.sec++;
-//			if (montly_alarm.sec > NUM_SECON)
-//				montly_alarm.sec = DEAFULT_VARIABLE_VALUE;
-//		}
-//		break;
-//
-//	case Day :
-//		if(daily)
-//		{
-//			daily_alarm.mday++;
-//			if (daily_alarm.mday > NUM_DAY)
-//				daily_alarm.mday = DEAFULT_VARIABLE_VALUE;
-//		}
-//		if(monthly)
-//		{
-//			montly_alarm.mday++;
-//			if (montly_alarm.mday > NUM_DAY)
-//				montly_alarm.mday = DEAFULT_VARIABLE_VALUE;
-//		}
-//		break;
-//
-//	case Month :
-//		if(daily)
-//		{
-//			daily_alarm.month++;
-//			if (daily_alarm.month > NUM_MONTH)
-//				daily_alarm.month = DEAFULT_VARIABLE_VALUE;
-//		}
-//		if(monthly)
-//		{
-//			montly_alarm.month++;
-//			if (montly_alarm.month > NUM_MONTH)
-//				montly_alarm.month = DEAFULT_VARIABLE_VALUE;
-//		}
-//		break;
-//
-//	case Year :
-//		if(daily)
-//		{
-//			daily_alarm.Year++;
-//		}
-//		if(monthly)
-//		{
-//			montly_alarm.Year++;
-//		}
-//		break;
+	default:
+		break;
 	}
 }
 static void decrement_var_cb()
@@ -313,61 +240,8 @@ static void decrement_var_cb()
 		}
 		break;
 
-//	case Secon :
-//		if(daily)
-//		{
-//			daily_alarm.sec--;
-//			if (daily_alarm.sec < DEAFULT_VARIABLE_VALUE)
-//				daily_alarm.sec = NUM_SECON;
-//		}
-//		if(monthly)
-//		{
-//			montly_alarm.sec--;
-//			if (montly_alarm.sec < DEAFULT_VARIABLE_VALUE)
-//				montly_alarm.sec = NUM_SECON;
-//		}
-//		break;
-//
-//	case Day :
-//		if(daily)
-//		{
-//			daily_alarm.mday--;
-//			if (daily_alarm.mday < DEAFULT_VARIABLE_VALUE)
-//				daily_alarm.mday = NUM_DAY;
-//		}
-//		if(monthly)
-//		{
-//			montly_alarm.mday--;
-//			if (montly_alarm.mday < DEAFULT_VARIABLE_VALUE)
-//				montly_alarm.mday = NUM_DAY;
-//		}
-//		break;
-//
-//	case Month :
-//		if(daily)
-//		{
-//			daily_alarm.month--;
-//			if (daily_alarm.month < DEAFULT_VARIABLE_VALUE)
-//				daily_alarm.month = NUM_MONTH;
-//		}
-//		if(monthly)
-//		{
-//			montly_alarm.month--;
-//			if (montly_alarm.month < DEAFULT_VARIABLE_VALUE)
-//				montly_alarm.month = NUM_MONTH;
-//		}
-//		break;
-//
-//	case Year :
-//		if(daily)
-//		{
-//			daily_alarm.Year--;
-//		}
-//		if(monthly)
-//		{
-//			montly_alarm.Year--;
-//		}
-//		break;
+	default:
+		break;
 	}
 }
 

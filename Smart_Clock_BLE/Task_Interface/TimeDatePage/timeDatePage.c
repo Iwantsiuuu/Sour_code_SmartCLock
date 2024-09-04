@@ -36,6 +36,8 @@ static void back_rtc_cb();
 static void switch_var_cb();
 static void increment_var_cb();
 static void decrement_var_cb();
+static void increment_var_held_cb();
+static void decrement_var_held_cb();
 static void start_advertisement();
 
 #define TIMEOUT  (1)
@@ -88,8 +90,8 @@ void init_rtc_disp()
 	button.attachPressed(&btn_obj[BUTTON_ENTER],switch_var_cb);
 	button.attachPressed(&btn_obj[BUTTON_BACK],back_rtc_cb);
 
-	button.attachHeld(&btn_obj[BUTTON_UP],confirm_cb);
-	button.attachHeld(&btn_obj[BUTTON_DOWN],confirm_cb);
+	button.attachHeld(&btn_obj[BUTTON_UP],increment_var_held_cb);
+	button.attachHeld(&btn_obj[BUTTON_DOWN],decrement_var_held_cb);
 	button.attachHeld(&btn_obj[BUTTON_ENTER],confirm_cb);
 	button.attachHeld(&btn_obj[BUTTON_BACK],start_advertisement);
 
@@ -127,7 +129,7 @@ static void deinit_rtc_disp()
 * Function Name: rtc_draw
 ********************************************************************************
 * Summary:
-*  The rtc_draw function used to display the value of the RTC variable to the user
+*  The rtc_draw function used to display the value of the RTC variable to the LCD
 *
 * Parameters:
 *  -
@@ -188,7 +190,7 @@ void rtc_disp()
 	{
 		time_out();
 #ifdef UNUSE_I2S
-		printf("RTC_M: %d, RTC_S: %d\r\nMENIT: %d, DETIK: %d\r\n", RTC_TIME.tm_min, RTC_TIME.tm_sec, minute_timeout, second_timeout);
+		printf("\tRTC_M: %d, RTC_S: %d\r\n\tMENIT: %d, DETIK: %d\r\n", RTC_TIME.tm_min, RTC_TIME.tm_sec, minute_timeout, second_timeout);
 #endif
 		if (THIS_PAGE == RTC_PAGE)
 			rtc_draw();
@@ -196,7 +198,7 @@ void rtc_disp()
 		else if(THIS_PAGE == idx_back)
 		{
 			deinit_rtc_disp();
-			menu_disp_oled();
+			menu_page();
 			break;
 		}
 		else
@@ -294,6 +296,9 @@ static void increment_var_cb()
 	case Year :
 		RTC_Setup.Year++;
 		break;
+
+	default:
+		break;
 	}
 }
 
@@ -335,6 +340,97 @@ static void decrement_var_cb()
 	case Year :
 		RTC_Setup.Year--;
 		break;
+
+	default:
+		break;
+	}
+}
+
+static void increment_var_held_cb()
+{
+	timeout_flag = true;
+	switch (current_var)
+	{
+	case Hour :
+		if (RTC_Setup.hour > NUM_HOUR)
+			RTC_Setup.hour = DEAFULT_VARIABLE_VALUE;
+		RTC_Setup.hour++;
+		break;
+
+	case Minute :
+		if (RTC_Setup.min > NUM_MINUTE)
+			RTC_Setup.min = DEAFULT_VARIABLE_VALUE;
+		RTC_Setup.min++;
+		break;
+
+	case Secon :
+		if (RTC_Setup.sec > NUM_SECON)
+			RTC_Setup.sec = DEAFULT_VARIABLE_VALUE;
+		RTC_Setup.sec++;
+		break;
+
+	case Day :
+		if (RTC_Setup.mday > NUM_DAY)
+			RTC_Setup.mday = DEAFULT_VARIABLE_VALUE;
+		RTC_Setup.mday++;
+		break;
+
+	case Month :
+		if (RTC_Setup.month > NUM_MONTH)
+			RTC_Setup.month = DEAFULT_VARIABLE_VALUE;
+		RTC_Setup.month++;
+		break;
+
+	case Year :
+		RTC_Setup.Year++;
+		break;
+
+	default:
+		break;
+	}
+}
+
+static void decrement_var_held_cb()
+{
+	timeout_flag = true;
+	switch (current_var)
+	{
+	case Hour :
+		RTC_Setup.hour--;
+		if (RTC_Setup.hour < DEAFULT_VARIABLE_VALUE)
+			RTC_Setup.hour = NUM_HOUR;
+		break;
+
+	case Minute :
+		RTC_Setup.min--;
+		if (RTC_Setup.min < DEAFULT_VARIABLE_VALUE)
+			RTC_Setup.min = NUM_MINUTE;
+		break;
+
+	case Secon :
+		RTC_Setup.sec--;
+		if (RTC_Setup.sec < DEAFULT_VARIABLE_VALUE)
+			RTC_Setup.sec = NUM_SECON;
+		break;
+
+	case Day :
+		RTC_Setup.mday--;
+		if (RTC_Setup.mday < DEAFULT_VARIABLE_VALUE)
+			RTC_Setup.mday = NUM_DAY;
+		break;
+
+	case Month :
+		RTC_Setup.month--;
+		if (RTC_Setup.month < DEAFULT_VARIABLE_VALUE)
+			RTC_Setup.month = NUM_MONTH;
+		break;
+
+	case Year :
+		RTC_Setup.Year--;
+		break;
+
+	default:
+		break;
 	}
 }
 
@@ -369,9 +465,9 @@ static void time_out()
 
 	if(timeout_flag)
 	{
-		timeout_flag = false;
 		minute_timeout = RTC_Setup.min;
 		second_timeout = RTC_Setup.sec;
+		timeout_flag = false;
 	}
 
 	if(RTC_Setup.min < minute_timeout)

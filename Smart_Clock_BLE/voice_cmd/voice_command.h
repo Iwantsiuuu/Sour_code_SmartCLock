@@ -56,10 +56,18 @@
 #define ULANG_CMD		(207)
 #define	KEMBALI_CMD 	(208)
 
+#define getSize(my_array) (sizeof(my_array) / sizeof(my_array[0]))
+
 void init_i2s(void);
 void clock_init(void);
 void init_pdm_pcm(void);
 void voice_command_task(void);
+
+typedef struct voice_cmd
+{
+	uint8_t cmd_id;
+	void (*cb)();
+}voice_cmd_t;
 
 extern uint32_t p_command_id;
 
