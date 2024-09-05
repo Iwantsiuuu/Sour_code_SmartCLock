@@ -104,9 +104,9 @@ u8g2_t u8g2_obj;
 
 void displayOled()
 {
-	while (!systemReady)
+	while(!systemReady)
 	{
-		vTaskDelay(5);
+		vTaskDelay(pdMS_TO_TICKS(5));
 	}
 
 	u8g2_SetBitmapMode(&u8g2_obj, 0);

@@ -12,12 +12,10 @@ cyhal_gpio_t btn_pin[NUM_OF_BTN] = {
 
 void ButtonApp()
 {
-
 	uint8_t btn_num = 0;
-
 	while(!systemReady)
 	{
-		vTaskDelay(5);
+		vTaskDelay(pdMS_TO_TICKS(5));
 	}
 
 	for(;;)

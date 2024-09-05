@@ -10,6 +10,7 @@
 #include "rtc_sc.h"
 #include "main_ble.h"
 #include "setting_alarm.h"
+#include "voice_command.h"
 
 /******************************************************************************
  * Prototype variable
@@ -203,6 +204,11 @@ void cyhal_rtc_alarm_interrupt_handler(void* arg, cyhal_rtc_event_t event)
 		// ALARM HAS FIRED
 #ifdef UNUSE_I2S
 		printf("Play a song\r\n");
+#endif
+
+#ifdef USE_I2S
+		audio_play = 1;
+		audio_code = 2;
 #endif
 	}
 }

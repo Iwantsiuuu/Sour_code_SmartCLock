@@ -93,7 +93,7 @@ static void deinit_menu_disp()
 	//	Melakukan deattach button
 	for (uint8_t i = 0; i < NUM_OF_BTN; i++)
 		button.clearAllISR(&btn_obj[i]);
-
+	vTaskResume(voiceHandle);
 	interface_clearAll(&menuObj);
 }
 
@@ -143,9 +143,7 @@ void menu_page()
 		{
 			if (menu_cursor == index_back)
 			{
-				u8g2_ClearBuffer(&u8g2);
 				deinit_menu_disp();
-				vTaskResume(voiceHandle);
 				main_page();
 				break;
 			}

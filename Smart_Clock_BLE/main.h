@@ -26,15 +26,15 @@
 #include "u8g2/u8g2_support.h"
 
 //Include Task
-#include "RTC/rtc_sc.h"
+#include "rtc_sc.h"
 #include "voice_command.h"
-#include "Main_BLE/main_ble.h"
-#include "Power_Mode/power_mode.h"
-#include "Task_Sensor/setup_i2c.h"
-#include "Task_ble/write_rtc_task.h"
-#include "Task_Sensor/task_sensor.h"
-#include "Task_Button/task_button.h"
-#include "Task_Interface/interface.h"
+#include "main_ble.h"
+#include "power_mode.h"
+#include "ble_notify_task.h"
+#include "setup_i2c.h"
+#include "task_sensor.h"
+#include "task_button.h"
+#include "interface.h"
 
 /*******************************************************************************
  * Function Prototypes

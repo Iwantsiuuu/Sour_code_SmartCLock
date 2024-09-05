@@ -154,6 +154,7 @@ static void prev_Cb()
 
 static void start_advertisement()
 {
+	timeout_flag = true;
 	if(connection_id == 0 && advertisement_mode != BTM_BLE_ADVERT_UNDIRECTED_HIGH)
 		wiced_bt_start_advertisements( BTM_BLE_ADVERT_UNDIRECTED_HIGH, 0, NULL );
 }

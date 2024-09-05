@@ -26,16 +26,10 @@ xensiv_dps3xx_t pressure_sensor;
 
 void sensor_Reading(void *arg)
 {
-
 	while(!systemReady)
 	{
-		vTaskDelay(5);
+		vTaskDelay(pdMS_TO_TICKS(5));
 	}
-
-#ifdef USE_BME680
-	init_bme68x_sensor();
-    uint8_t n_data_ptr;
-#endif
 
 #ifdef USE_SENSOR
 	uint32_t time_update = 0;
@@ -103,6 +97,11 @@ cy_rslt_t sensorInit()
 #ifdef USE_DPS310
 	result = xensiv_dps3xx_mtb_init_i2c(&pressure_sensor, &i2c, 0x77);
 	return result;
+#endif
+
+#ifdef USE_BME680
+	init_bme68x_sensor();
+    uint8_t n_data_ptr;
 #endif
 
 #ifdef USE_DUMMY_DATA

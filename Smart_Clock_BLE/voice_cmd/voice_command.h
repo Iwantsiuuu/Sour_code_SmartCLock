@@ -71,6 +71,9 @@ typedef struct voice_cmd
 
 extern uint32_t p_command_id;
 
+extern bool audio_play;
+extern uint8_t audio_code;
+
 #ifdef USE_I2S
 extern cyhal_i2s_t i2s;
 #endif

@@ -5,11 +5,11 @@
  * 	    Author: Ridwan Bahari
  */
 
+#include <ble_notify_task.h>
 #include "main_ble.h"
 
 #include "setting_alarm.h"
 #include "timeDatePage.h"
-#include "write_rtc_task.h"
 
 /*******************************************************************************
  * Prototipe function

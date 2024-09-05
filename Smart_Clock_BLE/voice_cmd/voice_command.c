@@ -39,9 +39,12 @@
  * */
 
 #include "voice_command.h"
+#include "wave.h"
+
 
 #ifdef USE_I2S
 static void i2s_isr_handler(void *arg, cyhal_i2s_event_t event);
+static void play_audio();
 #endif
 
 static void asr_callback(const char *function, char *message, char *parameter);
@@ -49,6 +52,9 @@ static void pdm_pcm_isr_handler(void *arg, cyhal_pdm_pcm_event_t event);
 
 #ifdef USE_I2S
 cyhal_i2s_t i2s;
+
+uint8_t audio_code = 0;
+bool audio_play = false;
 #endif
 
 cyhal_pdm_pcm_t pdm_pcm;
@@ -128,14 +134,12 @@ void init_pdm_pcm(void)
 
 void voice_command_task(void)
 {
-
 #ifdef UNUSE_I2S
 	uint64_t uid;
 #endif
-
 	while(!systemReady)
 	{
-		vTaskDelay(5);
+		vTaskDelay(pdMS_TO_TICKS(5));
 	}
 
 #ifdef UNUSE_I2S
@@ -159,6 +163,12 @@ void voice_command_task(void)
 			pdm_pcm_flag = 0;
 			cyberon_asr_process(pdm_pcm_buffer, FRAME_SIZE);
 		}
+#ifdef USE_I2S
+		if(audio_play)
+		{
+			play_audio();
+		}
+#endif
 	}
 }
 
@@ -197,22 +207,59 @@ static void asr_callback(const char *function, char *message, char *parameter)
 		int p_cmd_id = 0;
 		p_cmd_id = atoi(parameter);
 		p_command_id = (uint32_t)p_cmd_id;
+
+#ifdef USE_I2S
+		if(p_cmd_id == 100)
+			audio_code = 0;
+		else
+			audio_code = 1;
+#endif
+
 	}
 	else
 	{
 		param = strstr(message, (const char*)"Timeout");
 		if( param != NULL )
+		{
+
+#ifdef USE_I2S
+			audio_code = 0;
+#endif
+
 			p_command_id = 0;
+		}
 	}
 }
 
 #ifdef USE_I2S
+static void play_audio()
+{
+	/* Check if I2S is transmitting */
+	if (cyhal_i2s_is_write_pending(&i2s))
+	{
+		/* If already transmitting, don't do anything */
+	}
+	else
+	{
+		/* Start the I2S TX */
+		cyhal_i2s_start_tx(&i2s);
+
+		/* If not transmitting, initiate a transfer */
+		if( audio_code == 0)
+			cyhal_i2s_write_async(&i2s, &__saya_disini_low__wav[0], (103808/2));
+		else if(audio_code == 1)
+			cyhal_i2s_write_async(&i2s, &__siap_wav[0], (71990/2));
+		else
+			cyhal_i2s_write_async(&i2s, &__siap_wav[0], (71990/2));
+	}
+}
+
 static void i2s_isr_handler(void *arg, cyhal_i2s_event_t event)
 {
 	(void) arg;
 	(void) event;
 
-	//	flag_play = false;
+	audio_play = false;
 
 	/* Stop the I2S TX */
 	cyhal_i2s_stop_tx(&i2s);

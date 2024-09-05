@@ -1,4 +1,4 @@
-16:34:54 **** Incremental Build of configuration Debug for project Smart_Clock_BLE ****
+11:39:08 **** Incremental Build of configuration Debug for project Smart_Clock_BLE ****
 "C:\\Users\\bahariridwan\\ModusToolbox\\tools_3.2\\modus-shell\\bin\\make" CY_MAKE_IDE=eclipse CY_IDE_TOOLS_DIR=C:/Users/bahariridwan/ModusToolbox/tools_3.2 CY_IDE_BT_TOOLS_DIR= -j8 --output-sync all 
 Tools Directory: C:/Users/bahariridwan/ModusToolbox/tools_3.2
 Searching installed tools in progress...
@@ -24,7 +24,7 @@ Build rules construction complete
 Generating compilation database file...
 -> ./build/compile_commands.json
 Compilation database file generation complete
-Building 409 file(s)
+Building 410 file(s)
 ==============================================================================
 = Build complete =
 ==============================================================================
@@ -35,12 +35,12 @@ Calculating memory consumption: CYBLE-416045-02-device GCC_ARM
   | Section Name         |  Address      |  Size       | 
    ---------------------------------------------------- 
   | .cy_m0p_image        |  0x10000000   |  111188     | 
-  | .text                |  0x10020000   |  234048     | 
-  | command_data         |  0x10059240   |  163408     | 
-  | license_data         |  0x10081090   |  188        | 
-  | .ARM.exidx           |  0x1008114c   |  8          | 
-  | .copy.table          |  0x10081154   |  24         | 
-  | .zero.table          |  0x1008116c   |  8          | 
+  | .text                |  0x10020000   |  234064     | 
+  | command_data         |  0x10059250   |  163408     | 
+  | license_data         |  0x100810a0   |  188        | 
+  | .ARM.exidx           |  0x1008115c   |  8          | 
+  | .copy.table          |  0x10081164   |  24         | 
+  | .zero.table          |  0x1008117c   |  8          | 
   | .data                |  0x0800328c   |  3300       | 
   | .cy_sharedmem        |  0x08003f70   |  12         | 
   | .noinit              |  0x08003f80   |  236        | 
@@ -49,9 +49,9 @@ Calculating memory consumption: CYBLE-416045-02-device GCC_ARM
    ---------------------------------------------------- 
 
   Total Internal Flash (Available)          1048576    
-  Total Internal Flash (Utilized)           532076     
+  Total Internal Flash (Utilized)           532092     
 
 
 
-16:35:01 Build Finished. 0 errors, 0 warnings. (took 6s.831ms)
+11:39:14 Build Finished. 0 errors, 0 warnings. (took 6s.9ms)
 
