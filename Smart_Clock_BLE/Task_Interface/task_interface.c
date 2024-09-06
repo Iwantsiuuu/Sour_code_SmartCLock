@@ -104,35 +104,37 @@ u8g2_t u8g2_obj;
 
 void displayOled()
 {
+	//wait for systems to be ready to ensure all systems start up correctly
 	while(!systemReady)
 	{
 		vTaskDelay(pdMS_TO_TICKS(5));
 	}
 
+	//Displaying INFINEON logo during 2 second
 	u8g2_SetBitmapMode(&u8g2_obj, 0);
 	u8g2_DrawXBM(&u8g2_obj, 0, 0, infineon_logo_width, infineon_logo_height, infineon_logo_bits);
 	u8g2_SendBuffer(&u8g2_obj);
 	u8g2_ClearBuffer(&u8g2_obj);
 	vTaskDelay(2000);
 
-#ifdef UNUSE_I2S
-	printf("Ready\r\n");
-#endif
+	//Checking whether the RTC has been set, if not, the RTC must be set first.
 	RTC_ENABLE = cyhal_rtc_is_enabled(&rtc_obj);
 	if(RTC_ENABLE != ENABLE)
 	{
 #ifdef UNUSE_I2S
 		printf("Set RTC First\r\n");
 #endif
+		//Start advertisement for set RTC using BLE under AIROC Connect or other BLE scanning application
 		if(connection_id == 0 && advertisement_mode != BTM_BLE_ADVERT_UNDIRECTED_HIGH)
 			wiced_bt_start_advertisements( BTM_BLE_ADVERT_UNDIRECTED_HIGH, 0, NULL );
+
 		rtc_set_first();
 	}
 
 #ifdef UNUSE_I2S
 	printf("Stop advtsm\r\n");
 #endif
-
+	//Start advertisement for BLE mode on main page
 	if(connection_id == 0 && advertisement_mode != BTM_BLE_ADVERT_UNDIRECTED_HIGH)
 		wiced_bt_start_advertisements( BTM_BLE_ADVERT_UNDIRECTED_HIGH, 0, NULL );
 
@@ -145,7 +147,6 @@ void displayOled()
 
 void init_u8g2()
 {
-
 	mtb_ssd1306_init_i2c(&i2c);
 
 	/* Initialize the U8 Display */
@@ -163,6 +164,7 @@ void init_u8g2()
 	u8g2_ClearBuffer(&u8g2_obj);
 }
 
+//Send the lcd buffer by checking the semaphore handle if it is not being used by another process.
 void send_buffer_u8g2(){
 	if (semphr_i2c_dev != NULL)
 	{

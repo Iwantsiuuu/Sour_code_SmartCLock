@@ -35,10 +35,11 @@ static uint8_t THIS_PAGE = 0;
 static uint8_t idx_back = ENVI_PAGE + 1;
 static uint8_t return_to_main_page = ENVI_PAGE + 2;
 
+//Register the callback function on each button, clear buffer and LCD display, and resume voice command task
 void init_environment_disp()
 {
-	button.attachPressed(&btn_obj[BUTTON_BACK],prev_Cb);
-	button.attachHeld(&btn_obj[BUTTON_BACK],start_advertisement);
+	button.attachPressed(&btn_obj[BUTTON_BACK],prev_Cb);			//Back to menu page by pressed back button
+	button.attachHeld(&btn_obj[BUTTON_BACK],start_advertisement);	//Start advertisement when the device is not advertising by holding the back button for 1 second
 
 	u8g2_ClearDisplay(&u8g2_obj);
 	u8g2_ClearBuffer(&u8g2_obj);
@@ -49,6 +50,7 @@ void init_environment_disp()
 	vTaskResume(voiceHandle);
 }
 
+//Clearing callback function each button and LCD display
 void deinit_environment_disp()
 {
 	button.dettachPressed(&btn_obj[BUTTON_BACK]);//BACK
@@ -82,6 +84,7 @@ static void environment_getVal()
 #endif
 }
 
+//Display environmental data from the BME680 readout sensor
 static void environment_draw()
 {
 	environment_getVal();
@@ -121,6 +124,7 @@ void environment_disp()
 #ifdef UNUSE_I2S
 		printf("RTC_M: %d, RTC_S: %d\r\nMENIT: %d, DETIK: %d\r\n", RTC_TIME.tm_min, RTC_TIME.tm_sec, minute_timeout, second_timeout);
 #endif
+		//Return to main page by voice command
 		if(p_command_id == KEMBALI_CMD)
 		{
 			THIS_PAGE = return_to_main_page;
@@ -158,6 +162,8 @@ static void start_advertisement()
 	if(connection_id == 0 && advertisement_mode != BTM_BLE_ADVERT_UNDIRECTED_HIGH)
 		wiced_bt_start_advertisements( BTM_BLE_ADVERT_UNDIRECTED_HIGH, 0, NULL );
 }
+
+//Return to main page when no button is pressed for 3 minutes
 static void time_out()
 {
 	cyhal_rtc_read(&rtc_obj, &RTC_TIME);

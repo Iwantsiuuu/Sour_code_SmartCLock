@@ -451,6 +451,7 @@ static wiced_bt_gatt_status_t app_bt_write_handler(wiced_bt_gatt_event_data_t *p
 				{
 				// Add action when specified handle is written
 				case HDLC_PSOC_COMMAND_VALUE:
+					//Executes the command given by the user using the BLE application on the smartphone.
 					command_exec ((char *)app_psoc_command);
 				}
 			}

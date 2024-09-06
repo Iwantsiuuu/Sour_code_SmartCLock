@@ -54,6 +54,7 @@ typedef enum {
 	ALARM
 }menu_var;
 
+//Menu that will be displayed on the LCD
 const char *menu_list[]={
 		"TIME AND DATE",
 		"ENVIRONMENT",
@@ -67,13 +68,15 @@ const char title_menu[] =
 		"MENU PAGE"
 };
 
+//Register the callback function on each button, menu configuration, and suspend voice command task
 static void init_menu_disp()
 {
-	button.attachPressed(&btn_obj[BUTTON_UP],up_Cb);
-	button.attachPressed(&btn_obj[BUTTON_DOWN],down_Cb);
-	button.attachPressed(&btn_obj[BUTTON_ENTER],ok_Cb);
-	button.attachPressed(&btn_obj[BUTTON_BACK],back_Cb);
+	button.attachPressed(&btn_obj[BUTTON_UP],up_Cb);		//Move the cursor (">") up by pressed up button
+	button.attachPressed(&btn_obj[BUTTON_DOWN],down_Cb);	//Move the cursor (">") down by pressed down button
+	button.attachPressed(&btn_obj[BUTTON_ENTER],ok_Cb);		//Jump to menu selected by pressed enter button
+	button.attachPressed(&btn_obj[BUTTON_BACK],back_Cb);	//Back to main page by pressed back button
 
+	//Start advertisement when the device is not advertising by holding the back button for 1 second
 	button.attachHeld(&btn_obj[BUTTON_BACK],start_advertisement);
 
 	interface_construct(&menuObj, &u8g2);
@@ -88,9 +91,9 @@ static void init_menu_disp()
 	vTaskSuspend(voiceHandle);
 }
 
+//Clearing all callback function on button, buffer for LCD and resume voice command task
 static void deinit_menu_disp()
 {
-	//	Melakukan deattach button
 	for (uint8_t i = 0; i < NUM_OF_BTN; i++)
 		button.clearAllISR(&btn_obj[i]);
 	vTaskResume(voiceHandle);
@@ -123,9 +126,9 @@ static void menu_enter(uint8_t *disp)
 	}
 }
 
+//Display all menus available on the device
 static void draw_menu()
 {
-	//	interface_draw_menu(&menuObj);
 	interface_draw(&menuObj);
 	send_buffer_u8g2();
 }
@@ -150,7 +153,7 @@ void menu_page()
 			else
 			{
 				deinit_menu_disp();
-				menu_enter(&menu_cursor);
+				menu_enter(&menu_cursor);	//Jump to menu selected by cursor position
 				init_menu_disp();
 			}
 		}
@@ -194,10 +197,12 @@ static void start_advertisement()
 		wiced_bt_start_advertisements( BTM_BLE_ADVERT_UNDIRECTED_HIGH, 0, NULL );
 }
 
+//Return to main page when no button is pressed for 3 minutes
 static void time_out()
 {
 	cyhal_rtc_read(&rtc_obj, &RTC_TIME);
 
+	//update timeout when button pressed
 	if(timeout_flag)
 	{
 		timeout_flag = false;

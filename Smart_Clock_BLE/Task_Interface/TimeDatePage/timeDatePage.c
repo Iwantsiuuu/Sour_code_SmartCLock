@@ -36,8 +36,8 @@ static void back_rtc_cb();
 static void switch_var_cb();
 static void increment_var_cb();
 static void decrement_var_cb();
-static void increment_var_held_cb();
-static void decrement_var_held_cb();
+//static void increment_var_held_cb();
+//static void decrement_var_held_cb();
 static void start_advertisement();
 
 #define TIMEOUT  (1)
@@ -72,8 +72,8 @@ enum var_rtc{
 * Function Name: init_rtc_disp
 ********************************************************************************
 * Summary:
-*  The init_rtc_disp function used for initialization button for set RTC parameter,
-*  clear previous buffer and display, reset the voice command variable value,
+*  The init_rtc_disp function used for register button for set RTC parameter,
+*  clear previous buffer and display, reset the voice command variable value, resume voice command task,
 *  and set page to RTC page.
 *
 * Parameters:
@@ -90,8 +90,8 @@ void init_rtc_disp()
 	button.attachPressed(&btn_obj[BUTTON_ENTER],switch_var_cb);
 	button.attachPressed(&btn_obj[BUTTON_BACK],back_rtc_cb);
 
-	button.attachHeld(&btn_obj[BUTTON_UP],increment_var_held_cb);
-	button.attachHeld(&btn_obj[BUTTON_DOWN],decrement_var_held_cb);
+//	button.attachHeld(&btn_obj[BUTTON_UP],increment_var_held_cb);
+//	button.attachHeld(&btn_obj[BUTTON_DOWN],decrement_var_held_cb);
 	button.attachHeld(&btn_obj[BUTTON_ENTER],confirm_cb);
 	button.attachHeld(&btn_obj[BUTTON_BACK],start_advertisement);
 
@@ -249,7 +249,7 @@ void rtc_set_first()
 * Function Name: increment_var_cb
 ********************************************************************************
 * Summary:
-*  The rtc_draw function used to display the value of the RTC variable to the user
+*  The increment_var_cb function used to increment variable RTC such as hour, minute, second, day, month, and year
 *
 * Parameters:
 *  -
@@ -302,6 +302,19 @@ static void increment_var_cb()
 	}
 }
 
+/*******************************************************************************
+* Function Name: decrement_var_cb
+********************************************************************************
+* Summary:
+*  The decrement_var_cb function used to decrement variable RTC such as hour, minute, second, day, month, and year
+*
+* Parameters:
+*  -
+*
+* Return:
+*  -
+*
+*******************************************************************************/
 static void decrement_var_cb()
 {
 	timeout_flag = true;
@@ -346,93 +359,93 @@ static void decrement_var_cb()
 	}
 }
 
-static void increment_var_held_cb()
-{
-	timeout_flag = true;
-	switch (current_var)
-	{
-	case Hour :
-		if (RTC_Setup.hour > NUM_HOUR)
-			RTC_Setup.hour = DEAFULT_VARIABLE_VALUE;
-		RTC_Setup.hour++;
-		break;
-
-	case Minute :
-		if (RTC_Setup.min > NUM_MINUTE)
-			RTC_Setup.min = DEAFULT_VARIABLE_VALUE;
-		RTC_Setup.min++;
-		break;
-
-	case Secon :
-		if (RTC_Setup.sec > NUM_SECON)
-			RTC_Setup.sec = DEAFULT_VARIABLE_VALUE;
-		RTC_Setup.sec++;
-		break;
-
-	case Day :
-		if (RTC_Setup.mday > NUM_DAY)
-			RTC_Setup.mday = DEAFULT_VARIABLE_VALUE;
-		RTC_Setup.mday++;
-		break;
-
-	case Month :
-		if (RTC_Setup.month > NUM_MONTH)
-			RTC_Setup.month = DEAFULT_VARIABLE_VALUE;
-		RTC_Setup.month++;
-		break;
-
-	case Year :
-		RTC_Setup.Year++;
-		break;
-
-	default:
-		break;
-	}
-}
-
-static void decrement_var_held_cb()
-{
-	timeout_flag = true;
-	switch (current_var)
-	{
-	case Hour :
-		RTC_Setup.hour--;
-		if (RTC_Setup.hour < DEAFULT_VARIABLE_VALUE)
-			RTC_Setup.hour = NUM_HOUR;
-		break;
-
-	case Minute :
-		RTC_Setup.min--;
-		if (RTC_Setup.min < DEAFULT_VARIABLE_VALUE)
-			RTC_Setup.min = NUM_MINUTE;
-		break;
-
-	case Secon :
-		RTC_Setup.sec--;
-		if (RTC_Setup.sec < DEAFULT_VARIABLE_VALUE)
-			RTC_Setup.sec = NUM_SECON;
-		break;
-
-	case Day :
-		RTC_Setup.mday--;
-		if (RTC_Setup.mday < DEAFULT_VARIABLE_VALUE)
-			RTC_Setup.mday = NUM_DAY;
-		break;
-
-	case Month :
-		RTC_Setup.month--;
-		if (RTC_Setup.month < DEAFULT_VARIABLE_VALUE)
-			RTC_Setup.month = NUM_MONTH;
-		break;
-
-	case Year :
-		RTC_Setup.Year--;
-		break;
-
-	default:
-		break;
-	}
-}
+//static void increment_var_held_cb()
+//{
+//	timeout_flag = true;
+//	switch (current_var)
+//	{
+//	case Hour :
+//		if (RTC_Setup.hour > NUM_HOUR)
+//			RTC_Setup.hour = DEAFULT_VARIABLE_VALUE;
+//		RTC_Setup.hour++;
+//		break;
+//
+//	case Minute :
+//		if (RTC_Setup.min > NUM_MINUTE)
+//			RTC_Setup.min = DEAFULT_VARIABLE_VALUE;
+//		RTC_Setup.min++;
+//		break;
+//
+//	case Secon :
+//		if (RTC_Setup.sec > NUM_SECON)
+//			RTC_Setup.sec = DEAFULT_VARIABLE_VALUE;
+//		RTC_Setup.sec++;
+//		break;
+//
+//	case Day :
+//		if (RTC_Setup.mday > NUM_DAY)
+//			RTC_Setup.mday = DEAFULT_VARIABLE_VALUE;
+//		RTC_Setup.mday++;
+//		break;
+//
+//	case Month :
+//		if (RTC_Setup.month > NUM_MONTH)
+//			RTC_Setup.month = DEAFULT_VARIABLE_VALUE;
+//		RTC_Setup.month++;
+//		break;
+//
+//	case Year :
+//		RTC_Setup.Year++;
+//		break;
+//
+//	default:
+//		break;
+//	}
+//}
+//
+//static void decrement_var_held_cb()
+//{
+//	timeout_flag = true;
+//	switch (current_var)
+//	{
+//	case Hour :
+//		RTC_Setup.hour--;
+//		if (RTC_Setup.hour < DEAFULT_VARIABLE_VALUE)
+//			RTC_Setup.hour = NUM_HOUR;
+//		break;
+//
+//	case Minute :
+//		RTC_Setup.min--;
+//		if (RTC_Setup.min < DEAFULT_VARIABLE_VALUE)
+//			RTC_Setup.min = NUM_MINUTE;
+//		break;
+//
+//	case Secon :
+//		RTC_Setup.sec--;
+//		if (RTC_Setup.sec < DEAFULT_VARIABLE_VALUE)
+//			RTC_Setup.sec = NUM_SECON;
+//		break;
+//
+//	case Day :
+//		RTC_Setup.mday--;
+//		if (RTC_Setup.mday < DEAFULT_VARIABLE_VALUE)
+//			RTC_Setup.mday = NUM_DAY;
+//		break;
+//
+//	case Month :
+//		RTC_Setup.month--;
+//		if (RTC_Setup.month < DEAFULT_VARIABLE_VALUE)
+//			RTC_Setup.month = NUM_MONTH;
+//		break;
+//
+//	case Year :
+//		RTC_Setup.Year--;
+//		break;
+//
+//	default:
+//		break;
+//	}
+//}
 
 static void switch_var_cb()
 {
@@ -442,17 +455,20 @@ static void switch_var_cb()
 		current_var = 0;
 }
 
+//Set new time by holding enter button
 static void confirm_cb()
 {
 	confirm_flag_rtc = true;
 	timeout_flag = true;
 }
 
+//Back to menu page
 static void back_rtc_cb()
 {
 	THIS_PAGE = idx_back; //index_back
 }
 
+//Start advertisement when the device is not advertising by holding the back button for 1 second
 static void start_advertisement()
 {
 	if(connection_id == 0 && advertisement_mode != BTM_BLE_ADVERT_UNDIRECTED_HIGH)

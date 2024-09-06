@@ -57,19 +57,19 @@ enum var_alarm{
 	Year
 };
 
+//Register the callback function on each button, clear buffer and LCD display, and resume voice command task
 void init_alarm_disp()
 {
+	button.attachPressed(&btn_obj[BUTTON_UP],increment_var_cb);		//Increment variable RTC such as hour, minute, second, day, month, and year by pressed up button
+	button.attachPressed(&btn_obj[BUTTON_DOWN],decrement_var_cb);	//Decrement variable RTC such as hour, minute, second, day, month, and year by pressed down button
+	button.attachPressed(&btn_obj[BUTTON_ENTER],switch_var_cb);		//Switch variable RTC such as hour, minute, second, day, month, and year by pressed enter button
+	button.attachPressed(&btn_obj[BUTTON_BACK],back_alarm_cb);		//Back to menu page by pressed back button
 
-	button.attachPressed(&btn_obj[BUTTON_UP],increment_var_cb);
-	button.attachPressed(&btn_obj[BUTTON_DOWN],decrement_var_cb);
-	button.attachPressed(&btn_obj[BUTTON_ENTER],switch_var_cb);
-	button.attachPressed(&btn_obj[BUTTON_BACK],back_alarm_cb);
+	button.attachHeld(&btn_obj[BUTTON_ENTER],confirm_cb);			//Set new alarm by pressing enter button for 1 second
+	button.attachHeld(&btn_obj[BUTTON_UP],set_daily);				//Pressing the up button for 1 second to set the daily alarm
+	button.attachHeld(&btn_obj[BUTTON_DOWN],set_monthly);			//Pressing the down button for 1 second to set the monthly alarm
 
-	button.attachHeld(&btn_obj[BUTTON_ENTER],confirm_cb);
-	button.attachHeld(&btn_obj[BUTTON_BACK],set_daily);
-	button.attachHeld(&btn_obj[BUTTON_DOWN],set_monthly);
-
-	button.attachHeld(&btn_obj[BUTTON_BACK],start_advertisement);
+	button.attachHeld(&btn_obj[BUTTON_BACK],start_advertisement);	//Start advertisement when the device is not advertising by holding the back button for 1 second
 
 	u8g2_ClearDisplay(&u8g2_obj);
 	u8g2_ClearBuffer(&u8g2_obj);
@@ -79,13 +79,14 @@ void init_alarm_disp()
 	THIS_PAGE = ALARM_PAGE;
 }
 
+//Clear all callback function each button
 static void deinit_alarm_disp()
 {
-	//	Delete callback function when button is pressed or holded
 	for (uint8_t i = 0; i < NUM_OF_BTN; i++)
 		button.clearAllISR(&btn_obj[i]);
 }
 
+//Displaying alarm page
 static void alarm_draw()
 {
 	char buff_show_alarm_active[10];
@@ -265,6 +266,7 @@ static void start_advertisement()
 		wiced_bt_start_advertisements( BTM_BLE_ADVERT_UNDIRECTED_HIGH, 0, NULL );
 }
 
+//Switch variable alarm by pressing enter button
 static void switch_var_cb()
 {
 	timeout_flag = true;
@@ -272,11 +274,15 @@ static void switch_var_cb()
 	if (current_var > num_var)
 		current_var = 0;
 }
+
+//Set new alarm by pressing enter button for 1 second
 static void confirm_cb()
 {
 	timeout_flag = true;
 	confirm_alarm_flag = true;
 }
+
+//Back to menu page by pressed back button
 static void back_alarm_cb()
 {
 	THIS_PAGE = idx_back; //index_back
@@ -284,6 +290,7 @@ static void back_alarm_cb()
 	monthly = false;
 }
 
+//Return to main page when no button is pressed for 3 minutes
 static void time_out()
 {
 	cyhal_rtc_read(&rtc_obj, &RTC_TIME);

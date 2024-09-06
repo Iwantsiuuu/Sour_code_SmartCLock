@@ -55,13 +55,15 @@ static uint16_t over;
 
 static uint32_t firstT, time_now, dtstopwatch;
 
+//Register the callback function on each button, clear buffer and LCD display, and resume voice command task
 void init_stopwatch_disp()
 {
-	button.attachPressed(&btn_obj[BUTTON_ENTER],startSW_Cb);
-	button.attachPressed(&btn_obj[BUTTON_DOWN],pauseSW_Cb);
-	button.attachPressed(&btn_obj[BUTTON_UP],resetSW_Cb);
-	button.attachPressed(&btn_obj[BUTTON_BACK],BackSW_Cb);
+	button.attachPressed(&btn_obj[BUTTON_ENTER],startSW_Cb);	//Start the StopWatch count by pressed enter button
+	button.attachPressed(&btn_obj[BUTTON_DOWN],pauseSW_Cb);		//Pause the StopWatch count by pressed down button
+	button.attachPressed(&btn_obj[BUTTON_UP],resetSW_Cb);		//Reset the StopWatch count by pressed up button
+	button.attachPressed(&btn_obj[BUTTON_BACK],BackSW_Cb);		//Back to menu page
 
+	//Start advertisement when the device is not advertising by holding the back button for 1 second
 	button.attachHeld(&btn_obj[BUTTON_BACK],start_advertisement);
 
 	u8g2_ClearDisplay(&u8g2_obj);
@@ -71,15 +73,18 @@ void init_stopwatch_disp()
 
 	THIS_PAGE = SW_PAGE;
 
+	vTaskResume(voiceHandle);
 }
 
+//Clear all callback function each button and suspend voice command task
 void deinit_stopwatch_disp()
 {
-	//	Melakukan deattach button
 	for (uint8_t i = 0; i < 4; i++)
 		button.clearAllISR(&btn_obj[i]);
+	vTaskSuspend(voiceHandle);
 }
 
+//Count StopWatch
 void stopwatch()
 {
 	if (countSW)
@@ -101,6 +106,7 @@ void stopwatch()
 	sprintf(buf_stopwatch,"%d:%d:%d:%d\r\n",hour,minute,second,mili_second);
 }
 
+//Displaying StopWatch count
 void stopwatch_draw()
 {
 	stopwatch();
@@ -142,7 +148,7 @@ static void start_advertisement()
 		wiced_bt_start_advertisements( BTM_BLE_ADVERT_UNDIRECTED_HIGH, 0, NULL );
 }
 
-//callback function button mode
+//Start count the StopWatch by pressed enter button
 static void startSW_Cb()
 {
 	timeout_flag = true;
@@ -150,12 +156,14 @@ static void startSW_Cb()
 	countSW = true;
 }
 
+//Pause count the StopWatch by pressed down button
 static void pauseSW_Cb()
 {
 	timeout_flag = true;
 	countSW = false;
 }
 
+//Reset count the StopWatch by pressed up button
 static void resetSW_Cb()
 {
 	timeout_flag = true;
@@ -163,12 +171,13 @@ static void resetSW_Cb()
 	dtstopwatch = 0;
 }
 
+//Start count the StopWatch by pressed enter button
 static void BackSW_Cb()
 {
-	THIS_PAGE = idx_back; //index_back
+	THIS_PAGE = idx_back;
 }
 
-//callback function voice command
+//Start count the StopWatch by voice command
 static void start_cb()
 {
 	timeout_flag = true;
@@ -176,12 +185,14 @@ static void start_cb()
 	countSW = true;
 }
 
+//Stop count the StopWatch by voice command
 static void stop_cb()
 {
 	timeout_flag = true;
 	countSW = false;
 }
 
+//Reset count the StopWatch by voice command
 static void reset_cb()
 {
 	timeout_flag = true;
@@ -189,26 +200,28 @@ static void reset_cb()
 	dtstopwatch = 0;
 }
 
+//Back to main page by voice command
 static void back_cb()
 {
 	deinit_stopwatch_disp();
 	main_page();
 }
 
+//Checks the command from the user and executes the callback function when the command matches the command available on the device.
 static void speech_stopwatch_cmd(uint32_t cmd)
 {
-
-	uint8_t cmd_len = getSize(voice_bank);
+	uint8_t cmd_len = getSize(voice_bank);			//Lots of commands available
 	for(uint8_t i = 0; i < cmd_len; i++)
 	{
-		if(voice_bank[i].cmd_id == ((uint8_t)cmd))
+		if(voice_bank[i].cmd_id == ((uint8_t)cmd))	//Comparing commands from the user with commands available on the device
 		{
-			voice_bank[i].cb();
+			voice_bank[i].cb();						//Execute callback function when command matching
 			break;
 		}
 	}
 }
 
+//Return to main page when no button is pressed for 3 minutes
 static void time_out()
 {
 	cyhal_rtc_read(&rtc_obj, &RTC_TIME);

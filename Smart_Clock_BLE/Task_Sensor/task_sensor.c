@@ -26,6 +26,7 @@ xensiv_dps3xx_t pressure_sensor;
 
 void sensor_Reading(void *arg)
 {
+	//wait for systems to be ready to ensure all systems start up correctly
 	while(!systemReady)
 	{
 		vTaskDelay(pdMS_TO_TICKS(5));
@@ -86,6 +87,7 @@ void sensor_Reading(void *arg)
 	};
 }
 
+//Initialize sensor for environment and air quality data
 cy_rslt_t sensorInit()
 {
 	cy_rslt_t result;

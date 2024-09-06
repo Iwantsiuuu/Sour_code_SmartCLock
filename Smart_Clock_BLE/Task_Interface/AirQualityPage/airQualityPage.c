@@ -64,6 +64,7 @@ void airQuality_disp()
 #ifdef UNUSE_I2S
 		printf("RTC_M: %d, RTC_S: %d\r\nMENIT: %d, DETIK: %d\r\n", RTC_TIME.tm_min, RTC_TIME.tm_sec, minute_timeout, second_timeout);
 #endif
+		//Return to main page by voice command
 		if(p_command_id == KEMBALI_CMD)
 		{
 			THIS_PAGE = return_to_main_page;
@@ -90,10 +91,11 @@ void airQuality_disp()
 	deinit_airQuality_disp();
 }
 
+//Register the callback function on each button, clear buffer and LCD display, and resume voice command task
 static void init_airQuality_disp()
 {
-	button.attachPressed(&btn_obj[BUTTON_BACK],prev_Cb);
-	button.attachHeld(&btn_obj[BUTTON_BACK],start_advertisement);
+	button.attachPressed(&btn_obj[BUTTON_BACK],prev_Cb);			//Back to menu page by pressed back button
+	button.attachHeld(&btn_obj[BUTTON_BACK],start_advertisement);	//Start advertisement when the device is not advertising by holding the back button for 1 second
 
 	u8g2_ClearDisplay(&u8g2_obj);
 	u8g2_ClearBuffer(&u8g2_obj);
@@ -105,10 +107,9 @@ static void init_airQuality_disp()
 	vTaskResume(voiceHandle);
 }
 
+//Clearing callback function each button and LCD display
 static void deinit_airQuality_disp()
 {
-
-	//	Melakukan deattach button
 	button.dettachPressed(&btn_obj[BUTTON_BACK]);//BACK
 	button.dettachHeld(&btn_obj[BUTTON_BACK]);
 	u8g2_ClearDisplay(&u8g2_obj);
@@ -137,6 +138,7 @@ static void airQuality_getVal()
 
 }
 
+//Display environmental data from the BME680 readout sensor
 static void airQuality_draw()
 {
 	airQuality_getVal();
@@ -164,6 +166,8 @@ static void airQuality_draw()
 
 	send_buffer_u8g2();
 }
+
+//Start advertisement by holding back button for 1 second
 static void start_advertisement()
 {
 	timeout_flag = true;
@@ -171,11 +175,13 @@ static void start_advertisement()
 		wiced_bt_start_advertisements( BTM_BLE_ADVERT_UNDIRECTED_HIGH, 0, NULL );
 }
 
+//Back to menu page
 static void prev_Cb()
 {
 	THIS_PAGE = idx_back; //index_back
 }
 
+//Return to main page when no button is pressed for 3 minutes
 static void time_out()
 {
 	cyhal_rtc_read(&rtc_obj, &RTC_TIME);

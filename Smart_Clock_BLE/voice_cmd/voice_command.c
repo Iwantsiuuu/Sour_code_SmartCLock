@@ -102,6 +102,7 @@ const cyhal_i2s_config_t i2s_config =
 };
 #endif
 
+/*----> Clock initialization for i2s and PDM <----*/
 void clock_init(void)
 {
 	cyhal_clock_reserve(&pll_clock, &CYHAL_CLOCK_PLL[0]);
@@ -114,6 +115,7 @@ void clock_init(void)
 	cyhal_clock_set_enabled(&audio_clock, true, true);
 }
 
+//Initialize I2S for sound using MAX98357
 #ifdef USE_I2S
 void init_i2s(void)
 {
@@ -123,6 +125,7 @@ void init_i2s(void)
 }
 #endif
 
+/*----> Initialization PDM for MEMS Microphone*/
 void init_pdm_pcm(void)
 {
 	cyhal_pdm_pcm_init(&pdm_pcm, PDM_DATA, PDM_CLK, &audio_clock, &pdm_pcm_cfg);
@@ -137,16 +140,20 @@ void voice_command_task(void)
 #ifdef UNUSE_I2S
 	uint64_t uid;
 #endif
+
+	//wait for systems to be ready to ensure all systems start up correctly
 	while(!systemReady)
 	{
 		vTaskDelay(pdMS_TO_TICKS(5));
 	}
 
+	//Get unique id for get license to use cyberon library
 #ifdef UNUSE_I2S
 	uid = Cy_SysLib_GetUniqueId();
 	printf("uniqueIdHi: 0x%08lX, uniqueIdLo: 0x%08lX\r\n", (uint32_t)(uid >> 32), (uint32_t)(uid << 32 >> 32));
 #endif
 
+	//Initialize cyberon with callback function to read variable stored from voice command
 	if(!cyberon_asr_init(asr_callback))
 	{
 		while(1);
@@ -161,8 +168,10 @@ void voice_command_task(void)
 		if(pdm_pcm_flag)
 		{
 			pdm_pcm_flag = 0;
-			cyberon_asr_process(pdm_pcm_buffer, FRAME_SIZE);
+			cyberon_asr_process(pdm_pcm_buffer, FRAME_SIZE);	//Process pdm data as input data from voice command
 		}
+
+		//Playing sound
 #ifdef USE_I2S
 		if(audio_play)
 		{
@@ -201,11 +210,11 @@ static void asr_callback(const char *function, char *message, char *parameter)
 	printf("[%s][%s] = %s\r\n", function, message, parameter);
 #endif
 
-	char* param = strstr(message, (const char*)"Map");
+	char* param = strstr(message, (const char*)"Map");	//Checking message "Map" from return variable cyberon process
 	if(param != NULL)
 	{
 		int p_cmd_id = 0;
-		p_cmd_id = atoi(parameter);
+		p_cmd_id = atoi(parameter);			//Convert variable parameter to integer for command id on voice command
 		p_command_id = (uint32_t)p_cmd_id;
 
 #ifdef USE_I2S
@@ -254,6 +263,7 @@ static void play_audio()
 	}
 }
 
+//Callback function when i2s has transferred data
 static void i2s_isr_handler(void *arg, cyhal_i2s_event_t event)
 {
 	(void) arg;
@@ -265,6 +275,6 @@ static void i2s_isr_handler(void *arg, cyhal_i2s_event_t event)
 	cyhal_i2s_stop_tx(&i2s);
 
 	/* Turn off the led when data already transfer */
-	cyhal_gpio_write(CYBSP_USER_LED, CYBSP_LED_STATE_OFF);
+//	cyhal_gpio_write(CYBSP_USER_LED, CYBSP_LED_STATE_OFF);
 }
 #endif

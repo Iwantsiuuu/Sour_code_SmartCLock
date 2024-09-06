@@ -47,11 +47,11 @@ static void air_quality_cb();
 
 voice_cmd_t voice_bank[5] =
 {
-		{(uint8_t)LINGKUNGAN_CMD, environment_cb},
-		{(uint8_t)UDARA_CMD, air_quality_cb},
-		{(uint8_t)STOPWATCH_CMD, stopwatch_cb},
-		{(uint8_t)HARIAN_CMD, daily_cb},
-		{(uint8_t)BULANAN_CMD, monthly_cb}
+		{(uint8_t)LINGKUNGAN_CMD, environment_cb},	//Jump to environment page by voice command
+		{(uint8_t)UDARA_CMD, air_quality_cb},		//Jump to air quality page by voice command
+		{(uint8_t)STOPWATCH_CMD, stopwatch_cb},		//Jump to StopWatch page by voice command
+		{(uint8_t)HARIAN_CMD, daily_cb},			//Jump to Alarm daily page by voice command
+		{(uint8_t)BULANAN_CMD, monthly_cb}			//Jump to Alarm monthly page by voice command
 };
 
 struct tm RTC_TIME;
@@ -67,9 +67,9 @@ void main_page()
 	init_main_page();
 	while (1)
 	{
-		speech_main_cmd(p_command_id);
+		speech_main_cmd(p_command_id);		//Checking command by voice command
 		if (THIS_PAGE == MAIN_PAGE_ID)
-			default_mode_draw();
+			main_page_draw();
 
 		else if(THIS_PAGE == MENU_PAGE_ID)
 		{
@@ -82,7 +82,8 @@ void main_page()
 	deinit_main_page();
 }
 
-static void default_mode_draw()
+//Displaying time, date, temperature, and battery percentage
+static void main_page_draw()
 {
 	char buf_time[STRING_BUFFER_SIZE];
 	char buf_date[STRING_BUFFER_SIZE];
@@ -116,33 +117,32 @@ static void default_mode_draw()
 	send_buffer_u8g2();
 }
 
+//Register the callback function on each button
 static void init_main_page()
 {
-	/* Initialization button with callback function */
-	button.attachPressed(&btn_obj[BUTTON_ENTER], enter_menu_cb);
-	button.attachHeld(&btn_obj[BUTTON_BACK],start_advertisement);
+	button.attachPressed(&btn_obj[BUTTON_ENTER], enter_menu_cb);	//Go to menu page by pressed enter button
+	button.attachHeld(&btn_obj[BUTTON_BACK],start_advertisement);	//Start advertisement when the device is not advertising by holding the back button for 1 second
 
 	if(connection_id == 0 && advertisement_mode != BTM_BLE_ADVERT_UNDIRECTED_HIGH)
 		wiced_bt_start_advertisements( BTM_BLE_ADVERT_UNDIRECTED_HIGH, 0, NULL );
 
-	THIS_PAGE = MAIN_PAGE_ID;
-
-	//	timeout_flag = true;
+	THIS_PAGE = MAIN_PAGE_ID;	//
 }
 
+//Clear all callback function at this page
 static void deinit_main_page()
 {
-	// deAttach button
 	for (uint8_t i = 0; i < NUM_OF_BTN; i++)
 		button.clearAllISR(&btn_obj[i]);
 }
 
+//Change from main page to menu page
 static void enter_menu_cb()
 {
-	//	timeout_flag = true;
 	THIS_PAGE = MENU_PAGE_ID;
 }
 
+//Start an ad when the device is not advertising by holding the back button for 1 second
 static void start_advertisement()
 {
 	if(connection_id == 0 && advertisement_mode != BTM_BLE_ADVERT_UNDIRECTED_HIGH)
@@ -183,14 +183,15 @@ static void air_quality_cb()
 	init_main_page();
 }
 
+//Checks the command from the user and executes the callback function when the command matches the command available on the device.
 static void speech_main_cmd(uint32_t cmd)
 {
-	uint8_t cmd_len = getSize(voice_bank);
+	uint8_t cmd_len = getSize(voice_bank);	//Lots of commands available
 	for(uint8_t i = 0; i < cmd_len; i++)
 	{
-		if(voice_bank[i].cmd_id == ((uint8_t)cmd))
+		if(voice_bank[i].cmd_id == ((uint8_t)cmd))	//Comparing commands from the user with commands available on the device
 		{
-			voice_bank[i].cb();
+			voice_bank[i].cb();	//Execute callback function when command matching
 			break;
 		}
 	}

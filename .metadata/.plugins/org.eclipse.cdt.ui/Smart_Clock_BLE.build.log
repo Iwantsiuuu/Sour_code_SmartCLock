@@ -1,4 +1,4 @@
-11:39:08 **** Incremental Build of configuration Debug for project Smart_Clock_BLE ****
+15:30:47 **** Incremental Build of configuration Debug for project Smart_Clock_BLE ****
 "C:\\Users\\bahariridwan\\ModusToolbox\\tools_3.2\\modus-shell\\bin\\make" CY_MAKE_IDE=eclipse CY_IDE_TOOLS_DIR=C:/Users/bahariridwan/ModusToolbox/tools_3.2 CY_IDE_BT_TOOLS_DIR= -j8 --output-sync all 
 Tools Directory: C:/Users/bahariridwan/ModusToolbox/tools_3.2
 Searching installed tools in progress...
@@ -25,6 +25,363 @@ Generating compilation database file...
 -> ./build/compile_commands.json
 Compilation database file generation complete
 Building 410 file(s)
+Compiling Task_Sensor/task_sensor.c -DCOMPONENT_APP_CY8CPROTO_063_BLE -DCOMPONENT_BLESS_IPC -DCOMPONENT_CAT1 -DCOMPONENT_CAT1A -DCOMPONENT_CM0P_BLESS -DCOMPONENT_CM4 -DCOMPONENT_CM4_0 -DCOMPONENT_Debug -DCOMPONENT_FREERTOS -DCOMPONENT_GCC_ARM -DCOMPONENT_MW_ABSTRACTION_RTOS -DCOMPONENT_MW_BTSTACK -DCOMPONENT_MW_BTSTACK_INTEGRATION -DCOMPONENT_MW_CAT1CM0P -DCOMPONENT_MW_CLIB_SUPPORT -DCOMPONENT_MW_CMSIS -DCOMPONENT_MW_CORE_LIB -DCOMPONENT_MW_CORE_MAKE -DCOMPONENT_MW_CYBERON_DSPOTTER_LIB_PSOC6_CM4 -DCOMPONENT_MW_DISPLAY_OLED_SSD1306 -DCOMPONENT_MW_FREERTOS -DCOMPONENT_MW_MTB_HAL_CAT1 -DCOMPONENT_MW_MTB_PDL_CAT1 -DCOMPONENT_MW_RECIPE_MAKE_CAT1A -DCOMPONENT_MW_RETARGET_IO -DCOMPONENT_MW_SENSOR_XENSIV_DPS3XX -DCOMPONENT_PSOC6_01 -DCOMPONENT_SOFTFP -DCOMPONENT_U8G2 -DCOMPONENT_WICED_BLE -DCORE_NAME_CM4_0=1 -DCYBLE_416045_02_device -DCY_APPNAME_cyberon_voice_trigger_and_command_demo_psoc6_cm4 -DCY_SUPPORTS_DEVICE_VALIDATION -DCY_TARGET_BOARD=APP_CY8CPROTO_063_BLE -DCY_USING_HAL -DDEBUG -DTARGET_APP_CY8CPROTO_063_BLE -DUNUSE_I2S -DUSE_DUMMY_DATA -DUSE_SMART_CLOCK_DEVELOPMENT_BOARD  -I. -IAPP_BT_Utils -Ibsps/TARGET_APP_CY8CPROTO-063-BLE -Ibsps -Ibsps/TARGET_APP_CY8CPROTO-063-BLE/bluetooth -Ibsps/TARGET_APP_CY8CPROTO-063-BLE/config/GeneratedSource -Ibsps/TARGET_APP_CY8CPROTO-063-BLE/config -Ibutton -IGeneratedSource -Iinclude -IMain_BLE -Imenu -IPower_Mode -IRTC -ITask_ble -ITask_Button -ITask_Interface -ITask_Interface/AirQualityPage -ITask_Interface/EnvironmentPage -ITask_Interface/MainPage -ITask_Interface/MenuPage -ITask_Interface/SettingAlarm -ITask_Interface/StopWatchPage -ITask_Interface/TimeDatePage -ITask_Sensor -ITask_Sensor/BMP_LIB -Iu8g2 -Ivoice_cmd -I../mtb_shared/btstack-integration/release-v5.0.1/COMPONENT_BLESS-IPC/platform/include -I../mtb_shared/btstack-integration/release-v5.0.1/COMPONENT_BLESS-IPC/platform -I../mtb_shared/btstack-integration/release-v5.0.1/COMPONENT_BLESS-IPC -I../mtb_shared/btstack-integration/release-v5.0.1 -I../mtb_shared/btstack-integration/release-v5.0.1/COMPONENT_BLESS-IPC/platform/ipc -I../mtb_shared/btstack-integration/release-v5.0.1/COMPONENT_BLESS-IPC/platform/ipc/include -I../mtb_shared/btstack/release-v3.9.2/wiced_include -I../mtb_shared/btstack/release-v3.9.2 -I../mtb_shared/cat1cm0p/release-v1.5.0/COMPONENT_CAT1A -I../mtb_shared/cat1cm0p/release-v1.5.0 -I../mtb_shared/clib-support/release-v1.5.0 -I../mtb_shared/clib-support/release-v1.5.0/TOOLCHAIN_GCC_ARM -I../mtb_shared/core-lib/release-v1.4.2/include -I../mtb_shared/core-lib/release-v1.4.2 -I../mtb_shared/cyberon-dspotter-lib-psoc6-cm4/release-v2.0/include -I../mtb_shared/cyberon-dspotter-lib-psoc6-cm4/release-v2.0 -I../mtb_shared/display-oled-ssd1306/release-v1.0.2 -I../mtb_shared/display-oled-ssd1306/release-v1.0.2/configs/emwin -I../mtb_shared/display-oled-ssd1306/release-v1.0.2/configs -I../mtb_shared/display-oled-ssd1306/release-v1.0.2/configs/u8g2 -I../mtb_shared/freertos/release-v10.5.002/Source/include -I../mtb_shared/freertos/release-v10.5.002/Source -I../mtb_shared/freertos/release-v10.5.002 -I../mtb_shared/freertos/release-v10.5.002/Source/portable/COMPONENT_CM4 -I../mtb_shared/freertos/release-v10.5.002/Source/portable -I../mtb_shared/freertos/release-v10.5.002/Source/portable/COMPONENT_CM4/TOOLCHAIN_GCC_ARM -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/COMPONENT_CAT1A/include/pin_packages -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/COMPONENT_CAT1A/include -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/COMPONENT_CAT1A -I../mtb_shared/mtb-hal-cat1/release-v2.6.1 -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/COMPONENT_CAT1A/include/triggers -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/include -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/include_pvt -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/source -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/devices/COMPONENT_CAT1A/include -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/devices/COMPONENT_CAT1A -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/devices -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0 -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/devices/COMPONENT_CAT1A/include/ip -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/drivers/include -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/drivers -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/drivers/third_party/ethernet/include -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/drivers/third_party/ethernet -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/drivers/third_party -I../mtb_shared/retarget-io/release-v1.5.0 -I../mtb_shared/sensor-xensiv-dps3xx/release-v1.0.0 -I../mtb_shared/abstraction-rtos/release-v1.8.2/include -I../mtb_shared/abstraction-rtos/release-v1.8.2 -I../mtb_shared/abstraction-rtos/release-v1.8.2/include/COMPONENT_FREERTOS -I../mtb_shared/cmsis/release-v5.8.0/Core/Include -I../mtb_shared/cmsis/release-v5.8.0/Core -I../mtb_shared/cmsis/release-v5.8.0 
+In file included from ../mtb_shared/freertos/release-v10.5.002/Source/include/FreeRTOS.h:59,
+                 from ./main.h:13,
+                 from Task_Sensor/task_sensor.c:11:
+../mtb_shared/freertos/release-v10.5.002/Source/portable/COMPONENT_CM4/FreeRTOSConfig.h:56:2: warning: #warning This is a template. Copy this file to your project and remove this line. Refer to FreeRTOS README.md for usage details. [-Wcpp]
+   56 | #warning This is a template. Copy this file to your project and remove this line. Refer to FreeRTOS README.md for usage details.
+      |  ^~~~~~~
+Task_Sensor/task_sensor.c: In function 'bme68x_i2c_read':
+Task_Sensor/task_sensor.c:117:17: warning: unused variable 'dev_addr' [-Wunused-variable]
+  117 |         uint8_t dev_addr = *(uint8_t*)intf_ptr;
+      |                 ^~~~~~~~
+Task_Sensor/task_sensor.c: In function 'bme68x_i2c_write':
+Task_Sensor/task_sensor.c:134:17: warning: unused variable 'dev_addr' [-Wunused-variable]
+  134 |         uint8_t dev_addr = *(uint8_t*)intf_ptr;
+      |                 ^~~~~~~~
+In file included from ./main.h:32,
+                 from Task_Sensor/task_sensor.c:11:
+Task_Sensor/task_sensor.c: At top level:
+Power_Mode/power_mode.h:21:13: warning: 'clk_power_callback' declared 'static' but never defined [-Wunused-function]
+   21 | static bool clk_power_callback(cyhal_syspm_callback_state_t state, cyhal_syspm_callback_mode_t mode, void *arg);
+      |             ^~~~~~~~~~~~~~~~~~
+Power_Mode/power_mode.h:22:13: warning: 'display_power_callback' declared 'static' but never defined [-Wunused-function]
+   22 | static bool display_power_callback(cyhal_syspm_callback_state_t state, cyhal_syspm_callback_mode_t mode, void *arg);
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+In file included from Task_Button/task_button.h:6,
+                 from Task_ble/ble_notify_task.h:30,
+                 from ./main.h:33,
+                 from Task_Sensor/task_sensor.c:11:
+button/button.h:48:18: warning: 'button_create' declared 'static' but never defined [-Wunused-function]
+   48 | static uint32_t  button_create(button_var* var, cyhal_gpio_t pin_t, uint8_t state, unsigned long duration_);
+      |                  ^~~~~~~~~~~~~
+button/button.h:49:13: warning: 'button_SetHoldTime' declared 'static' but never defined [-Wunused-function]
+   49 | static void button_SetHoldTime(button_var* var, unsigned long time_);
+      |             ^~~~~~~~~~~~~~~~~~
+button/button.h:50:13: warning: 'button_SetDebounceTime' declared 'static' but never defined [-Wunused-function]
+   50 | static void button_SetDebounceTime(button_var* var, unsigned long time_);
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+button/button.h:52:13: warning: 'button_Pressed' declared 'static' but never defined [-Wunused-function]
+   52 | static void button_Pressed(button_var* var, void (*P)() );
+      |             ^~~~~~~~~~~~~~
+button/button.h:53:13: warning: 'button_DoublePressed' declared 'static' but never defined [-Wunused-function]
+   53 | static void button_DoublePressed(button_var* var, void (*DP)() );
+      |             ^~~~~~~~~~~~~~~~~~~~
+button/button.h:55:13: warning: 'button_Held' declared 'static' but never defined [-Wunused-function]
+   55 | static void button_Held(button_var* var, void (*HOLD)() );
+      |             ^~~~~~~~~~~
+button/button.h:56:13: warning: 'button_Released' declared 'static' but never defined [-Wunused-function]
+   56 | static void button_Released(button_var* var, void(*RELEASED_f)());
+      |             ^~~~~~~~~~~~~~~
+button/button.h:58:13: warning: 'delete_Button_held' declared 'static' but never defined [-Wunused-function]
+   58 | static void delete_Button_held(button_var* var);
+      |             ^~~~~~~~~~~~~~~~~~
+button/button.h:59:13: warning: 'delete_Button_pressed' declared 'static' but never defined [-Wunused-function]
+   59 | static void delete_Button_pressed(button_var* var);
+      |             ^~~~~~~~~~~~~~~~~~~~~
+button/button.h:60:13: warning: 'delete_Button_released' declared 'static' but never defined [-Wunused-function]
+   60 | static void delete_Button_released(button_var* var);
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+button/button.h:61:13: warning: 'delete_Button_doublePressed' declared 'static' but never defined [-Wunused-function]
+   61 | static void delete_Button_doublePressed(button_var* var);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+button/button.h:62:13: warning: 'button_clearAllISR' declared 'static' but never defined [-Wunused-function]
+   62 | static void button_clearAllISR(button_var* var);
+      |             ^~~~~~~~~~~~~~~~~~
+button/button.h:64:16: warning: 'button_check' declared 'static' but never defined [-Wunused-function]
+   64 | static uint8_t button_check(button_var* var);
+      |                ^~~~~~~~~~~~
+button/button.h:65:14: warning: 'button_GetHeldTime' declared 'static' but never defined [-Wunused-function]
+   65 | static float button_GetHeldTime(button_var* var, float divisor);
+      |              ^~~~~~~~~~~~~~~~~~
+button/button.h:66:13: warning: 'button_setTick' declared 'static' but never defined [-Wunused-function]
+   66 | static void button_setTick(uint32_t (*tick)());
+      |             ^~~~~~~~~~~~~~
+Compiling voice_cmd/voice_command.c -DCOMPONENT_APP_CY8CPROTO_063_BLE -DCOMPONENT_BLESS_IPC -DCOMPONENT_CAT1 -DCOMPONENT_CAT1A -DCOMPONENT_CM0P_BLESS -DCOMPONENT_CM4 -DCOMPONENT_CM4_0 -DCOMPONENT_Debug -DCOMPONENT_FREERTOS -DCOMPONENT_GCC_ARM -DCOMPONENT_MW_ABSTRACTION_RTOS -DCOMPONENT_MW_BTSTACK -DCOMPONENT_MW_BTSTACK_INTEGRATION -DCOMPONENT_MW_CAT1CM0P -DCOMPONENT_MW_CLIB_SUPPORT -DCOMPONENT_MW_CMSIS -DCOMPONENT_MW_CORE_LIB -DCOMPONENT_MW_CORE_MAKE -DCOMPONENT_MW_CYBERON_DSPOTTER_LIB_PSOC6_CM4 -DCOMPONENT_MW_DISPLAY_OLED_SSD1306 -DCOMPONENT_MW_FREERTOS -DCOMPONENT_MW_MTB_HAL_CAT1 -DCOMPONENT_MW_MTB_PDL_CAT1 -DCOMPONENT_MW_RECIPE_MAKE_CAT1A -DCOMPONENT_MW_RETARGET_IO -DCOMPONENT_MW_SENSOR_XENSIV_DPS3XX -DCOMPONENT_PSOC6_01 -DCOMPONENT_SOFTFP -DCOMPONENT_U8G2 -DCOMPONENT_WICED_BLE -DCORE_NAME_CM4_0=1 -DCYBLE_416045_02_device -DCY_APPNAME_cyberon_voice_trigger_and_command_demo_psoc6_cm4 -DCY_SUPPORTS_DEVICE_VALIDATION -DCY_TARGET_BOARD=APP_CY8CPROTO_063_BLE -DCY_USING_HAL -DDEBUG -DTARGET_APP_CY8CPROTO_063_BLE -DUNUSE_I2S -DUSE_DUMMY_DATA -DUSE_SMART_CLOCK_DEVELOPMENT_BOARD  -I. -IAPP_BT_Utils -Ibsps/TARGET_APP_CY8CPROTO-063-BLE -Ibsps -Ibsps/TARGET_APP_CY8CPROTO-063-BLE/bluetooth -Ibsps/TARGET_APP_CY8CPROTO-063-BLE/config/GeneratedSource -Ibsps/TARGET_APP_CY8CPROTO-063-BLE/config -Ibutton -IGeneratedSource -Iinclude -IMain_BLE -Imenu -IPower_Mode -IRTC -ITask_ble -ITask_Button -ITask_Interface -ITask_Interface/AirQualityPage -ITask_Interface/EnvironmentPage -ITask_Interface/MainPage -ITask_Interface/MenuPage -ITask_Interface/SettingAlarm -ITask_Interface/StopWatchPage -ITask_Interface/TimeDatePage -ITask_Sensor -ITask_Sensor/BMP_LIB -Iu8g2 -Ivoice_cmd -I../mtb_shared/btstack-integration/release-v5.0.1/COMPONENT_BLESS-IPC/platform/include -I../mtb_shared/btstack-integration/release-v5.0.1/COMPONENT_BLESS-IPC/platform -I../mtb_shared/btstack-integration/release-v5.0.1/COMPONENT_BLESS-IPC -I../mtb_shared/btstack-integration/release-v5.0.1 -I../mtb_shared/btstack-integration/release-v5.0.1/COMPONENT_BLESS-IPC/platform/ipc -I../mtb_shared/btstack-integration/release-v5.0.1/COMPONENT_BLESS-IPC/platform/ipc/include -I../mtb_shared/btstack/release-v3.9.2/wiced_include -I../mtb_shared/btstack/release-v3.9.2 -I../mtb_shared/cat1cm0p/release-v1.5.0/COMPONENT_CAT1A -I../mtb_shared/cat1cm0p/release-v1.5.0 -I../mtb_shared/clib-support/release-v1.5.0 -I../mtb_shared/clib-support/release-v1.5.0/TOOLCHAIN_GCC_ARM -I../mtb_shared/core-lib/release-v1.4.2/include -I../mtb_shared/core-lib/release-v1.4.2 -I../mtb_shared/cyberon-dspotter-lib-psoc6-cm4/release-v2.0/include -I../mtb_shared/cyberon-dspotter-lib-psoc6-cm4/release-v2.0 -I../mtb_shared/display-oled-ssd1306/release-v1.0.2 -I../mtb_shared/display-oled-ssd1306/release-v1.0.2/configs/emwin -I../mtb_shared/display-oled-ssd1306/release-v1.0.2/configs -I../mtb_shared/display-oled-ssd1306/release-v1.0.2/configs/u8g2 -I../mtb_shared/freertos/release-v10.5.002/Source/include -I../mtb_shared/freertos/release-v10.5.002/Source -I../mtb_shared/freertos/release-v10.5.002 -I../mtb_shared/freertos/release-v10.5.002/Source/portable/COMPONENT_CM4 -I../mtb_shared/freertos/release-v10.5.002/Source/portable -I../mtb_shared/freertos/release-v10.5.002/Source/portable/COMPONENT_CM4/TOOLCHAIN_GCC_ARM -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/COMPONENT_CAT1A/include/pin_packages -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/COMPONENT_CAT1A/include -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/COMPONENT_CAT1A -I../mtb_shared/mtb-hal-cat1/release-v2.6.1 -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/COMPONENT_CAT1A/include/triggers -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/include -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/include_pvt -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/source -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/devices/COMPONENT_CAT1A/include -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/devices/COMPONENT_CAT1A -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/devices -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0 -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/devices/COMPONENT_CAT1A/include/ip -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/drivers/include -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/drivers -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/drivers/third_party/ethernet/include -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/drivers/third_party/ethernet -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/drivers/third_party -I../mtb_shared/retarget-io/release-v1.5.0 -I../mtb_shared/sensor-xensiv-dps3xx/release-v1.0.0 -I../mtb_shared/abstraction-rtos/release-v1.8.2/include -I../mtb_shared/abstraction-rtos/release-v1.8.2 -I../mtb_shared/abstraction-rtos/release-v1.8.2/include/COMPONENT_FREERTOS -I../mtb_shared/cmsis/release-v5.8.0/Core/Include -I../mtb_shared/cmsis/release-v5.8.0/Core -I../mtb_shared/cmsis/release-v5.8.0 
+In file included from ../mtb_shared/freertos/release-v10.5.002/Source/include/FreeRTOS.h:59,
+                 from ./main.h:13,
+                 from voice_cmd/voice_command.h:18,
+                 from voice_cmd/voice_command.c:41:
+../mtb_shared/freertos/release-v10.5.002/Source/portable/COMPONENT_CM4/FreeRTOSConfig.h:56:2: warning: #warning This is a template. Copy this file to your project and remove this line. Refer to FreeRTOS README.md for usage details. [-Wcpp]
+   56 | #warning This is a template. Copy this file to your project and remove this line. Refer to FreeRTOS README.md for usage details.
+      |  ^~~~~~~
+In file included from ./main.h:32,
+                 from voice_cmd/voice_command.h:18,
+                 from voice_cmd/voice_command.c:41:
+Power_Mode/power_mode.h:21:13: warning: 'clk_power_callback' declared 'static' but never defined [-Wunused-function]
+   21 | static bool clk_power_callback(cyhal_syspm_callback_state_t state, cyhal_syspm_callback_mode_t mode, void *arg);
+      |             ^~~~~~~~~~~~~~~~~~
+Power_Mode/power_mode.h:22:13: warning: 'display_power_callback' declared 'static' but never defined [-Wunused-function]
+   22 | static bool display_power_callback(cyhal_syspm_callback_state_t state, cyhal_syspm_callback_mode_t mode, void *arg);
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+In file included from Task_Button/task_button.h:6,
+                 from Task_ble/ble_notify_task.h:30,
+                 from ./main.h:33,
+                 from voice_cmd/voice_command.h:18,
+                 from voice_cmd/voice_command.c:41:
+button/button.h:48:18: warning: 'button_create' declared 'static' but never defined [-Wunused-function]
+   48 | static uint32_t  button_create(button_var* var, cyhal_gpio_t pin_t, uint8_t state, unsigned long duration_);
+      |                  ^~~~~~~~~~~~~
+button/button.h:49:13: warning: 'button_SetHoldTime' declared 'static' but never defined [-Wunused-function]
+   49 | static void button_SetHoldTime(button_var* var, unsigned long time_);
+      |             ^~~~~~~~~~~~~~~~~~
+button/button.h:50:13: warning: 'button_SetDebounceTime' declared 'static' but never defined [-Wunused-function]
+   50 | static void button_SetDebounceTime(button_var* var, unsigned long time_);
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+button/button.h:52:13: warning: 'button_Pressed' declared 'static' but never defined [-Wunused-function]
+   52 | static void button_Pressed(button_var* var, void (*P)() );
+      |             ^~~~~~~~~~~~~~
+button/button.h:53:13: warning: 'button_DoublePressed' declared 'static' but never defined [-Wunused-function]
+   53 | static void button_DoublePressed(button_var* var, void (*DP)() );
+      |             ^~~~~~~~~~~~~~~~~~~~
+button/button.h:55:13: warning: 'button_Held' declared 'static' but never defined [-Wunused-function]
+   55 | static void button_Held(button_var* var, void (*HOLD)() );
+      |             ^~~~~~~~~~~
+button/button.h:56:13: warning: 'button_Released' declared 'static' but never defined [-Wunused-function]
+   56 | static void button_Released(button_var* var, void(*RELEASED_f)());
+      |             ^~~~~~~~~~~~~~~
+button/button.h:58:13: warning: 'delete_Button_held' declared 'static' but never defined [-Wunused-function]
+   58 | static void delete_Button_held(button_var* var);
+      |             ^~~~~~~~~~~~~~~~~~
+button/button.h:59:13: warning: 'delete_Button_pressed' declared 'static' but never defined [-Wunused-function]
+   59 | static void delete_Button_pressed(button_var* var);
+      |             ^~~~~~~~~~~~~~~~~~~~~
+button/button.h:60:13: warning: 'delete_Button_released' declared 'static' but never defined [-Wunused-function]
+   60 | static void delete_Button_released(button_var* var);
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+button/button.h:61:13: warning: 'delete_Button_doublePressed' declared 'static' but never defined [-Wunused-function]
+   61 | static void delete_Button_doublePressed(button_var* var);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+button/button.h:62:13: warning: 'button_clearAllISR' declared 'static' but never defined [-Wunused-function]
+   62 | static void button_clearAllISR(button_var* var);
+      |             ^~~~~~~~~~~~~~~~~~
+button/button.h:64:16: warning: 'button_check' declared 'static' but never defined [-Wunused-function]
+   64 | static uint8_t button_check(button_var* var);
+      |                ^~~~~~~~~~~~
+button/button.h:65:14: warning: 'button_GetHeldTime' declared 'static' but never defined [-Wunused-function]
+   65 | static float button_GetHeldTime(button_var* var, float divisor);
+      |              ^~~~~~~~~~~~~~~~~~
+button/button.h:66:13: warning: 'button_setTick' declared 'static' but never defined [-Wunused-function]
+   66 | static void button_setTick(uint32_t (*tick)());
+      |             ^~~~~~~~~~~~~~
+Compiling main.c -DCOMPONENT_APP_CY8CPROTO_063_BLE -DCOMPONENT_BLESS_IPC -DCOMPONENT_CAT1 -DCOMPONENT_CAT1A -DCOMPONENT_CM0P_BLESS -DCOMPONENT_CM4 -DCOMPONENT_CM4_0 -DCOMPONENT_Debug -DCOMPONENT_FREERTOS -DCOMPONENT_GCC_ARM -DCOMPONENT_MW_ABSTRACTION_RTOS -DCOMPONENT_MW_BTSTACK -DCOMPONENT_MW_BTSTACK_INTEGRATION -DCOMPONENT_MW_CAT1CM0P -DCOMPONENT_MW_CLIB_SUPPORT -DCOMPONENT_MW_CMSIS -DCOMPONENT_MW_CORE_LIB -DCOMPONENT_MW_CORE_MAKE -DCOMPONENT_MW_CYBERON_DSPOTTER_LIB_PSOC6_CM4 -DCOMPONENT_MW_DISPLAY_OLED_SSD1306 -DCOMPONENT_MW_FREERTOS -DCOMPONENT_MW_MTB_HAL_CAT1 -DCOMPONENT_MW_MTB_PDL_CAT1 -DCOMPONENT_MW_RECIPE_MAKE_CAT1A -DCOMPONENT_MW_RETARGET_IO -DCOMPONENT_MW_SENSOR_XENSIV_DPS3XX -DCOMPONENT_PSOC6_01 -DCOMPONENT_SOFTFP -DCOMPONENT_U8G2 -DCOMPONENT_WICED_BLE -DCORE_NAME_CM4_0=1 -DCYBLE_416045_02_device -DCY_APPNAME_cyberon_voice_trigger_and_command_demo_psoc6_cm4 -DCY_SUPPORTS_DEVICE_VALIDATION -DCY_TARGET_BOARD=APP_CY8CPROTO_063_BLE -DCY_USING_HAL -DDEBUG -DTARGET_APP_CY8CPROTO_063_BLE -DUNUSE_I2S -DUSE_DUMMY_DATA -DUSE_SMART_CLOCK_DEVELOPMENT_BOARD  -I. -IAPP_BT_Utils -Ibsps/TARGET_APP_CY8CPROTO-063-BLE -Ibsps -Ibsps/TARGET_APP_CY8CPROTO-063-BLE/bluetooth -Ibsps/TARGET_APP_CY8CPROTO-063-BLE/config/GeneratedSource -Ibsps/TARGET_APP_CY8CPROTO-063-BLE/config -Ibutton -IGeneratedSource -Iinclude -IMain_BLE -Imenu -IPower_Mode -IRTC -ITask_ble -ITask_Button -ITask_Interface -ITask_Interface/AirQualityPage -ITask_Interface/EnvironmentPage -ITask_Interface/MainPage -ITask_Interface/MenuPage -ITask_Interface/SettingAlarm -ITask_Interface/StopWatchPage -ITask_Interface/TimeDatePage -ITask_Sensor -ITask_Sensor/BMP_LIB -Iu8g2 -Ivoice_cmd -I../mtb_shared/btstack-integration/release-v5.0.1/COMPONENT_BLESS-IPC/platform/include -I../mtb_shared/btstack-integration/release-v5.0.1/COMPONENT_BLESS-IPC/platform -I../mtb_shared/btstack-integration/release-v5.0.1/COMPONENT_BLESS-IPC -I../mtb_shared/btstack-integration/release-v5.0.1 -I../mtb_shared/btstack-integration/release-v5.0.1/COMPONENT_BLESS-IPC/platform/ipc -I../mtb_shared/btstack-integration/release-v5.0.1/COMPONENT_BLESS-IPC/platform/ipc/include -I../mtb_shared/btstack/release-v3.9.2/wiced_include -I../mtb_shared/btstack/release-v3.9.2 -I../mtb_shared/cat1cm0p/release-v1.5.0/COMPONENT_CAT1A -I../mtb_shared/cat1cm0p/release-v1.5.0 -I../mtb_shared/clib-support/release-v1.5.0 -I../mtb_shared/clib-support/release-v1.5.0/TOOLCHAIN_GCC_ARM -I../mtb_shared/core-lib/release-v1.4.2/include -I../mtb_shared/core-lib/release-v1.4.2 -I../mtb_shared/cyberon-dspotter-lib-psoc6-cm4/release-v2.0/include -I../mtb_shared/cyberon-dspotter-lib-psoc6-cm4/release-v2.0 -I../mtb_shared/display-oled-ssd1306/release-v1.0.2 -I../mtb_shared/display-oled-ssd1306/release-v1.0.2/configs/emwin -I../mtb_shared/display-oled-ssd1306/release-v1.0.2/configs -I../mtb_shared/display-oled-ssd1306/release-v1.0.2/configs/u8g2 -I../mtb_shared/freertos/release-v10.5.002/Source/include -I../mtb_shared/freertos/release-v10.5.002/Source -I../mtb_shared/freertos/release-v10.5.002 -I../mtb_shared/freertos/release-v10.5.002/Source/portable/COMPONENT_CM4 -I../mtb_shared/freertos/release-v10.5.002/Source/portable -I../mtb_shared/freertos/release-v10.5.002/Source/portable/COMPONENT_CM4/TOOLCHAIN_GCC_ARM -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/COMPONENT_CAT1A/include/pin_packages -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/COMPONENT_CAT1A/include -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/COMPONENT_CAT1A -I../mtb_shared/mtb-hal-cat1/release-v2.6.1 -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/COMPONENT_CAT1A/include/triggers -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/include -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/include_pvt -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/source -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/devices/COMPONENT_CAT1A/include -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/devices/COMPONENT_CAT1A -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/devices -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0 -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/devices/COMPONENT_CAT1A/include/ip -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/drivers/include -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/drivers -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/drivers/third_party/ethernet/include -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/drivers/third_party/ethernet -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/drivers/third_party -I../mtb_shared/retarget-io/release-v1.5.0 -I../mtb_shared/sensor-xensiv-dps3xx/release-v1.0.0 -I../mtb_shared/abstraction-rtos/release-v1.8.2/include -I../mtb_shared/abstraction-rtos/release-v1.8.2 -I../mtb_shared/abstraction-rtos/release-v1.8.2/include/COMPONENT_FREERTOS -I../mtb_shared/cmsis/release-v5.8.0/Core/Include -I../mtb_shared/cmsis/release-v5.8.0/Core -I../mtb_shared/cmsis/release-v5.8.0 
+In file included from ../mtb_shared/freertos/release-v10.5.002/Source/include/FreeRTOS.h:59,
+                 from main.h:13,
+                 from main.c:4:
+../mtb_shared/freertos/release-v10.5.002/Source/portable/COMPONENT_CM4/FreeRTOSConfig.h:56:2: warning: #warning This is a template. Copy this file to your project and remove this line. Refer to FreeRTOS README.md for usage details. [-Wcpp]
+   56 | #warning This is a template. Copy this file to your project and remove this line. Refer to FreeRTOS README.md for usage details.
+      |  ^~~~~~~
+main.c: In function 'main':
+main.c:180:25: warning: passing argument 1 of 'xTaskCreate' from incompatible pointer type [-Wincompatible-pointer-types]
+  180 |                         voice_command_task,
+      |                         ^~~~~~~~~~~~~~~~~~
+      |                         |
+      |                         void (*)(void)
+In file included from main.h:16,
+                 from main.c:4:
+../mtb_shared/freertos/release-v10.5.002/Source/include/task.h:355:44: note: expected 'TaskFunction_t' {aka 'void (*)(void *)'} but argument is of type 'void (*)(void)'
+  355 |     BaseType_t xTaskCreate( TaskFunction_t pxTaskCode,
+      |                             ~~~~~~~~~~~~~~~^~~~~~~~~~
+In file included from main.h:32,
+                 from main.c:4:
+main.c: At top level:
+Power_Mode/power_mode.h:21:13: warning: 'clk_power_callback' declared 'static' but never defined [-Wunused-function]
+   21 | static bool clk_power_callback(cyhal_syspm_callback_state_t state, cyhal_syspm_callback_mode_t mode, void *arg);
+      |             ^~~~~~~~~~~~~~~~~~
+Power_Mode/power_mode.h:22:13: warning: 'display_power_callback' declared 'static' but never defined [-Wunused-function]
+   22 | static bool display_power_callback(cyhal_syspm_callback_state_t state, cyhal_syspm_callback_mode_t mode, void *arg);
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+In file included from Task_Button/task_button.h:6,
+                 from Task_ble/ble_notify_task.h:30,
+                 from main.h:33,
+                 from main.c:4:
+button/button.h:48:18: warning: 'button_create' declared 'static' but never defined [-Wunused-function]
+   48 | static uint32_t  button_create(button_var* var, cyhal_gpio_t pin_t, uint8_t state, unsigned long duration_);
+      |                  ^~~~~~~~~~~~~
+button/button.h:49:13: warning: 'button_SetHoldTime' declared 'static' but never defined [-Wunused-function]
+   49 | static void button_SetHoldTime(button_var* var, unsigned long time_);
+      |             ^~~~~~~~~~~~~~~~~~
+button/button.h:50:13: warning: 'button_SetDebounceTime' declared 'static' but never defined [-Wunused-function]
+   50 | static void button_SetDebounceTime(button_var* var, unsigned long time_);
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+button/button.h:52:13: warning: 'button_Pressed' declared 'static' but never defined [-Wunused-function]
+   52 | static void button_Pressed(button_var* var, void (*P)() );
+      |             ^~~~~~~~~~~~~~
+button/button.h:53:13: warning: 'button_DoublePressed' declared 'static' but never defined [-Wunused-function]
+   53 | static void button_DoublePressed(button_var* var, void (*DP)() );
+      |             ^~~~~~~~~~~~~~~~~~~~
+button/button.h:55:13: warning: 'button_Held' declared 'static' but never defined [-Wunused-function]
+   55 | static void button_Held(button_var* var, void (*HOLD)() );
+      |             ^~~~~~~~~~~
+button/button.h:56:13: warning: 'button_Released' declared 'static' but never defined [-Wunused-function]
+   56 | static void button_Released(button_var* var, void(*RELEASED_f)());
+      |             ^~~~~~~~~~~~~~~
+button/button.h:58:13: warning: 'delete_Button_held' declared 'static' but never defined [-Wunused-function]
+   58 | static void delete_Button_held(button_var* var);
+      |             ^~~~~~~~~~~~~~~~~~
+button/button.h:59:13: warning: 'delete_Button_pressed' declared 'static' but never defined [-Wunused-function]
+   59 | static void delete_Button_pressed(button_var* var);
+      |             ^~~~~~~~~~~~~~~~~~~~~
+button/button.h:60:13: warning: 'delete_Button_released' declared 'static' but never defined [-Wunused-function]
+   60 | static void delete_Button_released(button_var* var);
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+button/button.h:61:13: warning: 'delete_Button_doublePressed' declared 'static' but never defined [-Wunused-function]
+   61 | static void delete_Button_doublePressed(button_var* var);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+button/button.h:62:13: warning: 'button_clearAllISR' declared 'static' but never defined [-Wunused-function]
+   62 | static void button_clearAllISR(button_var* var);
+      |             ^~~~~~~~~~~~~~~~~~
+button/button.h:64:16: warning: 'button_check' declared 'static' but never defined [-Wunused-function]
+   64 | static uint8_t button_check(button_var* var);
+      |                ^~~~~~~~~~~~
+button/button.h:65:14: warning: 'button_GetHeldTime' declared 'static' but never defined [-Wunused-function]
+   65 | static float button_GetHeldTime(button_var* var, float divisor);
+      |              ^~~~~~~~~~~~~~~~~~
+button/button.h:66:13: warning: 'button_setTick' declared 'static' but never defined [-Wunused-function]
+   66 | static void button_setTick(uint32_t (*tick)());
+      |             ^~~~~~~~~~~~~~
+Compiling Main_BLE/main_ble.c -DCOMPONENT_APP_CY8CPROTO_063_BLE -DCOMPONENT_BLESS_IPC -DCOMPONENT_CAT1 -DCOMPONENT_CAT1A -DCOMPONENT_CM0P_BLESS -DCOMPONENT_CM4 -DCOMPONENT_CM4_0 -DCOMPONENT_Debug -DCOMPONENT_FREERTOS -DCOMPONENT_GCC_ARM -DCOMPONENT_MW_ABSTRACTION_RTOS -DCOMPONENT_MW_BTSTACK -DCOMPONENT_MW_BTSTACK_INTEGRATION -DCOMPONENT_MW_CAT1CM0P -DCOMPONENT_MW_CLIB_SUPPORT -DCOMPONENT_MW_CMSIS -DCOMPONENT_MW_CORE_LIB -DCOMPONENT_MW_CORE_MAKE -DCOMPONENT_MW_CYBERON_DSPOTTER_LIB_PSOC6_CM4 -DCOMPONENT_MW_DISPLAY_OLED_SSD1306 -DCOMPONENT_MW_FREERTOS -DCOMPONENT_MW_MTB_HAL_CAT1 -DCOMPONENT_MW_MTB_PDL_CAT1 -DCOMPONENT_MW_RECIPE_MAKE_CAT1A -DCOMPONENT_MW_RETARGET_IO -DCOMPONENT_MW_SENSOR_XENSIV_DPS3XX -DCOMPONENT_PSOC6_01 -DCOMPONENT_SOFTFP -DCOMPONENT_U8G2 -DCOMPONENT_WICED_BLE -DCORE_NAME_CM4_0=1 -DCYBLE_416045_02_device -DCY_APPNAME_cyberon_voice_trigger_and_command_demo_psoc6_cm4 -DCY_SUPPORTS_DEVICE_VALIDATION -DCY_TARGET_BOARD=APP_CY8CPROTO_063_BLE -DCY_USING_HAL -DDEBUG -DTARGET_APP_CY8CPROTO_063_BLE -DUNUSE_I2S -DUSE_DUMMY_DATA -DUSE_SMART_CLOCK_DEVELOPMENT_BOARD  -I. -IAPP_BT_Utils -Ibsps/TARGET_APP_CY8CPROTO-063-BLE -Ibsps -Ibsps/TARGET_APP_CY8CPROTO-063-BLE/bluetooth -Ibsps/TARGET_APP_CY8CPROTO-063-BLE/config/GeneratedSource -Ibsps/TARGET_APP_CY8CPROTO-063-BLE/config -Ibutton -IGeneratedSource -Iinclude -IMain_BLE -Imenu -IPower_Mode -IRTC -ITask_ble -ITask_Button -ITask_Interface -ITask_Interface/AirQualityPage -ITask_Interface/EnvironmentPage -ITask_Interface/MainPage -ITask_Interface/MenuPage -ITask_Interface/SettingAlarm -ITask_Interface/StopWatchPage -ITask_Interface/TimeDatePage -ITask_Sensor -ITask_Sensor/BMP_LIB -Iu8g2 -Ivoice_cmd -I../mtb_shared/btstack-integration/release-v5.0.1/COMPONENT_BLESS-IPC/platform/include -I../mtb_shared/btstack-integration/release-v5.0.1/COMPONENT_BLESS-IPC/platform -I../mtb_shared/btstack-integration/release-v5.0.1/COMPONENT_BLESS-IPC -I../mtb_shared/btstack-integration/release-v5.0.1 -I../mtb_shared/btstack-integration/release-v5.0.1/COMPONENT_BLESS-IPC/platform/ipc -I../mtb_shared/btstack-integration/release-v5.0.1/COMPONENT_BLESS-IPC/platform/ipc/include -I../mtb_shared/btstack/release-v3.9.2/wiced_include -I../mtb_shared/btstack/release-v3.9.2 -I../mtb_shared/cat1cm0p/release-v1.5.0/COMPONENT_CAT1A -I../mtb_shared/cat1cm0p/release-v1.5.0 -I../mtb_shared/clib-support/release-v1.5.0 -I../mtb_shared/clib-support/release-v1.5.0/TOOLCHAIN_GCC_ARM -I../mtb_shared/core-lib/release-v1.4.2/include -I../mtb_shared/core-lib/release-v1.4.2 -I../mtb_shared/cyberon-dspotter-lib-psoc6-cm4/release-v2.0/include -I../mtb_shared/cyberon-dspotter-lib-psoc6-cm4/release-v2.0 -I../mtb_shared/display-oled-ssd1306/release-v1.0.2 -I../mtb_shared/display-oled-ssd1306/release-v1.0.2/configs/emwin -I../mtb_shared/display-oled-ssd1306/release-v1.0.2/configs -I../mtb_shared/display-oled-ssd1306/release-v1.0.2/configs/u8g2 -I../mtb_shared/freertos/release-v10.5.002/Source/include -I../mtb_shared/freertos/release-v10.5.002/Source -I../mtb_shared/freertos/release-v10.5.002 -I../mtb_shared/freertos/release-v10.5.002/Source/portable/COMPONENT_CM4 -I../mtb_shared/freertos/release-v10.5.002/Source/portable -I../mtb_shared/freertos/release-v10.5.002/Source/portable/COMPONENT_CM4/TOOLCHAIN_GCC_ARM -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/COMPONENT_CAT1A/include/pin_packages -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/COMPONENT_CAT1A/include -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/COMPONENT_CAT1A -I../mtb_shared/mtb-hal-cat1/release-v2.6.1 -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/COMPONENT_CAT1A/include/triggers -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/include -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/include_pvt -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/source -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/devices/COMPONENT_CAT1A/include -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/devices/COMPONENT_CAT1A -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/devices -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0 -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/devices/COMPONENT_CAT1A/include/ip -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/drivers/include -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/drivers -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/drivers/third_party/ethernet/include -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/drivers/third_party/ethernet -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/drivers/third_party -I../mtb_shared/retarget-io/release-v1.5.0 -I../mtb_shared/sensor-xensiv-dps3xx/release-v1.0.0 -I../mtb_shared/abstraction-rtos/release-v1.8.2/include -I../mtb_shared/abstraction-rtos/release-v1.8.2 -I../mtb_shared/abstraction-rtos/release-v1.8.2/include/COMPONENT_FREERTOS -I../mtb_shared/cmsis/release-v5.8.0/Core/Include -I../mtb_shared/cmsis/release-v5.8.0/Core -I../mtb_shared/cmsis/release-v5.8.0 
+In file included from ../mtb_shared/freertos/release-v10.5.002/Source/include/FreeRTOS.h:59,
+                 from Task_ble/ble_notify_task.h:12,
+                 from Main_BLE/main_ble.c:8:
+../mtb_shared/freertos/release-v10.5.002/Source/portable/COMPONENT_CM4/FreeRTOSConfig.h:56:2: warning: #warning This is a template. Copy this file to your project and remove this line. Refer to FreeRTOS README.md for usage details. [-Wcpp]
+   56 | #warning This is a template. Copy this file to your project and remove this line. Refer to FreeRTOS README.md for usage details.
+      |  ^~~~~~~
+Main_BLE/main_ble.c: In function 'app_bt_management_callback':
+Main_BLE/main_ble.c:187:36: warning: assignment to 'uint8_t' {aka 'unsigned char'} from 'const char *' makes integer from pointer without a cast [-Wint-conversion]
+  187 |                 advertisement_mode = get_bt_advert_mode_name(p_event_data->ble_advert_state_changed);
+      |                                    ^
+Main_BLE/main_ble.c: In function 'app_bt_connect_event_handler':
+Main_BLE/main_ble.c:313:43: warning: assignment discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  313 |                         reason_disconnect = get_bt_gatt_disconn_reason_name(p_conn_status->reason);
+      |                                           ^
+In file included from Task_Button/task_button.h:6,
+                 from Task_ble/ble_notify_task.h:30,
+                 from Main_BLE/main_ble.c:8:
+Main_BLE/main_ble.c: At top level:
+button/button.h:48:18: warning: 'button_create' declared 'static' but never defined [-Wunused-function]
+   48 | static uint32_t  button_create(button_var* var, cyhal_gpio_t pin_t, uint8_t state, unsigned long duration_);
+      |                  ^~~~~~~~~~~~~
+button/button.h:49:13: warning: 'button_SetHoldTime' declared 'static' but never defined [-Wunused-function]
+   49 | static void button_SetHoldTime(button_var* var, unsigned long time_);
+      |             ^~~~~~~~~~~~~~~~~~
+button/button.h:50:13: warning: 'button_SetDebounceTime' declared 'static' but never defined [-Wunused-function]
+   50 | static void button_SetDebounceTime(button_var* var, unsigned long time_);
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+button/button.h:52:13: warning: 'button_Pressed' declared 'static' but never defined [-Wunused-function]
+   52 | static void button_Pressed(button_var* var, void (*P)() );
+      |             ^~~~~~~~~~~~~~
+button/button.h:53:13: warning: 'button_DoublePressed' declared 'static' but never defined [-Wunused-function]
+   53 | static void button_DoublePressed(button_var* var, void (*DP)() );
+      |             ^~~~~~~~~~~~~~~~~~~~
+button/button.h:55:13: warning: 'button_Held' declared 'static' but never defined [-Wunused-function]
+   55 | static void button_Held(button_var* var, void (*HOLD)() );
+      |             ^~~~~~~~~~~
+button/button.h:56:13: warning: 'button_Released' declared 'static' but never defined [-Wunused-function]
+   56 | static void button_Released(button_var* var, void(*RELEASED_f)());
+      |             ^~~~~~~~~~~~~~~
+button/button.h:58:13: warning: 'delete_Button_held' declared 'static' but never defined [-Wunused-function]
+   58 | static void delete_Button_held(button_var* var);
+      |             ^~~~~~~~~~~~~~~~~~
+button/button.h:59:13: warning: 'delete_Button_pressed' declared 'static' but never defined [-Wunused-function]
+   59 | static void delete_Button_pressed(button_var* var);
+      |             ^~~~~~~~~~~~~~~~~~~~~
+button/button.h:60:13: warning: 'delete_Button_released' declared 'static' but never defined [-Wunused-function]
+   60 | static void delete_Button_released(button_var* var);
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+button/button.h:61:13: warning: 'delete_Button_doublePressed' declared 'static' but never defined [-Wunused-function]
+   61 | static void delete_Button_doublePressed(button_var* var);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+button/button.h:62:13: warning: 'button_clearAllISR' declared 'static' but never defined [-Wunused-function]
+   62 | static void button_clearAllISR(button_var* var);
+      |             ^~~~~~~~~~~~~~~~~~
+button/button.h:64:16: warning: 'button_check' declared 'static' but never defined [-Wunused-function]
+   64 | static uint8_t button_check(button_var* var);
+      |                ^~~~~~~~~~~~
+button/button.h:65:14: warning: 'button_GetHeldTime' declared 'static' but never defined [-Wunused-function]
+   65 | static float button_GetHeldTime(button_var* var, float divisor);
+      |              ^~~~~~~~~~~~~~~~~~
+button/button.h:66:13: warning: 'button_setTick' declared 'static' but never defined [-Wunused-function]
+   66 | static void button_setTick(uint32_t (*tick)());
+      |             ^~~~~~~~~~~~~~
+In file included from ./main.h:32,
+                 from Task_Sensor/setup_i2c.h:6,
+                 from Task_Interface/interface.h:20,
+                 from Task_Interface/task_interface.h:4,
+                 from Task_Interface/SettingAlarm/setting_alarm.h:7,
+                 from Main_BLE/main_ble.c:11:
+Power_Mode/power_mode.h:21:13: warning: 'clk_power_callback' declared 'static' but never defined [-Wunused-function]
+   21 | static bool clk_power_callback(cyhal_syspm_callback_state_t state, cyhal_syspm_callback_mode_t mode, void *arg);
+      |             ^~~~~~~~~~~~~~~~~~
+Power_Mode/power_mode.h:22:13: warning: 'display_power_callback' declared 'static' but never defined [-Wunused-function]
+   22 | static bool display_power_callback(cyhal_syspm_callback_state_t state, cyhal_syspm_callback_mode_t mode, void *arg);
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+Compiling Task_ble/ble_notify_task.c -DCOMPONENT_APP_CY8CPROTO_063_BLE -DCOMPONENT_BLESS_IPC -DCOMPONENT_CAT1 -DCOMPONENT_CAT1A -DCOMPONENT_CM0P_BLESS -DCOMPONENT_CM4 -DCOMPONENT_CM4_0 -DCOMPONENT_Debug -DCOMPONENT_FREERTOS -DCOMPONENT_GCC_ARM -DCOMPONENT_MW_ABSTRACTION_RTOS -DCOMPONENT_MW_BTSTACK -DCOMPONENT_MW_BTSTACK_INTEGRATION -DCOMPONENT_MW_CAT1CM0P -DCOMPONENT_MW_CLIB_SUPPORT -DCOMPONENT_MW_CMSIS -DCOMPONENT_MW_CORE_LIB -DCOMPONENT_MW_CORE_MAKE -DCOMPONENT_MW_CYBERON_DSPOTTER_LIB_PSOC6_CM4 -DCOMPONENT_MW_DISPLAY_OLED_SSD1306 -DCOMPONENT_MW_FREERTOS -DCOMPONENT_MW_MTB_HAL_CAT1 -DCOMPONENT_MW_MTB_PDL_CAT1 -DCOMPONENT_MW_RECIPE_MAKE_CAT1A -DCOMPONENT_MW_RETARGET_IO -DCOMPONENT_MW_SENSOR_XENSIV_DPS3XX -DCOMPONENT_PSOC6_01 -DCOMPONENT_SOFTFP -DCOMPONENT_U8G2 -DCOMPONENT_WICED_BLE -DCORE_NAME_CM4_0=1 -DCYBLE_416045_02_device -DCY_APPNAME_cyberon_voice_trigger_and_command_demo_psoc6_cm4 -DCY_SUPPORTS_DEVICE_VALIDATION -DCY_TARGET_BOARD=APP_CY8CPROTO_063_BLE -DCY_USING_HAL -DDEBUG -DTARGET_APP_CY8CPROTO_063_BLE -DUNUSE_I2S -DUSE_DUMMY_DATA -DUSE_SMART_CLOCK_DEVELOPMENT_BOARD  -I. -IAPP_BT_Utils -Ibsps/TARGET_APP_CY8CPROTO-063-BLE -Ibsps -Ibsps/TARGET_APP_CY8CPROTO-063-BLE/bluetooth -Ibsps/TARGET_APP_CY8CPROTO-063-BLE/config/GeneratedSource -Ibsps/TARGET_APP_CY8CPROTO-063-BLE/config -Ibutton -IGeneratedSource -Iinclude -IMain_BLE -Imenu -IPower_Mode -IRTC -ITask_ble -ITask_Button -ITask_Interface -ITask_Interface/AirQualityPage -ITask_Interface/EnvironmentPage -ITask_Interface/MainPage -ITask_Interface/MenuPage -ITask_Interface/SettingAlarm -ITask_Interface/StopWatchPage -ITask_Interface/TimeDatePage -ITask_Sensor -ITask_Sensor/BMP_LIB -Iu8g2 -Ivoice_cmd -I../mtb_shared/btstack-integration/release-v5.0.1/COMPONENT_BLESS-IPC/platform/include -I../mtb_shared/btstack-integration/release-v5.0.1/COMPONENT_BLESS-IPC/platform -I../mtb_shared/btstack-integration/release-v5.0.1/COMPONENT_BLESS-IPC -I../mtb_shared/btstack-integration/release-v5.0.1 -I../mtb_shared/btstack-integration/release-v5.0.1/COMPONENT_BLESS-IPC/platform/ipc -I../mtb_shared/btstack-integration/release-v5.0.1/COMPONENT_BLESS-IPC/platform/ipc/include -I../mtb_shared/btstack/release-v3.9.2/wiced_include -I../mtb_shared/btstack/release-v3.9.2 -I../mtb_shared/cat1cm0p/release-v1.5.0/COMPONENT_CAT1A -I../mtb_shared/cat1cm0p/release-v1.5.0 -I../mtb_shared/clib-support/release-v1.5.0 -I../mtb_shared/clib-support/release-v1.5.0/TOOLCHAIN_GCC_ARM -I../mtb_shared/core-lib/release-v1.4.2/include -I../mtb_shared/core-lib/release-v1.4.2 -I../mtb_shared/cyberon-dspotter-lib-psoc6-cm4/release-v2.0/include -I../mtb_shared/cyberon-dspotter-lib-psoc6-cm4/release-v2.0 -I../mtb_shared/display-oled-ssd1306/release-v1.0.2 -I../mtb_shared/display-oled-ssd1306/release-v1.0.2/configs/emwin -I../mtb_shared/display-oled-ssd1306/release-v1.0.2/configs -I../mtb_shared/display-oled-ssd1306/release-v1.0.2/configs/u8g2 -I../mtb_shared/freertos/release-v10.5.002/Source/include -I../mtb_shared/freertos/release-v10.5.002/Source -I../mtb_shared/freertos/release-v10.5.002 -I../mtb_shared/freertos/release-v10.5.002/Source/portable/COMPONENT_CM4 -I../mtb_shared/freertos/release-v10.5.002/Source/portable -I../mtb_shared/freertos/release-v10.5.002/Source/portable/COMPONENT_CM4/TOOLCHAIN_GCC_ARM -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/COMPONENT_CAT1A/include/pin_packages -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/COMPONENT_CAT1A/include -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/COMPONENT_CAT1A -I../mtb_shared/mtb-hal-cat1/release-v2.6.1 -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/COMPONENT_CAT1A/include/triggers -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/include -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/include_pvt -I../mtb_shared/mtb-hal-cat1/release-v2.6.1/source -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/devices/COMPONENT_CAT1A/include -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/devices/COMPONENT_CAT1A -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/devices -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0 -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/devices/COMPONENT_CAT1A/include/ip -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/drivers/include -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/drivers -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/drivers/third_party/ethernet/include -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/drivers/third_party/ethernet -I../mtb_shared/mtb-pdl-cat1/release-v3.11.0/drivers/third_party -I../mtb_shared/retarget-io/release-v1.5.0 -I../mtb_shared/sensor-xensiv-dps3xx/release-v1.0.0 -I../mtb_shared/abstraction-rtos/release-v1.8.2/include -I../mtb_shared/abstraction-rtos/release-v1.8.2 -I../mtb_shared/abstraction-rtos/release-v1.8.2/include/COMPONENT_FREERTOS -I../mtb_shared/cmsis/release-v5.8.0/Core/Include -I../mtb_shared/cmsis/release-v5.8.0/Core -I../mtb_shared/cmsis/release-v5.8.0 
+In file included from ../mtb_shared/freertos/release-v10.5.002/Source/include/FreeRTOS.h:59,
+                 from Task_ble/ble_notify_task.h:12,
+                 from Task_ble/ble_notify_task.c:1:
+../mtb_shared/freertos/release-v10.5.002/Source/portable/COMPONENT_CM4/FreeRTOSConfig.h:56:2: warning: #warning This is a template. Copy this file to your project and remove this line. Refer to FreeRTOS README.md for usage details. [-Wcpp]
+   56 | #warning This is a template. Copy this file to your project and remove this line. Refer to FreeRTOS README.md for usage details.
+      |  ^~~~~~~
+In file included from Task_Button/task_button.h:6,
+                 from Task_ble/ble_notify_task.h:30,
+                 from Task_ble/ble_notify_task.c:1:
+button/button.h:48:18: warning: 'button_create' declared 'static' but never defined [-Wunused-function]
+   48 | static uint32_t  button_create(button_var* var, cyhal_gpio_t pin_t, uint8_t state, unsigned long duration_);
+      |                  ^~~~~~~~~~~~~
+button/button.h:49:13: warning: 'button_SetHoldTime' declared 'static' but never defined [-Wunused-function]
+   49 | static void button_SetHoldTime(button_var* var, unsigned long time_);
+      |             ^~~~~~~~~~~~~~~~~~
+button/button.h:50:13: warning: 'button_SetDebounceTime' declared 'static' but never defined [-Wunused-function]
+   50 | static void button_SetDebounceTime(button_var* var, unsigned long time_);
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+button/button.h:52:13: warning: 'button_Pressed' declared 'static' but never defined [-Wunused-function]
+   52 | static void button_Pressed(button_var* var, void (*P)() );
+      |             ^~~~~~~~~~~~~~
+button/button.h:53:13: warning: 'button_DoublePressed' declared 'static' but never defined [-Wunused-function]
+   53 | static void button_DoublePressed(button_var* var, void (*DP)() );
+      |             ^~~~~~~~~~~~~~~~~~~~
+button/button.h:55:13: warning: 'button_Held' declared 'static' but never defined [-Wunused-function]
+   55 | static void button_Held(button_var* var, void (*HOLD)() );
+      |             ^~~~~~~~~~~
+button/button.h:56:13: warning: 'button_Released' declared 'static' but never defined [-Wunused-function]
+   56 | static void button_Released(button_var* var, void(*RELEASED_f)());
+      |             ^~~~~~~~~~~~~~~
+button/button.h:58:13: warning: 'delete_Button_held' declared 'static' but never defined [-Wunused-function]
+   58 | static void delete_Button_held(button_var* var);
+      |             ^~~~~~~~~~~~~~~~~~
+button/button.h:59:13: warning: 'delete_Button_pressed' declared 'static' but never defined [-Wunused-function]
+   59 | static void delete_Button_pressed(button_var* var);
+      |             ^~~~~~~~~~~~~~~~~~~~~
+button/button.h:60:13: warning: 'delete_Button_released' declared 'static' but never defined [-Wunused-function]
+   60 | static void delete_Button_released(button_var* var);
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+button/button.h:61:13: warning: 'delete_Button_doublePressed' declared 'static' but never defined [-Wunused-function]
+   61 | static void delete_Button_doublePressed(button_var* var);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+button/button.h:62:13: warning: 'button_clearAllISR' declared 'static' but never defined [-Wunused-function]
+   62 | static void button_clearAllISR(button_var* var);
+      |             ^~~~~~~~~~~~~~~~~~
+button/button.h:64:16: warning: 'button_check' declared 'static' but never defined [-Wunused-function]
+   64 | static uint8_t button_check(button_var* var);
+      |                ^~~~~~~~~~~~
+button/button.h:65:14: warning: 'button_GetHeldTime' declared 'static' but never defined [-Wunused-function]
+   65 | static float button_GetHeldTime(button_var* var, float divisor);
+      |              ^~~~~~~~~~~~~~~~~~
+button/button.h:66:13: warning: 'button_setTick' declared 'static' but never defined [-Wunused-function]
+   66 | static void button_setTick(uint32_t (*tick)());
+      |             ^~~~~~~~~~~~~~
+In file included from ./main.h:32,
+                 from Task_ble/ble_notify_task.c:3:
+Power_Mode/power_mode.h:21:13: warning: 'clk_power_callback' declared 'static' but never defined [-Wunused-function]
+   21 | static bool clk_power_callback(cyhal_syspm_callback_state_t state, cyhal_syspm_callback_mode_t mode, void *arg);
+      |             ^~~~~~~~~~~~~~~~~~
+Power_Mode/power_mode.h:22:13: warning: 'display_power_callback' declared 'static' but never defined [-Wunused-function]
+   22 | static bool display_power_callback(cyhal_syspm_callback_state_t state, cyhal_syspm_callback_mode_t mode, void *arg);
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+    Linking output file cyberon-voice-trigger-and-command-demo-psoc6-cm4.elf
+C:/Users/bahariridwan/ModusToolbox/tools_3.2/gcc/bin/arm-none-eabi-objcopy -O ihex C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/Smart_Clock_BLE/build/APP_CY8CPROTO-063-BLE/Debug/cyberon-voice-trigger-and-command-demo-psoc6-cm4.elf C:/Users/bahariridwan/ProjectSmartClock/Code_smartClock/Smart_Clock_BLE/build/APP_CY8CPROTO-063-BLE/Debug/cyberon-voice-trigger-and-command-demo-psoc6-cm4.hex
 ==============================================================================
 = Build complete =
 ==============================================================================
@@ -35,12 +392,12 @@ Calculating memory consumption: CYBLE-416045-02-device GCC_ARM
   | Section Name         |  Address      |  Size       | 
    ---------------------------------------------------- 
   | .cy_m0p_image        |  0x10000000   |  111188     | 
-  | .text                |  0x10020000   |  234064     | 
-  | command_data         |  0x10059250   |  163408     | 
-  | license_data         |  0x100810a0   |  188        | 
-  | .ARM.exidx           |  0x1008115c   |  8          | 
-  | .copy.table          |  0x10081164   |  24         | 
-  | .zero.table          |  0x1008117c   |  8          | 
+  | .text                |  0x10020000   |  233784     | 
+  | command_data         |  0x10059138   |  163408     | 
+  | license_data         |  0x10080f88   |  188        | 
+  | .ARM.exidx           |  0x10081044   |  8          | 
+  | .copy.table          |  0x1008104c   |  24         | 
+  | .zero.table          |  0x10081064   |  8          | 
   | .data                |  0x0800328c   |  3300       | 
   | .cy_sharedmem        |  0x08003f70   |  12         | 
   | .noinit              |  0x08003f80   |  236        | 
@@ -49,9 +406,9 @@ Calculating memory consumption: CYBLE-416045-02-device GCC_ARM
    ---------------------------------------------------- 
 
   Total Internal Flash (Available)          1048576    
-  Total Internal Flash (Utilized)           532092     
+  Total Internal Flash (Utilized)           531812     
 
 
 
-11:39:14 Build Finished. 0 errors, 0 warnings. (took 6s.9ms)
+15:30:57 Build Finished. 0 errors, 95 warnings. (took 9s.733ms)
 

@@ -86,6 +86,7 @@ int main(void)
 	/*----> Initialization Button for control smart clock manually <----*/
 	ButtonInit();
 
+	//Initialize I2S for sound using MAX98357
 #ifdef USE_I2S
 	init_i2s();
 #endif
